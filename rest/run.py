@@ -11,7 +11,14 @@ app = Eve()
 @app.route('/processor', methods = ['GET'])
 def processor():
     
-    computerDetails = Computer(platform.processor(), psutil.virtual_memory(), psutil.disk_usage('/'), platform.version(),  platform.system(),  platform.node(), platform.machine(), psutil.cpu_percent())
+    computerDetails = Computer(platform.processor(),
+                               psutil.virtual_memory(), 
+                               psutil.disk_usage('/'), 
+                               platform.version(),  
+                               platform.system(),  
+                               platform.node(), 
+                               platform.machine(), 
+                               psutil.cpu_percent())
     
     sdata = json.dumps(computerDetails.__dict__)
     
