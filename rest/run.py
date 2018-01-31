@@ -22,14 +22,13 @@ def processor():
     
     sdata = json.dumps(computerDetails.__dict__)
     
-    res = Response(response=sdata, status=200, mimetype="application/json")
-    res.headers["Content-Type"] = "application/json; charset=utf-8"
+    response = Response()
+    response.headers["status"] = 200
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
+    response.data= sdata
     
-    return res
+    return response
 
-@app.route('/hello')
-def hello_world():
-    return 'Hello World!'
 
 if __name__ == '__main__':
     app.run()
