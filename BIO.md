@@ -1,4 +1,4 @@
-# BIO
+# Biography
 * Kadupitiya Kadupitige is currently a postgraduate student for a full time Ph.D. specialized in intelligent system Engineering under Professor Geoffrey Fox in Indiana University Bloomington (IU). 
 * He is currently employed as a research assistant in Jadhao Research Group in the same department. His research interests lie primarily in machine learning, intelligent systems and distributed computing. 
 * He has successfully completed his Bachelor’s degree specialized in Electrical and information Engineering in University of Ruhuna, Sri Lanka. 
