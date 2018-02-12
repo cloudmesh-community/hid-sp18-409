@@ -33,14 +33,14 @@
 * 2018/02/12 Replicated the swagger codegen example provide on Windows(Using anaconda) and Linux 
 
 # Assignments
-* bio and google docs - statred on 01/10 and completed on 01/18
-* Big Data Size - statred on 01/15 and completed on 01/17
-* New Technology List - statred on 01/16 and completed on 01/25
-* Account Creation – statred on 01/24 and completed on 01/24
-* Account verification – statred on 01/25 and completed on 01/29
-* Cloud Class Survey – statred on 01/28 and completed on 01/28
-* Develop Cloud Related Eve Rest Service  - statred on 01/28 and completed on 02/02
-* Github Content Setup - statred on 01/29 and completed on 01/29
-* New Technology Abstract  - statred on 02/02 and completed on 02/04
-* Cloud and Big Data Rest Service with Swagger - statred on 02/12 and completed on 02/xx
+* bio and google docs - started on 01/10 and completed on 01/18
+* Big Data Size - started on 01/15 and completed on 01/17
+* New Technology List - started on 01/16 and completed on 01/25
+* Account Creation – started on 01/24 and completed on 01/24
+* Account verification – started on 01/25 and completed on 01/29
+* Cloud Class Survey – started on 01/28 and completed on 01/28
+* Develop Cloud Related Eve Rest Service  - started on 01/28 and completed on 02/02
+* Github Content Setup - started on 01/29 and completed on 01/29
+* New Technology Abstract  - started on 02/02 and completed on 02/04
+* Cloud and Big Data Rest Service with Swagger - started on 02/12 and completed on 02/xx
 	
