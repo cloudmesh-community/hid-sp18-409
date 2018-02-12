@@ -14,7 +14,7 @@
 * 2018/02/12 Watched Video Lecture 4 : Github issues
 * 2018/02/12 Watched Video Lecture 5 : swagger
 
-# Self Studeis
+# Self Studies
 
 * 2018/01/28 Read and watched mongodb documentation and tutorials
 * 2018/02/01 Read the documentation on  http://python-eve.org/ about Eve Rest
@@ -31,12 +31,13 @@
 
 # Assignments
 * bio and google docs - statred on 01/10 and completed on 01/18
-* Big Data Size - 	statred on 01/10 and completed on 01/18
-* Account Creation – 01/27
-* Account verification – 01/27
-* Cloud Class Survey – 01/28
-* New Technology List  - 01/29
-* Github Content Setup - 02/05
-* New Technology Abstract  - 02/05
-* Cloud and Big Data Rest services  - 02/05
+* Big Data Size - statred on 01/15 and completed on 01/17
+* New Technology List - statred on 01/16 and completed on 01/25
+* Account Creation – statred on 01/24 and completed on 01/24
+* Account verification – statred on 01/25 and completed on 01/29
+* Cloud Class Survey – statred on 01/28 and completed on 01/28
+* Develop Cloud Related Eve Rest Service  - statred on 01/28 and completed on 02/02
+* Github Content Setup - statred on 01/29 and completed on 01/29
+* New Technology Abstract  - statred on 02/02 and completed on 02/04
+* Cloud and Big Data Rest Service with Swagger - statred on 02/12 and completed on 02/xx
 	
