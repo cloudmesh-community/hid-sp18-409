@@ -6,13 +6,16 @@
 
 #  Lectures and Logistics
 
-* 2018/01/14 Read the introduction section of the handbook
+* 2018/01/14 Read the introduction section in the handbook
 * 2018/01/17 Watched Video Lecture 1 : E616, I524, E516 Course Management
 * 2018/01/17 Watched Video Lecture 2 : Introduction to Classes
+* 2018/01/18 Read the 33: Introduction to Cloud Computing chapter in the handbook
 * 2018/01/28 Watched Video Lecture 3 : Rest
+* 2018/01/28 Read the 33 : Rest chapter in the handbook
 * 2018/02/03 created accounts for github, chameleon, futuresystems
 * 2018/02/12 Watched Video Lecture 4 : Github issues
 * 2018/02/12 Watched Video Lecture 5 : swagger
+* 2018/02/12 Re-read the 33-11 : Rest service with swagger codegen chapter in the handbook
 
 # Self Studies
 
