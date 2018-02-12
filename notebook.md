@@ -23,7 +23,7 @@
 * 2018/02/01 Read the documentation on  http://python-eve.org/ about Eve Rest
 * 2018/02/12 Read and watched swagger codegen documentation and tutorials
 
-# Activities
+# Experiments and Activities
 
 * 2018/01/16 Downloaded Virtual box and installed linux ubuntu vm
 * 2018/01/20 Installed python venv 3.6 on vm
