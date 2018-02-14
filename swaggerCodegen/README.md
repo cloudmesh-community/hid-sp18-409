@@ -15,7 +15,7 @@
 
 ## API informations
 * End Point : /crimes
-* http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567
+* http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567 or http://156.56.102.77:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567
 	* The Crimes endpoint returns information about the crimes previously happened at a given location or nearby locations.
 	* latitude and longitude should be passed with the request
 	* The response includes lists of crimes in the proper display order
