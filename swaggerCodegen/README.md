@@ -1,9 +1,15 @@
 # Swagger Codegen Assignment: Implemeted a API to Identify crime prone areas near a GPS location
-##
+## Usage of Files and Data Structures using rest services hid-sp18-409 
+* Pandas (open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language) will be used to manipulate the crime dataset availble on https://catalog.data.gov/dataset/crimes-2001-to-present-398a4
+* Based on the GPS location of the user nearby crimes will be returned.
 
 ## Executing instructions
-* git clone the project and make sure rest eve is installed and available in your environment.
-* run the run.py file.
+* git clone the project.
+* change the directory to server folder
+* run the swagger server with following commands
+* pip install -r requirements.txt
+* python setup.py install
+* python -m swagger_server
 
 ## API informations
 * End Point : /crimes
