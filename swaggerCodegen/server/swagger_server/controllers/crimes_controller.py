@@ -12,9 +12,8 @@ import operator
 
 #static load, only happens in starting point of the server
 crimeData = pd.read_csv('data/crimedata_small.csv', index_col='crime_id', names=['crime_id','case_number','date','block','crime_code','primary_description','secondary_description','location_cat','arrested','domestic','beat_code','district_code','ward_code','community_area_code','fbi_code','x_coordinate','y_coordinate','year','updated_on','latitude','longitude','gps_location'])
-#allowble Distance in miles
+#allowble Distance in miles 0.1 = 528 foot
 allowbleDistance=0.1    
-
 
 def crimes_get(latitude, longitude):  # noqa: E501
     """Crimes
@@ -28,11 +27,15 @@ def crimes_get(latitude, longitude):  # noqa: E501
 
     :rtype: List[Crime]
     """
+    global crimeData
     #search for non indexed item
     #selectedCrime=crimeData.loc[crimeData['case_number'] == 'HY189866']
     #search for indexed item
     #crime_id='10013788'
     #selectedCrime=crimeData.loc[crime_id]
+    
+    #fill NaN with 0 for json conversion
+    crimeData=crimeData.fillna(0)
   
     crimeList=get_nearby_crime_sorted_ind(latitude, longitude, crimeData)
 
@@ -58,7 +61,6 @@ def get_nearby_crime_sorted_ind(latitude, longitude, crimeData):
     crimeList = [ set_dataframe_toObject(crimeID,crimeData.loc[crimeID]) for crimeID in sortedData.keys()]
     
     return crimeList
-    
 
 def set_dataframe_toObject(crime_id,selectedCrime):
     """
