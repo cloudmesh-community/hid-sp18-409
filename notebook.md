@@ -16,6 +16,7 @@
 * 2018/02/12 Watched Video Lecture 4 : Github issues
 * 2018/02/12 Watched Video Lecture 5 : swagger
 * 2018/02/12 Re-read the 33-11 : Rest service with swagger codegen chapter in the handbook
+* 2018/02/12 Read Chapter 11. Managing Bibliographies
 
 # Self Studies
 
@@ -43,4 +44,5 @@
 * Github Content Setup - started on 01/29 and completed on 01/29
 * New Technology Abstract  - started on 02/02 and completed on 02/04
 * Cloud and Big Data Rest Service with Swagger - started on 02/12 and completed on 02/xx
+* New Technology Abstract_Github version - started on 02/16 and completed on 02/19
 	
