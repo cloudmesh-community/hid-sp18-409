@@ -16,7 +16,7 @@
 * 2018/02/12 Watched Video Lecture 4 : Github issues
 * 2018/02/12 Watched Video Lecture 5 : swagger
 * 2018/02/12 Re-read the 33-11 : Rest service with swagger codegen chapter in the handbook
-* 2018/02/12 Read Chapter 11. Managing Bibliographies
+* 2018/02/16 Read Chapter 11. Managing Bibliographies
 
 # Self Studies
 
