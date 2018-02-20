@@ -59,23 +59,26 @@ swagger_client.configuration.api_key['server_token'] = 'YOUR_API_KEY'
 api_instance = swagger_client.CrimesApi()
 latitude = 1.2 # float | Latitude component of location.
 longitude = 1.2 # float | Longitude component of location.
+primary_type = 'primary_type_example' # str | primary_type of a crime.
 
 try:
-    # Crimes
-    api_response = api_instance.crimes_get(latitude, longitude)
+    # crimeList based on primary_type
+    api_response = api_instance.crimes_filter_get(latitude, longitude, primary_type)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling CrimesApi->crimes_get: %s\n" % e)
+    print("Exception when calling CrimesApi->crimes_filter_get: %s\n" % e)
 
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost:8080/v1*
+All URIs are relative to *http://localhost:8080/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CrimesApi* | [**crimes_filter_get**](docs/CrimesApi.md#crimes_filter_get) | **GET** /crimes/filter | crimeList based on primary_type
 *CrimesApi* | [**crimes_get**](docs/CrimesApi.md#crimes_get) | **GET** /crimes | Crimes
+*CrimesApi* | [**crimes_search_get**](docs/CrimesApi.md#crimes_search_get) | **GET** /crimes/search | Search for a crime
 
 
 ## Documentation For Models

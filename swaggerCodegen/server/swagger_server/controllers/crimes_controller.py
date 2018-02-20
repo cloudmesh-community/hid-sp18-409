@@ -7,7 +7,6 @@ from swagger_server import util
 
 import pandas as pd
 import numpy as np
-import json
 import operator
 
 #static load, only happens in starting point of the server
@@ -40,7 +39,47 @@ def crimes_get(latitude, longitude):  # noqa: E501
     crimeList=get_nearby_crime_sorted_ind(latitude, longitude, crimeData)
 
     return crimeList
+	
+def crimes_filter_get(latitude, longitude, primary_type):  # noqa: E501
+    """crimeList based on primary_type
 
+    The crimes/filter endpoint returns information about the crimes previously happened at a given location or nearby locations based on user&#39;s GPS coordinates and a primary_type (Example- BATTERY). # noqa: E501
+
+    :param latitude: Latitude component of location.
+    :type latitude: float
+    :param longitude: Longitude component of location.
+    :type longitude: float
+    :param primary_type: primary_type of a crime.
+    :type primary_type: str
+
+    :rtype: List[Crime]
+    """
+     #fill NaN with 0 for json conversion
+    global crimeData
+    crimeData=crimeData.fillna(0)
+  
+    crimeList=get_nearby_crime_sorted_ind(latitude, longitude, crimeData)
+     
+    selectedData = [crime for crime in crimeList if crime.primary_description == primary_type]
+    
+    return selectedData
+
+
+def crimes_search_get(crime_id):  # noqa: E501
+    """Search for a crime
+
+    User can search for a perticluar crime with crime_id. # noqa: E501
+
+    :param crime_id: Unique identifier representing a specific crime according to chicago police.
+    :type crime_id: str
+
+    :rtype: object
+    """
+    
+    crimeObj = set_dataframe_toObject(crime_id,crimeData.loc[crime_id])
+    
+    return crimeObj
+	
 
 def get_nearby_crime_sorted_ind(latitude, longitude, crimeData):
     """
@@ -61,6 +100,7 @@ def get_nearby_crime_sorted_ind(latitude, longitude, crimeData):
     crimeList = [ set_dataframe_toObject(crimeID,crimeData.loc[crimeID]) for crimeID in sortedData.keys()]
     
     return crimeList
+
 
 def set_dataframe_toObject(crime_id,selectedCrime):
     """
@@ -90,3 +130,5 @@ def haversine_np(lon1, lat1, lon2, lat2):
     c = 2 * np.arcsin(np.sqrt(a))
     miles = 3959 * c
     return miles
+	
+
