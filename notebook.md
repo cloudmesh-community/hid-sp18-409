@@ -17,6 +17,10 @@
 * 2018/02/12 Watched Video Lecture 5 : swagger
 * 2018/02/12 Re-read the 33-11 : Rest service with swagger codegen chapter in the handbook
 * 2018/02/16 Read Chapter 11. Managing Bibliographies
+* 2018/02/20 Watched Video Lecture 6 : container-a
+* 2018/02/20 Watched Video Lecture 7 : container-b
+* 2018/02/21 Watched Video Lecture 8 : container-c
+* 2018/02/21 Watched Video Lecture 9 : container-d
 
 # Self Studies
 
