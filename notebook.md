@@ -3,6 +3,7 @@
 * 2018/01/13 Attended an online meeting
 * 2018/01/29 Attended an Online Meeting Staffed by Gregor
 * 2018/02/05 Attended an Online Meeting Staffed by Gregor
+* 2018/02/26 Attended an Online Meeting Staffed by Gregor
 
 #  Lectures and Logistics
 
@@ -27,6 +28,9 @@
 * 2018/01/28 Read and watched mongodb documentation and tutorials
 * 2018/02/01 Read the documentation on  http://python-eve.org/ about Eve Rest
 * 2018/02/12 Read and watched swagger codegen documentation and tutorials
+* 2018/02/26 Read about Firebase cloud services.
+* 2018/02/27 Read about Firebase cloud services.
+* 2018/02/28 Read about Firebase cloud services.
 
 # Experiments and Activities
 
@@ -49,4 +53,5 @@
 * New Technology Abstract  - started on 02/02 and completed on 02/04
 * Cloud and Big Data Rest Service with Swagger - started on 02/12 and completed on 02/xx
 * New Technology Abstract_Github version - started on 02/16 and completed on 02/19
+* Technology paper - started on 02/26 and completed on 03/01
 	
