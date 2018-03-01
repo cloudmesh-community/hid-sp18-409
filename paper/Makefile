@@ -25,8 +25,8 @@ endif
 
 all: clean iureport
 	$(LATEX) ${FILE}
-	$(LATEX) ${FILE}
 	$(BIBTEX) ${FILE}
+	$(LATEX) ${FILE}
 	$(LATEX) ${FILE}
 
 iureport:
