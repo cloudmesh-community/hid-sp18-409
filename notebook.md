@@ -54,4 +54,5 @@
 * Cloud and Big Data Rest Service with Swagger - started on 02/12 and completed on 02/xx
 * New Technology Abstract_Github version - started on 02/16 and completed on 02/19
 * Technology paper - started on 02/26 and completed on 03/01
+* Tutorial Assignement - started on 03/05 and completed on 03/
 	
