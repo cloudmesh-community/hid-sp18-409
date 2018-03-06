@@ -10,16 +10,20 @@
 * git clone the project.
 * change the directory to swaggerCodegen folder
 * create the swagger server with following command
-
 ** make service
+
 * run the swagger server with following command
 ** make start
+
 * Install the client program using following command
 ** make client
+
 * test the program using following command
 ** make test
+
 * stop the service using following command
 ** make stop
+
 * clean the server and client codes using following command
 ** make clean
 
