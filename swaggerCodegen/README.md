@@ -10,17 +10,17 @@
 * git clone the project.
 * change the directory to swaggerCodegen folder
 * create the swagger server with following command
-	** make service
+	* make service
 * run the swagger server with following command
-	** make start
+	* make start
 * Install the client program using following command
-	** make client
+	* make client
 * test the program using following command
-	** make test
+	* make test
 * stop the service using following command
-	** make stop
+	* make stop
 * clean the server and client codes using following command
-	** make clean
+	* make clean
 
 ## API informations and Results
 * End Point : /crimes
