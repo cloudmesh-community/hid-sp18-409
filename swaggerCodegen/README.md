@@ -6,14 +6,23 @@
 * Based on the GPS location of the user nearby crimes will be returned.
 
 ## Executing instructions
+* you should be running this program in python 3 environment.
 * git clone the project.
-* change the directory to server folder
-* run the swagger server with following commands
-* pip install -r requirements.txt
-* python setup.py install
-* python -m swagger_server
+* change the directory to swaggerCodegen folder
+* create the swagger server with following command
+** make service
+* run the swagger server with following command
+** make start
+* Install the client program using following command
+** make client
+* test the program using following command
+** make test
+* stop the service using following command
+** make stop
+* clean the server and client codes using following command
+** make clean
 
-## API informations
+## API informations and Results
 * End Point : /crimes
 * http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567
 	* The Crimes endpoint returns information about the crimes previously happened at a given location or nearby locations.
