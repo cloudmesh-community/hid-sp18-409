@@ -5,10 +5,29 @@
 * For the sake of demonstration I have only used 10,000 crime details.
 * Based on the GPS location of the user nearby crimes will be returned.
 
-## Executing instructions
+## Instructions for docker
+* you should install docker.
+* change the directory to swagger folder
+* Build the project using docker
+	* ```docker build -t <your_docker_username>/swagger .```
+* Start the container attached to a custom port to which the client will forward connections to the container using following command
+	* ```docker run -p 5050:8080 <your_docker_username>/swagger```
+* Test the service using following get command
+	* ```curl http://127.0.0.1:5050/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
+* Get the container ID using following command
+	* ```docker ps```
+* Stop the service using following commands
+	* ```docker stop <container_ID>``` or ```docker stop $(docker ps -a -q -f status=running)```
+* Optional starting mechanism (interactive mode)
+	* ```docker run --rm -it kadupitiya/swagger bash```
+	* ```make start```
+	* ```make stop```
+	
+	
+## Executing instructions with ubunu
 * you should be running this program in python 3 environment.
 * git clone the project.
-* change the directory to swaggerCodegen folder
+* change the directory to swagger folder
 * create the swagger server with following command
 	* ```make service```
 * run the swagger server with following command

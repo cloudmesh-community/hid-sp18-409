@@ -4,7 +4,7 @@ service:
 	#creates the swagger service from the yaml file and places the controllers in the appropriate directory
 	$(SWAGGER_CODEGEN) generate -i crimes.yaml -l python-flask -o server -D supportPython3=true
 	cp crimes_controller.py server/swagger_server/controllers
-	mkdir server/data
+	if [ ! -d "/server/data" ]; then mkdir server/data; fi
 	cp crimedata_small.csv server/data
 	cp requirements.txt server
 	# Install dependencies and server side code
@@ -18,25 +18,12 @@ client:
 	
 start:
 	#starts the services
-ifeq ($(OS),Windows_NT)
-	cd server; cygstart --hide python -m swagger_server; cd ..;	
-else
-	UNAME_S := $(shell uname -s)
-	ifeq ($(UNAME_S),Linux)
-		cd server; python -m swagger_server &; cd ..;
-	endif
-endif
+	cd server; python -m swagger_server; cd ..;
 
 stop:
 	#stops the service
-ifeq ($(OS),Windows_NT)
-	taskkill /f /t /im python.exe	
-else
-	UNAME_S := $(shell uname -s)
-	ifeq ($(UNAME_S),Linux)
-		fuser -k 8080/tcp
-	endif
-endif
+	fuser -k 8080/tcp
+
 
 test:
 	#executes a number of tests against the service
