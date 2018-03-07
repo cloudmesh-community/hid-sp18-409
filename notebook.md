@@ -4,6 +4,8 @@
 * 2018/01/29 Attended an Online Meeting Staffed by Gregor
 * 2018/02/05 Attended an Online Meeting Staffed by Gregor
 * 2018/02/26 Attended an Online Meeting Staffed by Gregor
+* 2018/03/05 Attended an Online Meeting Staffed by Gregor
+* 2018/03/06 Attended an Online Meeting Staffed by Gregor
 
 #  Lectures and Logistics
 
@@ -31,6 +33,7 @@
 * 2018/02/26 Read about Firebase cloud services.
 * 2018/02/27 Read about Firebase cloud services.
 * 2018/02/28 Read about Firebase cloud services.
+* 2018/03/06 Read and experimented with docker and containers.
 
 # Experiments and Activities
 
@@ -51,8 +54,9 @@
 * Develop Cloud Related Eve Rest Service  - started on 01/28 and completed on 02/02
 * Github Content Setup - started on 01/29 and completed on 01/29
 * New Technology Abstract  - started on 02/02 and completed on 02/04
-* Cloud and Big Data Rest Service with Swagger - started on 02/12 and completed on 02/xx
+* Cloud and Big Data Rest Service with Swagger - started on 02/12 and completed on 02/27
 * New Technology Abstract_Github version - started on 02/16 and completed on 02/19
 * Technology paper - started on 02/26 and completed on 03/01
-* Tutorial Assignement - started on 03/05 and completed on 03/
-	
+* Tutorial Assignement - started on 03/05 and completed on 03/xx
+* Swagger V2: Makefile - started on 03/05 and completed on 03/05	
+* Swagger V3: Dcoker - started on 03/06 and completed on 03/06
