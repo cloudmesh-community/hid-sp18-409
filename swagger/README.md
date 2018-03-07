@@ -64,7 +64,7 @@
 ### Sample json response for GET request on
     http://localhost:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567
 
-```json
+```
 [
     {
         "arrested": "false",
@@ -129,7 +129,7 @@
 * Sample json response for GET request on
   http://localhost:8080/v1/crimes/search?crime_id=10007143
 
-```json
+```
 {
   "arrested": "false",
   "beat_code": "2522",
@@ -171,7 +171,7 @@
 * Sample json response for GET request on
   http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS
 
-```json
+```
 [
   {
     "arrested": "false",
