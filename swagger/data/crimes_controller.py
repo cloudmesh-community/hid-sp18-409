@@ -5,14 +5,30 @@ from swagger_server.models.crime import Crime  # noqa: E501
 from swagger_server.models.error import Error  # noqa: E501
 from swagger_server import util
 
+import swagger_server.controllers.util as utility
+
 import pandas as pd
 import numpy as np
 import operator
 
-#static load, only happens in starting point of the server
-crimeData = pd.read_csv('data/crimedata_small.csv', index_col='crime_id', names=['crime_id','case_number','date','block','crime_code','primary_description','secondary_description','location_cat','arrested','domestic','beat_code','district_code','ward_code','community_area_code','fbi_code','x_coordinate','y_coordinate','year','updated_on','latitude','longitude','gps_location'])
 #allowble Distance in miles 0.1 = 528 foot
-allowbleDistance=0.1    
+allowbleDistance=0.1  
+  
+if utility.downloadData():
+    dataFile=utility.getDataFilePath()
+else:
+    import sys
+    print('Initial download failed')
+    sys.exit(1) 
+
+try:
+    #static load, only happens in starting point of the server
+    crimeData = pd.read_csv(dataFile, index_col='crime_id', names=['crime_id','case_number','date','block','crime_code','primary_description','secondary_description','location_cat','arrested','domestic','beat_code','district_code','ward_code','community_area_code','fbi_code','x_coordinate','y_coordinate','year','updated_on','latitude','longitude','gps_location'])  
+except FileNotFoundError:
+    import sys
+    import logging
+    logging.error('Data file not found. Fetch the data first')
+    sys.exit(1) 
 
 def crimes_get(latitude, longitude):  # noqa: E501
     """Crimes

@@ -20,9 +20,9 @@
   * ```docker build -t <your_docker_username>/swagger .```
 * Start the container attached to a custom port to which the client
   will forward connections to the container using following command
-  * ```docker run -p 5050:8080 <your_docker_username>/swagger```
+  * ```docker run -p 8080:8080 <your_docker_username>/swagger```
 * Test the service using following get command
-  * ```curl http://127.0.0.1:5050/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
 * Get the container ID using following command
   * ```docker ps```
 * Stop the service using following commands

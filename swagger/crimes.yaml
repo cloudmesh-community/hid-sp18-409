@@ -18,10 +18,8 @@ schemes:
 # will be prefixed to all paths
 basePath: /v1
 securityDefinitions:
-  apikey:
-    type: apiKey
-    name: server_token
-    in: query
+  basicAuth:
+    type: basic
 consumes: 
   - "application/json"
 produces: 
@@ -44,8 +42,8 @@ paths:
           required: true
           type: number
           format: double
-      security: 
-        - apikey: []
+      security:
+        - basicAuth: []
       tags: 
         - Crimes
       responses:  
@@ -70,8 +68,8 @@ paths:
           description: Unique identifier representing a specific crime according to chicago police.
           required: true
           type: string
-      security: 
-        - apikey: []
+      security:
+        - basicAuth: []
       tags: 
         - Crimes
       responses:  
@@ -108,8 +106,8 @@ paths:
           description: primary_type of a crime.
           required: true
           type: string
-      security: 
-        - apikey: []
+      security:
+        - basicAuth: []
       tags: 
         - Crimes
       responses:  
@@ -119,6 +117,46 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Crime'
+        default:
+          description: Unexpected error while retrieving the crime list
+          schema:
+            $ref: '#/definitions/Error'
+
+  /data:
+    get:
+      summary: returns the folder name and file name of the dataset
+      description: The data endpoint returns a data object conataining information about dataset files.
+      security:
+        - basicAuth: []
+      tags: 
+        - Data
+      responses:  
+        "200":
+          description: An object of Data
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Data'
+        default:
+          description: Unexpected error while retrieving the crime list
+          schema:
+            $ref: '#/definitions/Error'
+
+  /data/fetch:
+    get:
+      summary: Fetch data to the server
+      description: This data fetch endpoint upload the csv datafile to the server using predeifned url
+      security:
+        - basicAuth: []
+      tags: 
+        - Data
+      responses:  
+        "200":
+          description: An Object of Response
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Response'
         default:
           description: Unexpected error while retrieving the crime list
           schema:
@@ -196,6 +234,27 @@ definitions:
       gps_location:
         type: string
         description: GPS Location.
+
+  Data:
+    properties:
+      base_path:
+        type: string
+      filename:
+        type: string
+      filename_short:
+        type: string
+      url:
+        type: string
+
+  Response:
+    properties:
+      status:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: object
+
 
   Error:
     properties:
