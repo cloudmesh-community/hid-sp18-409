@@ -53,9 +53,10 @@
   * ```make start```
   * ```make stop```
 	
-## Executing instructions with ubunu
+## Instructions for ubuntu without docker
 
 * you should be running this program in python 3 environment.
+* you should have default-jre installed.
 * git clone the project.
 * change the directory to swagger folder
 * create the swagger server with following command
@@ -80,20 +81,20 @@
   * Sample curl request
   * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
   * Sample json response for GET request 
-```
+  * ```
 {
   "message": "Data fetch successfull",
   "status": true
 }
 
-```
+  ```
 
 ### End Point : /data
   * The data endpoint returns a data object conataining information about dataset files
   * Sample curl request
   * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
   * Sample json response for GET request
-```
+  * ```
 {
   "base_path": "data",
   "filename": "data/crimedata_small.csv",
@@ -101,7 +102,7 @@
   "url": "http://www17.uptobox.com/dl/WsdbuIQn8HOu6XC191yDYK6WsZbPj-bzw8rYpyiQT1Y_6uUyJ-Mw_oD9TARl0u_37pOPIL7tqPntXR6glyxQ9fpp22XlPS1h0I_TQLz2xqunfkrLpwvf4drFE0lxtyXc4TO4VWXo-nM22V69WHCALA/crimedata_small.csv"
 }
 
-```
+  ```
 
 ## API informations : Crime Services
 * End Point : /crimes
@@ -114,7 +115,7 @@
   * Sample curl request
   * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
   * Sample json response for GET request
-```
+  * ```
 [
     {
         "arrested": "false",
@@ -169,7 +170,7 @@
         "year": "2015"
     }
 ]
-```
+  ```
 ### End Point : /crimes/search
   * The crimes search endpoint returns information about a particular
     crime for a given crime_id.
@@ -177,7 +178,7 @@
   * Sample curl request
   * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
   * Sample json response for GET request
-```
+  * ```
 {
   "arrested": "false",
   "beat_code": "2522",
@@ -202,7 +203,7 @@
   "y_coordinate": "1912877",
   "year": "2015"
 }
-```
+  ```
 
 ### End Point : /crimes/filter
   * The crimes endpoint returns information about the crimes
@@ -217,7 +218,7 @@
   * Sample curl request
   * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
   * Sample json response for GET request
-```
+  * ```
 [
   {
     "arrested": "false",
@@ -273,4 +274,4 @@
   }
 ]
 
-```
+  ```
