@@ -26,7 +26,7 @@
   * ```/v1/crimes/search```
   * ```/v1/crimes/filter```
 
-## Instructions for docker
+## Instructions for docker installation
 
 * you should install docker.
 * change the directory to swagger folder
@@ -44,13 +44,14 @@
 
   ### Data Services
   
-      * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
-      * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+      
   ### Crime Services
   
-      * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
-      * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
-      * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
+  * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
       
 * Get the container ID using following command
   * ```docker ps```
