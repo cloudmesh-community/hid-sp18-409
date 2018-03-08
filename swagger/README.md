@@ -78,7 +78,7 @@
 ### End Point : data/fetch
   * This data fetch endpoint upload the csv datafile to the server using predeifned url
   * Sample curl request
-  ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
   * Sample json response for GET request 
 ```
 {
@@ -91,7 +91,7 @@
 ### End Point : /data
   * The data endpoint returns a data object conataining information about dataset files
   * Sample curl request
-  ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
   * Sample json response for GET request
 ```
 {
@@ -111,10 +111,9 @@
   * The response includes lists of crimes in the proper display order
   * Nearby distance is defined in the program and currently defaulted
     to 0.1 Miles(528 foot).
-
-### Sample json response for GET request on
-```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
-
+  * Sample curl request
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
+  * Sample json response for GET request
 ```
 [
     {
@@ -175,9 +174,9 @@
   * The crimes search endpoint returns information about a particular
     crime for a given crime_id.
   * The response includes a crime object in the proper display order
-  * Sample json response for GET request on ```curl
-    http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
-
+  * Sample curl request
+  * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
+  * Sample json response for GET request
 ```
 {
   "arrested": "false",
@@ -215,8 +214,9 @@
   * Nearby distance is defined in the program and currently defaulted
     to 0.1 Miles(528 foot).
   * Returned list only contained requested type of crimes.
-  * Sample json response for GET request on```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
-
+  * Sample curl request
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
+  * Sample json response for GET request
 ```
 [
   {
