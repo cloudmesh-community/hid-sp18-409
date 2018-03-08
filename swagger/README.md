@@ -29,7 +29,7 @@
 
 * you should install docker.
 * git clone the project.
-  * Alternatively you can also download the docker image from the docker hub. 
+  * Alternatively you can also download the docker image from the docker hub. Then you dont need to do docker build.
   * ```docker pull kadupitiya/swagger```
 * change the directory to swagger folder
 * Build the project using docker
