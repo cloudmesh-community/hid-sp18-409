@@ -1,5 +1,4 @@
-# Swagger Codegen Assignment: Implemented a API to Identify crime
-  prone areas near a GPS location
+# Swagger Codegen Assignment: Implemented a API to Identify crime prone areas near a GPS location
   
 ## Usage of Files and Data Structures using rest services hid-sp18-409
 
@@ -31,28 +30,19 @@
 * you should install docker.
 * change the directory to swagger folder
 * Build the project using docker
-
   * ```docker build -t <your_docker_username>/swagger .```
-  
 * Start the container attached to a custom port (I used same port but
   it could be 5050:8080) to which the client will forward connections
   to the container using following command
-  
   * ```docker run -p 8080:8080 <your_docker_username>/swagger```
-  
-* Test the service using following get commands
-
-  ### Data Services
-  
+* Test the service using following curl commands
+  ### Data Services 
   * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
-  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
-      
-  ### Crime Services
-  
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```     
+  ### Crime Services 
   * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
   * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
-  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
-      
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```    
 * Get the container ID using following command
   * ```docker ps```
 * Stop the service using following commands
@@ -64,6 +54,7 @@
   * ```make stop```
 	
 ## Executing instructions with ubunu
+
 * you should be running this program in python 3 environment.
 * git clone the project.
 * change the directory to swagger folder
@@ -86,10 +77,9 @@
 
 ### End Point : data/fetch
   * This data fetch endpoint upload the csv datafile to the server using predeifned url
-
-* Sample json response for GET request on
-```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
-
+  * Sample curl request
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+  * Sample json response for GET request 
 ```
 {
   "message": "Data fetch successfull",
@@ -100,10 +90,9 @@
 
 ### End Point : /data
   * The data endpoint returns a data object conataining information about dataset files
-
-* Sample json response for GET request on
-```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
-
+  * Sample curl request
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
+  * Sample json response for GET request
 ```
 {
   "base_path": "data",
@@ -186,9 +175,8 @@
   * The crimes search endpoint returns information about a particular
     crime for a given crime_id.
   * The response includes a crime object in the proper display order
-
-* Sample json response for GET request on
-```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
+  * Sample json response for GET request on ```curl
+    http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
 
 ```
 {
@@ -227,9 +215,7 @@
   * Nearby distance is defined in the program and currently defaulted
     to 0.1 Miles(528 foot).
   * Returned list only contained requested type of crimes.
-
-* Sample json response for GET request on
-```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
+  * Sample json response for GET request on```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
 
 ```
 [
