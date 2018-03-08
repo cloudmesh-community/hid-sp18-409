@@ -78,7 +78,7 @@
 ### End Point : data/fetch
   * This data fetch endpoint upload the csv datafile to the server using predeifned url
   * Sample curl request
-  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+  ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
   * Sample json response for GET request 
 ```
 {
@@ -91,7 +91,7 @@
 ### End Point : /data
   * The data endpoint returns a data object conataining information about dataset files
   * Sample curl request
-  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
+  ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
   * Sample json response for GET request
 ```
 {
