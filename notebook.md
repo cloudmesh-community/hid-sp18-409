@@ -70,4 +70,4 @@
 * Technology paper - started on 02/26 and completed on 03/01
 * Tutorial Assignement - started on 03/05 and completed on 03/xx
 * Swagger V2: Makefile - started on 03/05 and completed on 03/05	
-* Swagger V3: Dcoker - started on 03/06 and completed on 03/06
+* Swagger V3: Dcoker - started on 03/06 and completed on 03/07
