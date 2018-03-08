@@ -1,6 +1,8 @@
-# Swagger Codegen Assignment: Implemented a API to Identify crime prone areas near a GPS location
+# Swagger Codegen Assignment: Implemented a API to Identify crime
+  prone areas near a GPS location
   
-## Usage of Files and Data Structures using rest services hid-sp18-409 
+## Usage of Files and Data Structures using rest services hid-sp18-409
+
 * Pandas (open source, BSD-licensed library providing
   high-performance, easy-to-use data structures and data analysis
   tools for the Python programming language) is used to
@@ -8,7 +10,8 @@
   https://catalog.data.gov/dataset/crimes-2001-to-present-398a4
 * This crime dataset contains nearly 600,000(1.5GB) crime details
   across USA.
-* For the sake of demonstration I have only used 10,000 crime details (https://goo.gl/f2Ta3D).
+* For the sake of demonstration I have only used 10,000 crime details
+  (https://goo.gl/f2Ta3D).
 * Based on the GPS location of the user nearby crimes will be
   returned.
 * Data files are downloaded from a URL provided in the config.yml file.
@@ -23,21 +26,27 @@
   * ```/v1/crimes/filter```
 
 ## Instructions for docker
+
 * you should install docker.
 * change the directory to swagger folder
 * Build the project using docker
   * ```docker build -t <your_docker_username>/swagger .```
-* Start the container attached to a custom port (I used same port but it could be 5050:8080) to which the client
-  will forward connections to the container using following command
+* Start the container attached to a custom port (I used same port but
+  it could be 5050:8080) to which the client will forward connections
+  to the container using following command
   * ```docker run -p 8080:8080 <your_docker_username>/swagger```
+  
 * Test the service using following get commands
-### Data Services
-  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
-  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
-### Crime Services
-  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
-  * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
-  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
+  ### Data Services
+      * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H
+        "Content-Type:application/json" -X GET
+        http://localhost:8080/v1/data```
+      * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+  ### Crime Services
+      * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
+      * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
+      * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
+      
 * Get the container ID using following command
   * ```docker ps```
 * Stop the service using following commands
