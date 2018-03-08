@@ -28,6 +28,7 @@
 ## Instructions for docker installation
 
 * you should install docker.
+* git clone the project (You can also do "docker pull kadupitiya/swagger").
 * change the directory to swagger folder
 * Build the project using docker
   * ```docker build -t <your_docker_username>/swagger .```
