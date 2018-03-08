@@ -1,28 +1,43 @@
-# Swagger Codegen Assignment: Implemented a API to Identify crime
-  prone areas near a GPS location
+# Swagger Codegen Assignment: Implemented a API to Identify crime prone areas near a GPS location
   
 ## Usage of Files and Data Structures using rest services hid-sp18-409 
 * Pandas (open source, BSD-licensed library providing
   high-performance, easy-to-use data structures and data analysis
-  tools for the Python programming language) will be used to
+  tools for the Python programming language) is used to
   manipulate the crime dataset available on
   https://catalog.data.gov/dataset/crimes-2001-to-present-398a4
 * This crime dataset contains nearly 600,000(1.5GB) crime details
   across USA.
-* For the sake of demonstration I have only used 10,000 crime details.
+* For the sake of demonstration I have only used 10,000 crime details (https://goo.gl/f2Ta3D).
 * Based on the GPS location of the user nearby crimes will be
   returned.
+* Data files are downloaded from a URL provided in the config.yml file.
+* Basic authentication is used for /data APIs.
+* User roles and passwords are managed through credentials.yml file.
+* Crime services are kept open without any authentication.
+* Five API endpoints are provided.
+  * ```/v1/data```
+  * ```/v1/data/fetch```
+  * ```/v1/crimes```
+  * ```/v1/crimes/search```
+  * ```/v1/crimes/filter```
 
 ## Instructions for docker
 * you should install docker.
 * change the directory to swagger folder
 * Build the project using docker
   * ```docker build -t <your_docker_username>/swagger .```
-* Start the container attached to a custom port to which the client
+* Start the container attached to a custom port (I used same port but it could be 5050:8080) to which the client
   will forward connections to the container using following command
   * ```docker run -p 8080:8080 <your_docker_username>/swagger```
-* Test the service using following get command
+* Test the service using following get commands
+### Data Services
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+### Crime Services
   * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
+  * ```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
+  * ```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
 * Get the container ID using following command
   * ```docker ps```
 * Stop the service using following commands
@@ -32,7 +47,6 @@
   * ```docker run --rm -it kadupitiya/swagger bash```
   * ```make start```
   * ```make stop```
-	
 	
 ## Executing instructions with ubunu
 * you should be running this program in python 3 environment.
@@ -46,14 +60,47 @@
   * ```make client```
 * test the program using following command
   * ```make test```
+  * ```make test-data```
+  * ```make test-data-fetch```
 * stop the service using following command
   * ```make stop```
 * clean the server and client codes using following command
   * ```make clean```
 
-## API informations and Results
+## API informations : Data Services
+
+### End Point : data/fetch
+  * This data fetch endpoint upload the csv datafile to the server using predeifned url
+
+* Sample json response for GET request on
+```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch```
+
+```
+{
+  "message": "Data fetch successfull",
+  "status": true
+}
+
+```
+
+### End Point : /data
+  * The data endpoint returns a data object conataining information about dataset files
+
+* Sample json response for GET request on
+```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
+
+```
+{
+  "base_path": "data",
+  "filename": "data/crimedata_small.csv",
+  "filename_short": "data/crimedata_small.csv",
+  "url": "http://www17.uptobox.com/dl/WsdbuIQn8HOu6XC191yDYK6WsZbPj-bzw8rYpyiQT1Y_6uUyJ-Mw_oD9TARl0u_37pOPIL7tqPntXR6glyxQ9fpp22XlPS1h0I_TQLz2xqunfkrLpwvf4drFE0lxtyXc4TO4VWXo-nM22V69WHCALA/crimedata_small.csv"
+}
+
+```
+
+## API informations : Crime Services
 * End Point : /crimes
-* http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567
   * The Crimes endpoint returns information about the crimes
     previously happened at a given location or nearby locations.
   * latitude and longitude should be passed with the request
@@ -62,7 +109,7 @@
     to 0.1 Miles(528 foot).
 
 ### Sample json response for GET request on
-    http://localhost:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567
+```curl http://127.0.0.1:8080/v1/crimes?latitude=41.891398861&longitude=-87.744384567```
 
 ```
 [
@@ -121,13 +168,12 @@
 ]
 ```
 ### End Point : /crimes/search
-* http://localhost:8080/v1/crimes/search?crime_id=10007143
   * The crimes search endpoint returns information about a particular
     crime for a given crime_id.
   * The response includes a crime object in the proper display order
 
 * Sample json response for GET request on
-  http://localhost:8080/v1/crimes/search?crime_id=10007143
+```curl http://127.0.0.1:8080/v1/crimes/search?crime_id=10007143```
 
 ```
 {
@@ -157,7 +203,6 @@
 ```
 
 ### End Point : /crimes/filter
-* http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS
   * The crimes endpoint returns information about the crimes
     previously happened at a given location or nearby locations
     filtered with crime type.
@@ -169,7 +214,7 @@
   * Returned list only contained requested type of crimes.
 
 * Sample json response for GET request on
-  http://localhost:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS
+```curl http://127.0.0.1:8080/v1/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
 
 ```
 [
