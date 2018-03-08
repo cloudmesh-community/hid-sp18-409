@@ -99,7 +99,7 @@
   "base_path": "data",
   "filename": "data/crimedata_small.csv",
   "filename_short": "data/crimedata_small.csv",
-  "url": "http://www17.uptobox.com/dl/WsdbuIQn8HOu6XC191yDYK6WsZbPj-bzw8rYpyiQT1Y_6uUyJ-Mw_oD9TARl0u_37pOPIL7tqPntXR6glyxQ9fpp22XlPS1h0I_TQLz2xqunfkrLpwvf4drFE0lxtyXc4TO4VWXo-nM22V69WHCALA/crimedata_small.csv"
+  "url": "https://goo.gl/f2Ta3D"
 }
 
 ```
