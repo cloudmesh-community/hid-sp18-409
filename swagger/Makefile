@@ -6,6 +6,13 @@ CONFIG=$(HOME)/config
 DATA=$(HOME)/data
 CONTR=$(HOME)/swagger_server/controllers
 
+docker-start:
+	docker build -t kadupitiya/swagger .
+	docker run -p 8080:8080 kadupitiya/swagger
+	
+docker-stop:
+	docker stop $(docker ps -a -q -f status=running)
+
 service:
 	#creates the swagger service from the yaml file and places the controllers in the appropriate directory
 	$(SWAGGER_CODEGEN) generate -i $(YML) -l python-flask -o $(HOME) -D supportPython3=true
