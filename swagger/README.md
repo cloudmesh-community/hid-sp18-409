@@ -10,7 +10,7 @@
 * This crime dataset contains nearly 600,000(1.5GB) crime details
   across USA.
 * For the sake of demonstration I have only used 10,000 crime details
-  (https://goo.gl/f2Ta3D).
+  (http://download740.mediafire.com/ct2353u43z6g/qiq8o5dv9405z1q/crimedata_small.csv).
 * Based on the GPS location of the user nearby crimes will be
   returned.
 * Data files are downloaded from a URL provided in the config.yml file.
