@@ -26,18 +26,13 @@
   * ```/v1/crimes/filter```
 
 ## Instructions for docker installation
-
-* you should install docker.
 * git clone the project.
   * Alternatively you can also download the docker image from the docker hub. Then you dont need to do docker build.
   * ```docker pull kadupitiya/swagger```
-* change the directory to swagger folder
-* Build the project using docker
-  * ```docker build -t <your_docker_username>/swagger .```
-* Start the container attached to a custom port (I used same port but
-  it could be 5050:8080) to which the client will forward connections
-  to the container using following command
-  * ```docker run -p 8080:8080 <your_docker_username>/swagger```
+* you should install docker.
+* change the directory to swagger folder.
+* Start the service using following make command
+  * ```docker-start```
 * Test the service using following curl commands
   ### Data Services 
   * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data```
@@ -49,8 +44,7 @@
 * Get the container ID using following command
   * ```docker ps```
 * Stop the service using following commands
-  * ```docker stop <container_ID>``` or ```docker stop $(docker ps -a
-    -q -f status=running)```
+  * ```make docker-stop```
 * Optional starting mechanism (interactive mode)
   * ```docker run --rm -it kadupitiya/swagger bash```
   * ```make start```
