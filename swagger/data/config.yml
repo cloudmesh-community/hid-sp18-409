@@ -1,6 +1,6 @@
 ---
 'data':
-    'downlink': 'http://download740.mediafire.com/ct2353u43z6g/qiq8o5dv9405z1q/crimedata_small.csv'
+    'downlink': 'https://drive.google.com/a/kadupitiya.lk/uc?authuser=1&id=1AGjD-MWfqprIpX6wz-zC6mM8kxMr7ron&export=download'
     'downlinkFull': 'https://data.cityofchicago.org/api/views/ijzp-q8t2/rows.csv?accessType=DOWNLOAD'
     'basepath': 'data'
     'basefileFull': 'crimedata.csv'
