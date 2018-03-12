@@ -55,7 +55,7 @@
 
 # Assignments
 
-* bio and google docs - started on 01/10 and completed on 01/18
+* Bio and google docs - started on 01/10 and completed on 01/18
 * Big Data Size - started on 01/15 and completed on 01/17
 * New Technology List - started on 01/16 and completed on 01/25
 * Account Creation – started on 01/24 and completed on 01/24
@@ -74,3 +74,4 @@
 * Swagger V2: Makefile - started on 03/05 and completed on 03/05	
 * Swagger V3: Dcoker - started on 03/06 and completed on 03/07
 * Project - started on 03/08 and completed on 0x/xx
+* Tutorial - started on 03/12 and completed on 03/xx
