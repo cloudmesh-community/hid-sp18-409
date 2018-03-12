@@ -10,6 +10,7 @@
 
 ###  Linux
 
+#### Install Java JDK 8
 First, please install the Java JDK version 8 into your system. To do this you will need to download the code from 
 
 	http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -20,9 +21,11 @@ or use
 	
 ANd than what?
 	
-	
 * Second, setup environment variables for jdk by addding bin folder path to to user path variable.
 	* ```export PATH = $PATH:/usr/local/java8/bin```
+	
+#### Install Scala
+
 * Next, download and extract Scala pre-built version.
 	* http://www.scala-lang.org/download/
 * Then, setup environment varibale for Scala by adding bin folder path to the user path variable.
