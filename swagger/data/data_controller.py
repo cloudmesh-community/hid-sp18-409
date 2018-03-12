@@ -34,4 +34,7 @@ def data_get():  # noqa: E501
 
     :rtype: object
     """
-    return Data(utility.getBasePath(),utility.getDataFilePath(),utility.getDataFilePath(),utility.getdownloadLink())
+    return Data(utility.getBasePath(),
+                utility.getDataFilePath(),
+                utility.getDataFilePath(),
+                utility.getdownloadLink())
