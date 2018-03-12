@@ -10,8 +10,17 @@
 
 ###  Linux
 
-* First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
-	* http://www.oracle.com/technetwork/java/javase/downloads/index.html
+First, please install the Java JDK version 8 into your system. To do this you will need to download the code from 
+
+	http://www.oracle.com/technetwork/java/javase/downloads/index.html
+	
+or use 
+
+	wget .....
+	
+ANd than what?
+	
+	
 * Second, setup environment variables for jdk by addding bin folder path to to user path variable.
 	* ```export PATH = $PATH:/usr/local/java8/bin```
 * Next, download and extract Scala pre-built version.
