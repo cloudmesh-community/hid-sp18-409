@@ -1,5 +1,7 @@
 # Tutorial Assignment: User defined functions(UDF) in Spark
+
 ## Overview
+
 * This tutorial explains following:
 	* How to intall Spark in Linux, Windows and MacOS.
 	* How to create and utilize user defined functions(UDF) in Spark using Python.
@@ -7,6 +9,7 @@
 ## Instructions for Spark installation
 
 ###  Linux
+
 * First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
 	* http://www.oracle.com/technetwork/java/javase/downloads/index.html
 * Second, setup environment variables for jdk by addding bin folder path to to user path variable.
@@ -23,6 +26,7 @@
 	* ```spark-shell```
 
 ##  Windows
+
 * First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
 	* http://www.oracle.com/technetwork/java/javase/downloads/index.html
 * Second, setup environment variables for jdk by addding bin folder path to to user path variable.
@@ -47,6 +51,7 @@
 	* ```pyspark```
 
 ##  MacOS
+
 * First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
 	* http://www.oracle.com/technetwork/java/javase/downloads/index.html
 * Second, setup environment variables for jdk by addding bin folder path to to user path variable.
