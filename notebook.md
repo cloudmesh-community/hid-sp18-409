@@ -6,6 +6,7 @@
 * 2018/02/26 Attended an Online Meeting Staffed by Gregor
 * 2018/03/05 Attended an Online Meeting Staffed by Gregor
 * 2018/03/06 Attended an Online Meeting Staffed by Gregor
+* 2018/03/11 Attended an Online Meeting Staffed by Tyler 
 
 #  Lectures and Logistics
 
@@ -39,6 +40,7 @@
 * 2018/02/27 Read about Firebase cloud services.
 * 2018/02/28 Read about Firebase cloud services.
 * 2018/03/06 Read and experimented with docker and containers.
+* 2018/03/10 Read and experimented with Google Maps Java script API.
 
 # Experiments and Activities
 
@@ -49,7 +51,7 @@
 * 2018/02/01 Replicated the Eve Rest example provide on Windows(Using
   anaconda) and Linux
 * 2018/02/12 Replicated the swagger codegen example provide on
-  Windows(Using anaconda) and Linux 
+  Windows(Using anaconda) and Linux.
 
 # Assignments
 
@@ -71,3 +73,4 @@
 * Tutorial Assignement - started on 03/05 and completed on 03/xx
 * Swagger V2: Makefile - started on 03/05 and completed on 03/05	
 * Swagger V3: Dcoker - started on 03/06 and completed on 03/07
+* Project - started on 03/08 and completed on 0x/xx
