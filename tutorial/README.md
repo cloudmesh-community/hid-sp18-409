@@ -6,6 +6,10 @@
 	* How to intall Spark in Linux, Windows and MacOS.
 	* How to create and utilize user defined functions(UDF) in Spark using Python.
   
+## Resources
+
+* <http://gogle.com>
+
 ## Instructions for Spark installation
 
 ###  Linux
@@ -13,7 +17,7 @@
 #### Install Java JDK 8
 First, please install the Java JDK version 8 into your system. To do this you will need to download the code from 
 
-	http://www.oracle.com/technetwork/java/javase/downloads/index.html
+	<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 	
 or use 
 
