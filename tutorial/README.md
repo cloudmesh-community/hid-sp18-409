@@ -27,6 +27,7 @@ How to run the provided example using a provided docker file and make file.
 ###  Linux
 
 First, JDK (Recommanded version 8) should be installed to a path where there is no space. 
+
 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 	
 Second, setup environment variables for jdk by addding bin folder path to to user path variable.
