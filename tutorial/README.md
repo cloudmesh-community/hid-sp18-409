@@ -13,9 +13,9 @@ This tutorial explains following:
   
 ## Resources
 
- *  <https://spark.apache.org/>
+ * <https://spark.apache.org/>
  * <http://www.scala-lang.org/>
- *nconcrete link to udf missing
+ * nconcrete link to udf missing
  
 ## Instructions for Spark installation
 
@@ -25,22 +25,28 @@ First, JDK (Recommanded version 8) should be installed to a path where there is 
 * <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 	
 Second, setup environment variables for jdk by addding bin folder path to to user path variable.
-* ```export PATH = $PATH:/usr/local/java8/bin```
 
-Next, download and extract Scala pre-built version.
+	export PATH = $PATH:/usr/local/java8/bin
+
+Next, download and extract Scala pre-built version from 
+
 * <http://www.scala-lang.org/download/>
 
 Then, setup environment varibale for Scala by adding bin folder path to the user path variable.
-* ```export PATH = $PATH:/usr/local/scala/bin```
+
+	export PATH = $PATH:/usr/local/scala/bin
 
 Next, download and extract Apache Spark pre-built version.
+
 * <https://spark.apache.org/downloads.html>
 
 Then, setup environment varibale for spark by adding bin folder path to the user path variable.
-* ```export PATH = $PATH:/usr/local/spark/bin```
+
+	export PATH = $PATH:/usr/local/spark/bin
 
 Finally, for testing the installation, please type the following command.
-* ```spark-shell```
+
+	spark-shell
 
 ##  Windows
 
@@ -48,32 +54,40 @@ First, JDK should be installed to a path where there is no space in that path. R
 * <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 * Second, setup environment variables for jdk by addding bin folder path to to user path variable.
-	1. ```set JAVA_HOME=c:\java8 ```
-	2. ```set PATH=%JAVA_HOME%\bin;%PATH%```
 
-* Next, download and extract Apache Spark pre-built version.
-	* https://spark.apache.org/downloads.html
+	set JAVA_HOME=c:\java8
+	set PATH=%JAVA_HOME%\bin;%PATH%
 
-* Then, setup environment varibale for spark by adding bin folder path to the user path variable.
-	1. ```set SPARK_HOME=c:\spark```
-	2. ```set PATH=%SPARK_HOME%\bin;%PATH%```
+Next, download and extract Apache Spark pre-built version.
+
+* https://spark.apache.org/downloads.html
+
+Then, setup environment varibale for spark by adding bin folder path to the user path variable.
+	set SPARK_HOME=c:\spark
+	set PATH=%SPARK_HOME%\bin;%PATH%
 
 Next, download the winutils.exe binary and Save winutils.exe binary to a directory (c:\hadoop\bin).
+
 * <https://github.com/steveloughran/winutils>
 
 Then, change the winutils.exe permission using following command using CMD with administrator permission.
-* ```winutils.exe chmod -R 777 C:\tmp\hive```
-* If your system doesnt have `hive` folder, make sure to create `C:\tmp\hive` directory.
 
-* Next, setup environment varibale for hadoop by adding bin folder path to the user path variable.
-	1. ```set HADOOP_HOME=c:\hadoop\bin```
-	2. ```set PATH=%HADOOP_HOME%\bin;%PATH%```
+	winutils.exe chmod -R 777 C:\tmp\hive
+
+If your system doesnt have `hive` folder, make sure to create `C:\tmp\hive` directory.
+
+Next, setup environment varibale for hadoop by adding bin folder path to the user path variable.
+
+	set HADOOP_HOME=c:\hadoop\bin
+	set PATH=%HADOOP_HOME%\bin;%PATH%
 
 Then, install the latest Enthought Canopy for Python 3.5 (This is a bundled python installer for pyspark)
+
 * <https://store.enthought.com/downloads/#default>
 
 Finally, for testing the installation, please type the following command.
-* ```pyspark```
+
+	pyspark
 
 ##  MacOS
 
@@ -81,23 +95,28 @@ First, JDK should be installed to a path where there is no space in that path. R
 * <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 Second, setup environment variables for jdk by addding bin folder path to to user path variable.
-* ```export JAVA_HOME=$(/usr/libexec/java_home)```
+
+	export JAVA_HOME=$(/usr/libexec/java_home)
 
 Next, Install Apache Spark using Homebrew with following commands.
-1. ```brew update```
-2. ```brew install scala```
-3. ```brew install apache-spark```
+
+	brew update
+	brew install scala
+	brew install apache-spark
 
 Then, setup environment varibale for spark with following commands.
-1. ```export SPARK_HOME="/usr/local/Cellar/apache-spark/2.1.0/libexec/"```
-2. ```export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH```
-3. ```export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH```
+
+	export SPARK_HOME="/usr/local/Cellar/apache-spark/2.1.0/libexec/"
+	export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
+	export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH
 
 Next, install the latest Enthought Canopy for Python 3.5.
+
 * <https://store.enthought.com/downloads/#default>
 
 Finally, for testing the installation, please type the following command.
-	* ```pyspark```
+
+	pyspark
 
 ## Instructions for creating Spark User defined functions(UDF)
 
@@ -106,6 +125,7 @@ Finally, for testing the installation, please type the following command.
 #### Description about data set 
 
 The file **temperature_data.csv** contains temperature data of different wheather stations and it has the following structure.
+
 ```
 ITE00100554,18000101,TMAX,-75,,,E,
 ITE00100554,18000101,TMIN,-148,,,E,
@@ -114,46 +134,36 @@ EZE00100082,18000101,TMAX,-86,,,E,
 GM000010962,18000104,PRCP,0,,,E,
 EZE00100082,18000104,TMAX,-55,,,E,
 ```
+
 We will only consider wheather station ID (column 0), entrytype (column 2), temperature (column 3: it is in 10*Celsius)
 
 #### How to write a python program with UDF
 
 First, we need to import the relevent libraries to use Spark sql built in functionalities listed as below.
 
-```
-from pyspark.sql import SparkSession
-from pyspark.sql import Row
-```
+	from pyspark.sql import SparkSession
+	from pyspark.sql import Row
 
 Then, we need create a user defined fuction which will read the text input and process the data and return a spark sql Row object. It can be created as listed below.
 
-```
-def process_data(line):
-	fields = line.split(',')
-	stationID = fields[0]
-	entryType = fields[2]
-	temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
-	return Row(ID=stationID, t_type=entryType, temp=temperature)
-```
+	def process_data(line):
+		fields = line.split(',')
+		stationID = fields[0]
+		entryType = fields[2]
+		temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
+		return Row(ID=stationID, t_type=entryType, temp=temperature)
 
 Then we need to create a Spark SQL session as listed below with an application name.
 
-```
-spark = SparkSession.builder.appName("Simple SparkSQL UDF example").getOrCreate()
-```
+	spark = SparkSession.builder.appName("Simple SparkSQL UDF example").getOrCreate()
 
 Next, we read the raw data using spark build-in function textFile() as shown below.
 
-```
-lines = spark.sparkContext.textFile("temperature_data.csv")
-```
+	lines = spark.sparkContext.textFile("temperature_data.csv")
 
 Then, we convert those read lines to a Resilient Distributed Dataset (RDD) of Row object using UDF (process_data) which we created as listed below.
 
-```
-parsedLines = lines.map(process_data)
-```
-
+	parsedLines = lines.map(process_data)
 
 Alternatively we colud have written the UDF using a python lamda function to do the same thing as shown below.
 
@@ -166,23 +176,17 @@ parsedLines = lines.map(lambda line: Row(ID=line.split(',')[0],
 
 Now, we can convert our RDD object to a Spark SQL Dataframe as listed below.
 
-```
-TempDataset = spark.createDataFrame(parsedLines)
-```
+	TempDataset = spark.createDataFrame(parsedLines)
 
 Next, we can print and see the first 20 rows of data to validate our work as shown below.
 
-```
-TempDataset.show()
-```
+	TempDataset.show()
 
 #### How to execute a python spark script
 
-You can use **spark-submit** command to run a spark script as shown below.
+You can use **spark-submit** command to run a spark script as shown below ? never use bellow, bellow is under the table ;-).
 
-```
-spark-submit temperature_converter.py
-```
+	spark-submit temperature_converter.py
 
 If everything went well, you should see the following output.
 
@@ -218,25 +222,19 @@ only showing top 20 rows
 
 Now we are trying to find what is the maximum temperature reported for a particluar whether station and print the data in ascending order. We can achieve this by using **where()** and **orderBy()** fundtions as shown below.
 
-```
-TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
-	).orderBy('temp', ascending=False).cache()
+	TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
+		).orderBy('temp', ascending=False).cache()
 
-```
 
 We achieved the filtering using temperature type and it filters out all the data which is not a TMAX.
 
 Finally, we can print the data to see whether this worked or not using following statement.
 
-```
-TempDatasetProcessed.show()
-```
+	TempDatasetProcessed.show()
 
 Now, it is the time to run the python script again using following command.
 
-```
-spark-submit temperature_converter.py
-```
+	spark-submit temperature_converter.py
 
 If everything went well, you should see the following sorted and filtered output.
 
@@ -269,6 +267,7 @@ only showing top 20 rows
 ```
 
 Complete python script is listed below as well as under this directory (temperature_converter.py).
+? relative link missing
 
 ```
 from pyspark.sql import SparkSession
