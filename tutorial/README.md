@@ -69,6 +69,7 @@ Next, download and extract Apache Spark pre-built version.
 <https://spark.apache.org/downloads.html>
 
 Then, setup environment varibale for spark by adding bin folder path to the user path variable.
+
 	set SPARK_HOME=c:\spark
 	set PATH=%SPARK_HOME%\bin;%PATH%
 
