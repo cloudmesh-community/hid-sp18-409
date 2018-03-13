@@ -219,7 +219,7 @@ only showing top 20 rows
 Now we are trying to find what is the maximum temperature reported for a particluar whether station and print the data in ascending order. We can achieve this by using **where()** and **orderBy()** fundtions as shown below.
 
 ```
-TempDatasetProcessed = TempDataset.where(TempDataset\['t_type'\] == 'TMAX'
+TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
 	).orderBy('temp', ascending=False).cache()
 
 ```
