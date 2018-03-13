@@ -2,27 +2,28 @@
 
 ## Overview
 
-Apache Spark is a fast and general engine ? which perform ? tasks up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk for high speed large-scale streaming, machine learning and SQL workloads tasks. Spark offers to program ? the applications employing over 80 high-level operators using Java, Scala, Python, and R. Spark powers the combined or standalone use of a stack of libraries including SQL and DataFrames, MLlib for machine learning, GraphX, and Spark Streaming. Spark can be utilized in standalone cluster mode, on EC2, on Hadoop YARN, or on Apache Mesos and it allows data access in HDFS, Cassandra, HBase, Hive, Tachyon, and any Hadoop data source.
+Apache Spark is a fast and general cluster-computing framework which perform compuatational tasks up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk for high speed large-scale streaming, machine learning and SQL workloads tasks. Spark offers support for the applications development employing over 80 high-level operators using Java, Scala, Python, and R. Spark powers the combined or standalone use of a stack of libraries including SQL and DataFrames, MLlib for machine learning, GraphX, and Spark Streaming. Spark can be utilized in standalone cluster mode, on EC2, on Hadoop YARN, or on Apache Mesos and it allows data access in HDFS, Cassandra, HBase, Hive, Tachyon, and any Hadoop data source.
 
-User-defined functions (UDFs) are the functions created by developers when the built-in functionalities ? are not sufficient to do the required work. Apache Spark UDFs ? allow developers to enable new functions in higher level programming languages by extending built-in functionalities.  It also allows developers to experiment with wide range of options for integrating UDFs with Spark SQL, MLib and GraphX workflows.
-
+User-defined functions (UDFs) are the functions created by developers when the built-in functionalities offered in a programming language, are not sufficient to do the required work. Similary, Apache Spark UDFs also allow developers to enable new functions in higher level programming languages by extending built-in functionalities.  It also allows developers to experiment with wide range of options for integrating UDFs with Spark SQL, MLib and GraphX workflows.
 
 This tutorial explains following:
-* How to intall Spark in Linux, Windows and MacOS.
-* How to create and utilize user defined functions(UDF) in Spark using Python.
+
+How to intall Spark in Linux, Windows and MacOS.
+
+How to create and utilize user defined functions(UDF) in Spark using Python.
   
 ## Resources
 
- * <https://spark.apache.org/>
- * <http://www.scala-lang.org/>
- * nconcrete link to udf missing
+<https://spark.apache.org/>
+<http://www.scala-lang.org/>
+<https://docs.databricks.com/spark/latest/spark-sql/udf-in-python.html>
  
 ## Instructions for Spark installation
 
 ###  Linux
 
 First, JDK (Recommanded version 8) should be installed to a path where there is no space. 
-* <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
+<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 	
 Second, setup environment variables for jdk by addding bin folder path to to user path variable.
 
@@ -30,7 +31,7 @@ Second, setup environment variables for jdk by addding bin folder path to to use
 
 Next, download and extract Scala pre-built version from 
 
-* <http://www.scala-lang.org/download/>
+<http://www.scala-lang.org/download/>
 
 Then, setup environment varibale for Scala by adding bin folder path to the user path variable.
 
@@ -38,7 +39,7 @@ Then, setup environment varibale for Scala by adding bin folder path to the user
 
 Next, download and extract Apache Spark pre-built version.
 
-* <https://spark.apache.org/downloads.html>
+<https://spark.apache.org/downloads.html>
 
 Then, setup environment varibale for spark by adding bin folder path to the user path variable.
 
@@ -51,16 +52,16 @@ Finally, for testing the installation, please type the following command.
 ##  Windows
 
 First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
-* <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
+<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
-* Second, setup environment variables for jdk by addding bin folder path to to user path variable.
+Second, setup environment variables for jdk by addding bin folder path to to user path variable.
 
 	set JAVA_HOME=c:\java8
 	set PATH=%JAVA_HOME%\bin;%PATH%
 
 Next, download and extract Apache Spark pre-built version.
 
-* https://spark.apache.org/downloads.html
+<https://spark.apache.org/downloads.html>
 
 Then, setup environment varibale for spark by adding bin folder path to the user path variable.
 	set SPARK_HOME=c:\spark
@@ -68,7 +69,7 @@ Then, setup environment varibale for spark by adding bin folder path to the user
 
 Next, download the winutils.exe binary and Save winutils.exe binary to a directory (c:\hadoop\bin).
 
-* <https://github.com/steveloughran/winutils>
+<https://github.com/steveloughran/winutils>
 
 Then, change the winutils.exe permission using following command using CMD with administrator permission.
 
@@ -83,7 +84,7 @@ Next, setup environment varibale for hadoop by adding bin folder path to the use
 
 Then, install the latest Enthought Canopy for Python 3.5 (This is a bundled python installer for pyspark)
 
-* <https://store.enthought.com/downloads/#default>
+<https://store.enthought.com/downloads/#default>
 
 Finally, for testing the installation, please type the following command.
 
@@ -92,7 +93,8 @@ Finally, for testing the installation, please type the following command.
 ##  MacOS
 
 First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
-* <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
+
+<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 Second, setup environment variables for jdk by addding bin folder path to to user path variable.
 
@@ -112,7 +114,7 @@ Then, setup environment varibale for spark with following commands.
 
 Next, install the latest Enthought Canopy for Python 3.5.
 
-* <https://store.enthought.com/downloads/#default>
+<https://store.enthought.com/downloads/#default>
 
 Finally, for testing the installation, please type the following command.
 
@@ -139,12 +141,12 @@ We will only consider wheather station ID (column 0), entrytype (column 2), temp
 
 #### How to write a python program with UDF
 
-First, we need to import the relevent libraries to use Spark sql built in functionalities listed as below.
+First, we need to import the relevent libraries to use Spark sql built in functionalities listed as follows.
 
 	from pyspark.sql import SparkSession
 	from pyspark.sql import Row
 
-Then, we need create a user defined fuction which will read the text input and process the data and return a spark sql Row object. It can be created as listed below.
+Then, we need create a user defined fuction which will read the text input and process the data and return a spark sql Row object. It can be created as listed as follows.
 
 	def process_data(line):
 		fields = line.split(',')
@@ -153,19 +155,19 @@ Then, we need create a user defined fuction which will read the text input and p
 		temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
 		return Row(ID=stationID, t_type=entryType, temp=temperature)
 
-Then we need to create a Spark SQL session as listed below with an application name.
+Then we need to create a Spark SQL session as listed as follows with an application name.
 
 	spark = SparkSession.builder.appName("Simple SparkSQL UDF example").getOrCreate()
 
-Next, we read the raw data using spark build-in function textFile() as shown below.
+Next, we read the raw data using spark build-in function textFile() as shown next.
 
 	lines = spark.sparkContext.textFile("temperature_data.csv")
 
-Then, we convert those read lines to a Resilient Distributed Dataset (RDD) of Row object using UDF (process_data) which we created as listed below.
+Then, we convert those read lines to a Resilient Distributed Dataset (RDD) of Row object using UDF (process_data) which we created as listed as follows.
 
 	parsedLines = lines.map(process_data)
 
-Alternatively we colud have written the UDF using a python lamda function to do the same thing as shown below.
+Alternatively we colud have written the UDF using a python lamda function to do the same thing as shown next.
 
 ```
 parsedLines = lines.map(lambda line: Row(ID=line.split(',')[0],
@@ -174,17 +176,17 @@ parsedLines = lines.map(lambda line: Row(ID=line.split(',')[0],
 						/ 5.0) + 32.0))
 ```
 
-Now, we can convert our RDD object to a Spark SQL Dataframe as listed below.
+Now, we can convert our RDD object to a Spark SQL Dataframe as listed as follows.
 
 	TempDataset = spark.createDataFrame(parsedLines)
 
-Next, we can print and see the first 20 rows of data to validate our work as shown below.
+Next, we can print and see the first 20 rows of data to validate our work as shown next.
 
 	TempDataset.show()
 
 #### How to execute a python spark script
 
-You can use **spark-submit** command to run a spark script as shown below ? never use bellow, bellow is under the table ;-).
+You can use **spark-submit** command to run a spark script as shown next.
 
 	spark-submit temperature_converter.py
 
@@ -220,7 +222,7 @@ only showing top 20 rows
 
 #### Filtering and sorting
 
-Now we are trying to find what is the maximum temperature reported for a particluar whether station and print the data in ascending order. We can achieve this by using **where()** and **orderBy()** fundtions as shown below.
+Now we are trying to find what is the maximum temperature reported for a particluar whether station and print the data in ascending order. We can achieve this by using **where()** and **orderBy()** fundtions as shown next.
 
 	TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
 		).orderBy('temp', ascending=False).cache()
@@ -266,8 +268,9 @@ If everything went well, you should see the following sorted and filtered output
 only showing top 20 rows
 ```
 
-Complete python script is listed below as well as under this directory (temperature_converter.py).
-? relative link missing
+Complete python script is listed as follows as well as under this directory (temperature_converter.py).
+
+<https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/temperature_converter.py>
 
 ```
 from pyspark.sql import SparkSession
