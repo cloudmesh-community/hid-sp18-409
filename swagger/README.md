@@ -1,357 +1,350 @@
-# User defined functions (UDF) in Spark
-
-## Overview
-
-Apache Spark is a fast and general cluster-computing framework which perform compuatational tasks up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk for high speed large-scale streaming, machine learning and SQL workloads tasks. Spark offers support for the applications development employing over 80 high-level operators using Java, Scala, Python, and R. Spark powers the combined or standalone use of a stack of libraries including SQL and DataFrames, MLlib for machine learning, GraphX, and Spark Streaming. Spark can be utilized in standalone cluster mode, on EC2, on Hadoop YARN, or on Apache Mesos and it allows data access in HDFS, Cassandra, HBase, Hive, Tachyon, and any Hadoop data source.
-
-User-defined functions (UDFs) are the functions created by developers when the built-in functionalities offered in a programming language, are not sufficient to do the required work. Similary, Apache Spark UDFs also allow developers to enable new functions in higher level programming languages by extending built-in functionalities.  It also allows developers to experiment with wide range of options for integrating UDFs with Spark SQL, MLib and GraphX workflows.
-
-This tutorial explains following:
-
-How to intall Spark in Linux, Windows and MacOS.
-
-How to create and utilize user defined functions(UDF) in Spark using Python.
+# Swagger Codegen Assignment: Implemented a API to Identify crime prone areas near a GPS location
   
-## Resources
+## Usage of Files and Data Structures using rest services hid-sp18-409
 
-<https://spark.apache.org/>
+* Pandas (open source, BSD-licensed library providing
+  high-performance, easy-to-use data structures and data analysis
+  tools for the Python programming language) is used to
+  manipulate the crime dataset available on
+  <https://catalog.data.gov/dataset/crimes-2001-to-present-398a4>
 
-<http://www.scala-lang.org/>
+* This crime dataset contains nearly 600,000(1.5GB) crime details
+  across USA.
 
-<https://docs.databricks.com/spark/latest/spark-sql/udf-in-python.html>
- 
-## Instructions for Spark installation
+* For the sake of demonstration I have only used 10,000 crime details
+  (<https://drive.google.com/a/kadupitiya.lk/uc?authuser=1&id=1AGjD-MWfqprIpX6wz-zC6mM8kxMr7ron&export=download>).
 
-###  Linux
+* Based on the GPS location of the user nearby crimes will be
+  returned.
+  
+* Data files are downloaded from a URL provided in the config.yml file.
 
-First, JDK (Recommanded version 8) should be installed to a path where there is no space. 
-<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
+* Basic authentication is used for /data APIs.
+
+* User roles and passwords are managed through credentials.yml file.
+
+* Crime services are kept open without any authentication.
+
+* Five API endpoints are provided.
+
+  * ```/v1/data```
+  
+  * ```/v1/data/fetch```
+  
+  * ```/v1/crimes```
+  
+  * ```/v1/crimes/search```
+  
+  * ```/v1/crimes/filter```
+
+## Instructions for docker installation
+
+* git clone the project.
+  * Alternatively you can also download the docker image from the docker hub. Then you dont need to do docker build.
+  
+  * ```docker pull kadupitiya/swagger```
+
+* you should install docker.
+
+* change the directory to **swagger/cloudmesh/crime_finder** folder.
+
+* Start the service using following make command
+  
+  * ```make docker-start```
+
+* Test the service using following curl commands
+  
+  ### Data Services 
+  
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/cloudmesh/crime_finder/data```
+  
+  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/cloudmesh/crime_finder/data/fetch```     
+  
+  ### Crime Services 
+  
+  * ```curl http://127.0.0.1:8080/cloudmesh/crime_finder/crimes?latitude=41.891398861&longitude=-87.744384567```
+  
+  * ```curl http://127.0.0.1:8080/cloudmesh/crime_finder/crimes/search?crime_id=10007143```
+  
+  * ```curl http://127.0.0.1:8080/cloudmesh/crime_finder/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```    
+
+* Get the container ID using following command
+  
+  * ```docker ps```
+
+* Stop the service using following commands
+  
+  * ```make docker-stop```
+
+* Optional starting mechanism (interactive mode)
+  
+  * ```docker run --rm -it kadupitiya/swagger bash```
+  
+  * ```make start``` 
+  
+  * ```make stop```
 	
-Second, setup environment variables for jdk by addding bin folder path to to user path variable.
+## Instructions for ubuntu without docker
 
-	export PATH = $PATH:/usr/local/java8/bin
+* you should be running this program in python 3 environment.
 
-Next, download and extract Scala pre-built version from 
+* you should have default-jre installed.
 
-<http://www.scala-lang.org/download/>
+* git clone the project.
 
-Then, setup environment varibale for Scala by adding bin folder path to the user path variable.
+* change the directory to swagger folder
 
-	export PATH = $PATH:/usr/local/scala/bin
-
-Next, download and extract Apache Spark pre-built version.
-
-<https://spark.apache.org/downloads.html>
-
-Then, setup environment varibale for spark by adding bin folder path to the user path variable.
-
-	export PATH = $PATH:/usr/local/spark/bin
-
-Finally, for testing the installation, please type the following command.
-
-	spark-shell
-
-##  Windows
-
-First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
-
-<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
-
-Second, setup environment variables for jdk by addding bin folder path to to user path variable.
-
-	set JAVA_HOME=c:\java8
-	set PATH=%JAVA_HOME%\bin;%PATH%
-
-Next, download and extract Apache Spark pre-built version.
-
-<https://spark.apache.org/downloads.html>
-
-Then, setup environment varibale for spark by adding bin folder path to the user path variable.
-	set SPARK_HOME=c:\spark
-	set PATH=%SPARK_HOME%\bin;%PATH%
-
-Next, download the winutils.exe binary and Save winutils.exe binary to a directory (c:\hadoop\bin).
-
-<https://github.com/steveloughran/winutils>
-
-Then, change the winutils.exe permission using following command using CMD with administrator permission.
-
-	winutils.exe chmod -R 777 C:\tmp\hive
-
-If your system doesnt have `hive` folder, make sure to create `C:\tmp\hive` directory.
-
-Next, setup environment varibale for hadoop by adding bin folder path to the user path variable.
-
-	set HADOOP_HOME=c:\hadoop\bin
-	set PATH=%HADOOP_HOME%\bin;%PATH%
-
-Then, install Python 3.6 with anaconda (This is a bundled python installer for pyspark).
-
-<https://anaconda.org/anaconda/python>
-
-Finally, for testing the installation, please type the following command.
-
-	pyspark
-
-##  MacOS
-
-First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
-
-<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
-
-Second, setup environment variables for jdk by addding bin folder path to to user path variable.
-
-	export JAVA_HOME=$(/usr/libexec/java_home)
-
-Next, Install Apache Spark using Homebrew with following commands.
-
-	brew update
-	brew install scala
-	brew install apache-spark
-
-Then, setup environment varibale for spark with following commands.
-
-	export SPARK_HOME="/usr/local/Cellar/apache-spark/2.1.0/libexec/"
-	export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
-	export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH
-
-Next, install Python 3.6 with anaconda (This is a bundled python installer for pyspark)
-
-<https://anaconda.org/anaconda/python>
-
-Finally, for testing the installation, please type the following command.
-
-	pyspark
-
-## Instructions for creating Spark User defined functions(UDF)
-
-### Example : Convert temperature data from Celsius to Fahrenheit with filtering and sorting
-
-#### Description about data set 
-
-The file **temperature_data.csv** contains temperature data of different wheather stations and it has the following structure.
-
-```
-ITE00100554,18000101,TMAX,-75,,,E,
-ITE00100554,18000101,TMIN,-148,,,E,
-GM000010962,18000101,PRCP,0,,,E,
-EZE00100082,18000101,TMAX,-86,,,E,
-GM000010962,18000104,PRCP,0,,,E,
-EZE00100082,18000104,TMAX,-55,,,E,
-```
-
-We will only consider wheather station ID (column 0), entrytype (column 2), temperature (column 3: it is in 10*Celsius)
-
-#### How to write a python program with UDF
-
-First, we need to import the relevent libraries to use Spark sql built in functionalities listed as follows.
-
-	from pyspark.sql import SparkSession
-	from pyspark.sql import Row
-
-Then, we need create a user defined fuction which will read the text input and process the data and return a spark sql Row object. It can be created as listed as follows.
-
-	def process_data(line):
-		fields = line.split(',')
-		stationID = fields[0]
-		entryType = fields[2]
-		temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
-		return Row(ID=stationID, t_type=entryType, temp=temperature)
-
-Then we need to create a Spark SQL session as listed as follows with an application name.
-
-	spark = SparkSession.builder.appName("Simple SparkSQL UDF example").getOrCreate()
-
-Next, we read the raw data using spark build-in function textFile() as shown next.
-
-	lines = spark.sparkContext.textFile("temperature_data.csv")
-
-Then, we convert those read lines to a Resilient Distributed Dataset (RDD) of Row object using UDF (process_data) which we created as listed as follows.
-
-	parsedLines = lines.map(process_data)
-
-Alternatively we colud have written the UDF using a python lamda function to do the same thing as shown next.
-
-```
-parsedLines = lines.map(lambda line: Row(ID=line.split(',')[0],
-						t_type=line.split(',')[2],
-						temp=float(line.split(',')[3]) * 0.1 * (9.0
-						/ 5.0) + 32.0))
-```
-
-Now, we can convert our RDD object to a Spark SQL Dataframe as listed as follows.
-
-	TempDataset = spark.createDataFrame(parsedLines)
-
-Next, we can print and see the first 20 rows of data to validate our work as shown next.
-
-	TempDataset.show()
-
-#### How to execute a python spark script
-
-You can use **spark-submit** command to run a spark script as shown next.
-
-	spark-submit temperature_converter.py
-
-If everything went well, you should see the following output.
-
-```
-+-----------+------+-----------------+
-|         ID|t_type|             temp|
-+-----------+------+-----------------+
-|EZE00100082|  TMAX|90.14000000000001|
-|ITE00100554|  TMAX|90.14000000000001|
-|ITE00100554|  TMAX|            89.42|
-|EZE00100082|  TMAX|            88.88|
-|ITE00100554|  TMAX|            88.34|
-|ITE00100554|  TMAX|87.80000000000001|
-|ITE00100554|  TMAX|            87.62|
-|ITE00100554|  TMAX|            87.62|
-|EZE00100082|  TMAX|            87.26|
-|EZE00100082|  TMAX|87.08000000000001|
-|EZE00100082|  TMAX|87.08000000000001|
-|ITE00100554|  TMAX|            86.72|
-|ITE00100554|  TMAX|            86.72|
-|ITE00100554|  TMAX|            86.72|
-|EZE00100082|  TMAX|            86.72|
-|ITE00100554|  TMAX|             86.0|
-|ITE00100554|  TMAX|             86.0|
-|ITE00100554|  TMAX|             86.0|
-|ITE00100554|  TMAX|            85.64|
-|ITE00100554|  TMAX|            85.64|
-+-----------+------+-----------------+
-only showing top 20 rows
-```
-
-#### Filtering and sorting
-
-Now we are trying to find what is the maximum temperature reported for a particluar whether station and print the data in ascending order. We can achieve this by using **where()** and **orderBy()** fundtions as shown next.
-
-	TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
-		).orderBy('temp', ascending=False).cache()
-
-
-We achieved the filtering using temperature type and it filters out all the data which is not a TMAX.
-
-Finally, we can print the data to see whether this worked or not using following statement.
-
-	TempDatasetProcessed.show()
-
-Now, it is the time to run the python script again using following command.
-
-	spark-submit temperature_converter.py
-
-If everything went well, you should see the following sorted and filtered output.
-
-```
-+-----------+------+-----------------+
-|         ID|t_type|             temp|
-+-----------+------+-----------------+
-|EZE00100082|  TMAX|90.14000000000001|
-|ITE00100554|  TMAX|90.14000000000001|
-|ITE00100554|  TMAX|            89.42|
-|EZE00100082|  TMAX|            88.88|
-|ITE00100554|  TMAX|            88.34|
-|ITE00100554|  TMAX|87.80000000000001|
-|ITE00100554|  TMAX|            87.62|
-|ITE00100554|  TMAX|            87.62|
-|EZE00100082|  TMAX|            87.26|
-|EZE00100082|  TMAX|87.08000000000001|
-|EZE00100082|  TMAX|87.08000000000001|
-|ITE00100554|  TMAX|            86.72|
-|ITE00100554|  TMAX|            86.72|
-|ITE00100554|  TMAX|            86.72|
-|EZE00100082|  TMAX|            86.72|
-|ITE00100554|  TMAX|             86.0|
-|ITE00100554|  TMAX|             86.0|
-|ITE00100554|  TMAX|             86.0|
-|ITE00100554|  TMAX|            85.64|
-|ITE00100554|  TMAX|            85.64|
-+-----------+------+-----------------+
-only showing top 20 rows
-```
-
-Complete python script is listed as follows as well as under this directory (temperature_converter.py).
-
-<https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/temperature_converter.py>
-
-```
-from pyspark.sql import SparkSession
-from pyspark.sql import Row
-
-def process_data(line):
-    fields = line.split(',')
-    stationID = fields[0]
-    entryType = fields[2]
-    temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
-    return Row(ID=stationID, t_type=entryType, temp=temperature)
-
-# Create a SparkSQL Session
-spark = SparkSession.builder.appName('Simple SparkSQL UDF example'
-        ).getOrCreate()
-
-# Get the raw data
-lines = spark.sparkContext.textFile('temperature_data.csv')
-
-# Convert it to a RDD of Row objects
-parsedLines = lines.map(process_data)
-
-# alternative lamda fundtion
-'''
-parsedLines = lines.map(lambda line: Row(ID=line.split(',')[0],
-                        t_type=line.split(',')[2],
-                        temp=float(line.split(',')[3]) * 0.1 * (9.0
-                        / 5.0) + 32.0))
-'''
-
-# Convert that to a DataFrame
-TempDataset = spark.createDataFrame(parsedLines)
-
-# show first 20 rows temperature converted data
-# TempDataset.show()
-
-# Some SQL-style magic to sort all movies by popularity in one line!
-TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
-        ).orderBy('temp', ascending=False).cache()
-
-# show first 20 rows of filtered and sorted data
-TempDatasetProcessed.show()
-```
-
-## Instructions to install and run the example using docker
-
-Following link is the home directory for the example explained in this tutorial.
-
-<https://github.com/cloudmesh-community/hid-sp18-409/tree/master/tutorial/spark_udfs>
-
-### It conatins following files.
-
-Python script which contains the example: [temperature_converter.py](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/temperature_converter.py "temperature_converter.py")
-
-Temperature data file: [temperature_data.csv](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/temperature_data.csv "temperature_data.csv")
-
-Required python dependencies are put here: [requirements.txt](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/requirements.txt "requirements.txt")
-
-Docker file which automatically setup the codebase with dependency installation: [Dockerfile](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/Dockerfile "Dockerfile")
-
-Make file which will excute the example with a single command: [Makefile](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/Makefile "Makefile")
-
-### To install the example using docker plese do the following steps:
-
-First, you should install docker in to your computer.
-
-Next, git clone the [project ](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/) . Alternatively you can also download the docker image from the docker hub. Then you dont need to do docker build.
+* create the swagger server with following command
   
-```docker pull kadupitiya/tutorial```
+  * ```make service```
 
-Then, change the directory to **spark_udfs** folder.
-
-Next, install the service using following make command
+* run the swagger server with following command
   
-```make docker-build```
+  * ```make start```
 
-Finally, start the service using following make command
+* Install the client program using following command
+  
+  * ```make client```
 
-```make docker-start```
+* test the program using following command
+  
+  * ```make test```
+  
+  * ```make test-data```
+  
+  * ```make test-data-fetch```
 
-Now you should see the same output we saw at the end of the example explanation.
+* stop the service using following command
+  
+  * ```make stop```
+
+* clean the server and client codes using following command
+  
+  * ```make clean```
+
+## API informations : Data Services
+
+### End Point : data/fetch
+  
+  * This data fetch endpoint upload the csv datafile to the server using predeifned url
+ 
+  * Sample curl request
+	  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/cloudmesh/crime_finder/data/fetch```
+  
+  * Sample json response for GET request 
+	```
+	{
+	  "message": "Data fetch successfull",
+	  "status": true
+	}
+
+	```
+
+### End Point : /data
+  
+  * The data endpoint returns a data object conataining information about dataset files
+  
+  * Sample curl request
+	  * ```curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/cloudmesh/crime_finder/data```
+ 
+  * Sample json response for GET request
+	```
+	{
+	  "base_path": "data",
+	  "filename": "data/crimedata_small.csv",
+	  "filename_short": "data/crimedata_small.csv",
+	  "url": "https://goo.gl/f2Ta3D"
+	}
+
+	```
+
+## API informations : Crime Services
+
+* End Point : /crimes
+  
+  * The Crimes endpoint returns information about the crimes
+    previously happened at a given location or nearby locations.
+  
+  * latitude and longitude should be passed with the request
+  
+  * The response includes lists of crimes in the proper display order
+  * Nearby distance is defined in the program and currently defaulted
+    to 0.1 Miles(528 foot).
+  
+  * Sample curl request
+	  * ```curl http://127.0.0.1:8080/cloudmesh/crime_finder/crimes?latitude=41.891398861&longitude=-87.744384567```
+  
+  * Sample json response for GET request
+	
+		```
+		[
+		    {
+		        "arrested": "false",
+		        "beat_code": "1623",
+		        "block": "050XX W ARGYLE ST",
+		        "case_number": "HY198498",
+		        "community_area_code": "11",
+		        "crime_code": "0620",
+		        "crime_id": "10009166",
+		        "date": "03/25/2015 07:00:00 AM",
+		        "district_code": "016",
+		        "domestic": "false",
+		        "fbi_code": "05",
+		        "gps_location": "(41.971606007, -87.753880329)",
+		        "latitude": "41.971606007",
+		        "location_cat": "APARTMENT",
+		        "longitude": "-87.753880329",
+		        "primary_description": "BURGLARY",
+		        "secondary_description": "UNLAWFUL ENTRY",
+		        "updated_on": "02/10/2018 03:50:01 PM",
+		        "ward_code": "45",
+		        "x_coordinate": "1141823",
+		        "y_coordinate": "1932776",
+		        "year": "2015"
+		    },
+		    .
+		    .
+		    .
+		    .,
+		    {
+		        "arrested": "true",
+		        "beat_code": "1624",
+		        "block": "050XX W MONTROSE AVE",
+		        "case_number": "HY195394",
+		        "community_area_code": "15",
+		        "crime_code": "1811",
+		        "crime_id": "10005445",
+		        "date": "03/23/2015 01:06:00 PM",
+		        "district_code": "016",
+		        "domestic": "false",
+		        "fbi_code": "18",
+		        "gps_location": "(41.960639162, -87.753685563)",
+		        "latitude": "41.960639162",
+		        "location_cat": "ALLEY",
+		        "longitude": "-87.753685563",
+		        "primary_description": "NARCOTICS",
+		        "secondary_description": "POSS: CANNABIS 30GMS OR LESS",
+		        "updated_on": "02/10/2018 03:50:01 PM",
+		        "ward_code": "45",
+		        "x_coordinate": "1141903",
+		        "y_coordinate": "1928780",
+		        "year": "2015"
+		    }
+		]
+		```
+### End Point : /crimes/search
+  
+  * The crimes search endpoint returns information about a particular
+    crime for a given crime_id.
+  
+  * The response includes a crime object in the proper display order
+  
+  * Sample curl request
+	  * ```curl http://127.0.0.1:8080/cloudmesh/crime_finder/crimes/search?crime_id=10007143```
+  
+  * Sample json response for GET request
+	
+		```
+		{
+		  "arrested": "false",
+		  "beat_code": "2522",
+		  "block": "047XX W ARMITAGE AVE",
+		  "case_number": "HY196370",
+		  "community_area_code": "19",
+		  "crime_code": "0820",
+		  "crime_id": "10007143",
+		  "date": "03/22/2015 12:00:00 PM",
+		  "district_code": "025",
+		  "domestic": "false",
+		  "fbi_code": "06",
+		  "gps_location": "(41.916951295, -87.744546501)",
+		  "latitude": "41.916951295",
+		  "location_cat": "STREET",
+		  "longitude": "-87.744546501",
+		  "primary_description": "THEFT",
+		  "secondary_description": "$500 AND UNDER",
+		  "updated_on": "02/10/2018 03:50:01 PM",
+		  "ward_code": "31",
+		  "x_coordinate": "1144498",
+		  "y_coordinate": "1912877",
+		  "year": "2015"
+		}
+		```
+
+### End Point : /crimes/filter
+  
+  * The crimes endpoint returns information about the crimes
+    previously happened at a given location or nearby locations
+    filtered with crime type.
+  
+  * latitude, longitude and primary_type should be passed with the
+    request.
+  
+  * The response includes lists of crimes in the proper display order
+  
+  * Nearby distance is defined in the program and currently defaulted
+    to 0.1 Miles(528 foot).
+  
+  * Returned list only contained requested type of crimes.
+  
+  * Sample curl request
+	  * ```curl http://127.0.0.1:8080/cloudmesh/crime_finder/crimes?latitude=41.981398861&longitude=-87.754384567&primary_type=NARCOTICS```
+  
+  * Sample json response for GET request
+	
+		```
+		[
+		  {
+		    "arrested": "false",
+		    "beat_code": "1623",
+		    "block": "050XX W ARGYLE ST",
+		    "case_number": "HY198498",
+		    "community_area_code": "11",
+		    "crime_code": "0620",
+		    "crime_id": "10009166",
+		    "date": "03/25/2015 07:00:00 AM",
+		    "district_code": "016",
+		    "domestic": "false",
+		    "fbi_code": "05",
+		    "gps_location": "(41.971606007, -87.753880329)",
+		    "latitude": "41.971606007",
+		    "location_cat": "APARTMENT",
+		    "longitude": "-87.753880329",
+		    "primary_description": "BURGLARY",
+		    "secondary_description": "UNLAWFUL ENTRY",
+		    "updated_on": "02/10/2018 03:50:01 PM",
+		    "ward_code": "45",
+		    "x_coordinate": "1141823",
+		    "y_coordinate": "1932776",
+		    "year": "2015"
+		  },
+		  .
+		  .
+		  .
+		  .,
+		  {
+		    "arrested": "true",
+		    "beat_code": "1624",
+		    "block": "050XX W MONTROSE AVE",
+		    "case_number": "HY195394",
+		    "community_area_code": "15",
+		    "crime_code": "1811",
+		    "crime_id": "10005445",
+		    "date": "03/23/2015 01:06:00 PM",
+		    "district_code": "016",
+		    "domestic": "false",
+		    "fbi_code": "18",
+		    "gps_location": "(41.960639162, -87.753685563)",
+		    "latitude": "41.960639162",
+		    "location_cat": "ALLEY",
+		    "longitude": "-87.753685563",
+		    "primary_description": "NARCOTICS",
+		    "secondary_description": "POSS: CANNABIS 30GMS OR LESS",
+		    "updated_on": "02/10/2018 03:50:01 PM",
+		    "ward_code": "45",
+		    "x_coordinate": "1141903",
+		    "y_coordinate": "1928780",
+		    "year": "2015"
+		  }
+		]
+		```
