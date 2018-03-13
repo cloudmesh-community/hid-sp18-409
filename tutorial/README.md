@@ -84,9 +84,9 @@ Next, setup environment varibale for hadoop by adding bin folder path to the use
 	set HADOOP_HOME=c:\hadoop\bin
 	set PATH=%HADOOP_HOME%\bin;%PATH%
 
-Then, install the latest Enthought Canopy for Python 3.5 (This is a bundled python installer for pyspark)
+Then, install Python 3.6 with anaconda (This is a bundled python installer for pyspark).
 
-<https://store.enthought.com/downloads/#default>
+<https://anaconda.org/anaconda/python>
 
 Finally, for testing the installation, please type the following command.
 
@@ -114,9 +114,9 @@ Then, setup environment varibale for spark with following commands.
 	export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
 	export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH
 
-Next, install the latest Enthought Canopy for Python 3.5.
+Next, install Python 3.6 with anaconda (This is a bundled python installer for pyspark)
 
-<https://store.enthought.com/downloads/#default>
+<https://anaconda.org/anaconda/python>
 
 Finally, for testing the installation, please type the following command.
 
