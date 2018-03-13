@@ -1,10 +1,10 @@
-# User defined functions(UDF) in Spark
+# User defined functions (UDF) in Spark
 
 ## Overview
 
-Apache Spark is a fast and general engine which perform tasks up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk for high speed large-scale streaming, machine learning and SQL workloads tasks. Spark offers to program the applications employing over 80 high-level operators using Java, Scala, Python, and R. Spark powers the combined or standalone use of a stack of libraries including SQL and DataFrames, MLlib for machine learning, GraphX, and Spark Streaming. Spark can be utilized in standalone cluster mode, on EC2, on Hadoop YARN, or on Apache Mesos and it allows data access in HDFS, Cassandra, HBase, Hive, Tachyon, and any Hadoop data source.
+Apache Spark is a fast and general engine ? which perform ? tasks up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk for high speed large-scale streaming, machine learning and SQL workloads tasks. Spark offers to program ? the applications employing over 80 high-level operators using Java, Scala, Python, and R. Spark powers the combined or standalone use of a stack of libraries including SQL and DataFrames, MLlib for machine learning, GraphX, and Spark Streaming. Spark can be utilized in standalone cluster mode, on EC2, on Hadoop YARN, or on Apache Mesos and it allows data access in HDFS, Cassandra, HBase, Hive, Tachyon, and any Hadoop data source.
 
-User-defined functions (UDFs) are the functions created by developers when the built-in functionalities are not sufficient to do the required work. Apache Spark UDFs allow developers to enable new functions in higher level programming languages by extending built-in functionalities.  It also allows developers to experiment with wide range of options for integrating UDFs with Spark SQL, MLib and GraphX workflows.
+User-defined functions (UDFs) are the functions created by developers when the built-in functionalities ? are not sufficient to do the required work. Apache Spark UDFs ? allow developers to enable new functions in higher level programming languages by extending built-in functionalities.  It also allows developers to experiment with wide range of options for integrating UDFs with Spark SQL, MLib and GraphX workflows.
 
 
 This tutorial explains following:
@@ -15,6 +15,7 @@ This tutorial explains following:
 
  *  <https://spark.apache.org/>
  * <http://www.scala-lang.org/>
+ *nconcrete link to udf missing
  
 ## Instructions for Spark installation
 
