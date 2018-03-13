@@ -176,7 +176,7 @@
   
   * Sample json response for GET request
 	
-		```
+	```
 		[
 		    {
 		        "arrested": "false",
@@ -231,7 +231,7 @@
 		        "year": "2015"
 		    }
 		]
-		```
+	```
 ### End Point : /crimes/search
   
   * The crimes search endpoint returns information about a particular
@@ -244,7 +244,7 @@
   
   * Sample json response for GET request
 	
-		```
+	```
 		{
 		  "arrested": "false",
 		  "beat_code": "2522",
@@ -269,7 +269,7 @@
 		  "y_coordinate": "1912877",
 		  "year": "2015"
 		}
-		```
+	```
 
 ### End Point : /crimes/filter
   
@@ -292,7 +292,7 @@
   
   * Sample json response for GET request
 	
-		```
+	```
 		[
 		  {
 		    "arrested": "false",
@@ -347,4 +347,4 @@
 		    "year": "2015"
 		  }
 		]
-		```
+	```
