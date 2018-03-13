@@ -54,6 +54,7 @@ Finally, for testing the installation, please type the following command.
 ##  Windows
 
 First, JDK should be installed to a path where there is no space in that path. Recommanded JAVA version is 8.
+
 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 Second, setup environment variables for jdk by addding bin folder path to to user path variable.
