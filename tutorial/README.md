@@ -15,7 +15,9 @@ How to create and utilize user defined functions(UDF) in Spark using Python.
 ## Resources
 
 <https://spark.apache.org/>
+
 <http://www.scala-lang.org/>
+
 <https://docs.databricks.com/spark/latest/spark-sql/udf-in-python.html>
  
 ## Instructions for Spark installation
