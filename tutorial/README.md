@@ -267,6 +267,7 @@ only showing top 20 rows
 ```
 
 Complete python script is listed below as well as under this directory (temperature_converter.py).
+
 ```
 # Convert it to a RDD of Row objects
 parsedLines = lines.map(process_data)
