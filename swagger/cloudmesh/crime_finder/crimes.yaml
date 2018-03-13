@@ -16,7 +16,7 @@ host: "localhost:8080"
 schemes:
   - http
 # will be prefixed to all paths
-basePath: /cloudmesh/crimes/
+basePath: /cloudmesh/crime_finder/
 securityDefinitions:
   basicAuth:
     type: basic
