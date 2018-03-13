@@ -46,11 +46,11 @@ test:
 
 test-data:
 	echo "Testing data API"
-	curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data
+	curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/cloudmesh/crime_finder/data
 
 test-data-fetch:
 	echo "Testing data-fetch API"
-	curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/v1/data/fetch
+	curl -H "Authorization: Basic YWRtaW46MTIz" -H "Content-Type:application/json" -X GET http://localhost:8080/cloudmesh/crime_finder/data/fetch
 	
 clean: 
 	# removes the code generated
