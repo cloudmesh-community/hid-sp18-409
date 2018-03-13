@@ -11,6 +11,8 @@ This tutorial explains following:
 How to intall Spark in Linux, Windows and MacOS.
 
 How to create and utilize user defined functions(UDF) in Spark using Python.
+
+How to run the provided example using a provided docker file and make file.
   
 ## Resources
 
@@ -273,7 +275,7 @@ only showing top 20 rows
 
 Complete python script is listed as follows as well as under this directory (temperature_converter.py).
 
-<https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/temperature_converter.py>
+<https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/temperature_converter.py>
 
 ```
 from pyspark.sql import SparkSession
@@ -317,3 +319,41 @@ TempDatasetProcessed = TempDataset.where(TempDataset['t_type'] == 'TMAX'
 # show first 20 rows of filtered and sorted data
 TempDatasetProcessed.show()
 ```
+
+## Instructions to install and run the example using docker
+
+Following link is the home directory for the example explained in this tutorial.
+
+<https://github.com/cloudmesh-community/hid-sp18-409/tree/master/tutorial/spark_udfs>
+
+### It conatins following files.
+
+Python script which contains the example: [temperature_converter.py](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/temperature_converter.py "temperature_converter.py")
+
+Temperature data file: [temperature_data.csv](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/temperature_data.csv "temperature_data.csv")
+
+Required python dependencies are put here: [requirements.txt](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/requirements.txt "requirements.txt")
+
+Docker file which automatically setup the codebase with dependency installation: [Dockerfile](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/Dockerfile "Dockerfile")
+
+Make file which will excute the example with a single command: [Makefile](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/spark_udfs/Makefile "Makefile")
+
+### To install the example using docker plese do the following steps:
+
+First, you should install docker in to your computer.
+
+Next, git clone the [project ](https://github.com/cloudmesh-community/hid-sp18-409/blob/master/tutorial/) . Alternatively you can also download the docker image from the docker hub. Then you dont need to do docker build.
+  
+```docker pull kadupitiya/tutorial```
+
+Then, change the directory to **spark_udfs** folder.
+
+Next, install the service using following make command
+  
+```make docker-build```
+
+Finally, start the service using following make command
+
+```make docker-start```
+
+Now you should see the same output we saw at the end of the example explanation.
