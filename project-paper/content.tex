@@ -4,7 +4,7 @@
 \title{Location based crime data search and classification with Spark MLLIB}
 
 
-\author{kadupitiya Kadupitige}
+\author{Kadupitiya Kadupitige}
 \orcid{1234-5678-9012}
 \affiliation{%
 	\institution{Indiana University}
@@ -36,15 +36,58 @@ somewhat loosely, to the formatting guidelines for
 ACM SIG Proceedings.
 \end{abstract}
 
-\keywords{hid-sp18-409, Crime data, Kmeans clustering, Google Maps, spark Mllib}
+\keywords{hid-sp18-409, Crime data analysis, Kmeans clustering, Google Maps, 
+spark Mllib}
 
 
 \maketitle
 
 
-
 \section{Introduction}
 
+A crime is generally defined as an act punishable by law and is one of the 
+dangerous factors for any country\cite{hid-sp18-409-agarwal2013crime}. It is 
+impossible to find a country with a 
+crime- free society due to complex causes such as poverty, parental neglect, 
+low self-esteem, alcohol, drug abuse and 
+etc~\cite{hid-sp18-409-bharathi2014survey, hid-sp18-409-kiani2015analysis}. 
+Inspired by the Big Data revolution, the historical way of crime solving and 
+prevention has greatly influenced and improved by the help of state-of-the-art 
+data analytic tools and machine learning research. Law enforcement officers 
+have started involving more data analytic expertises to speedup the crime 
+solving process highlighting that it is a interdisciplinary research area.
+
+According to Chicago Police Department, crime prevention is important and much 
+more difficult to handle than crime solving for law enforcement 
+agencies~\cite{hid-sp18-409-www-cpd}. Law enforcement officers could identify 
+crime prone areas or suspicious activities 
+even before a crime is committed with the aid of pattern recognition and 
+big data analysis~\cite{hid-sp18-409-nath2006crime, hid-sp18-409-gera2014city}. 
+According to the Los Angeles Police Department (LAPD) and 
+Chicago Police Department (CPD), whenever a crime was committed somewhere, more 
+crimes are likely to be occurred in a nearby area, and the patterns of those 
+criminal activities could be identified through big data 
+analysis~\cite{hid-sp18-409-www-cpd, hid-sp18-409-www-lapd}. However, 
+crime prevention could be so much effective if these is an easy way to check 
+the crime prone areas so that people could be aware the of crime prone 
+areas.
+
+As inspired by the requirement to raise the awareness of crime prone areas, we 
+implement a location based crime search website where people can find 
+crimes happened near a particular geographical location (in a vicinity area) 
+for a given GPS coordinates. For this project, we have selected a dataset which 
+include the crime information from 2001 to current date in Chicago 
+city~\cite{hid-sp18-409-www-data.gov}. We further analysis this crime dataset 
+using the crime type and tries to identify the correlation between crime 
+types for a particular geographical area. One applicational use of this project 
+would be a user trying to buy a new house and he may like to do a background 
+search on criminal activities around the geographical area for safety concerns.
+
+The organization of this project report is as follows. In section II, a 
+literature review on existing crime data analyses and crime reporting web 
+services are presented. Section III provides a methodology followed in this 
+project while section IV elaborates the results and discussion. A summary about 
+the project paper is provided in sections V.
 
 \section{Literature Review}
 
