@@ -244,7 +244,7 @@ def resampler_for_year(input):
         if (yearly):
             indexyear = indexyear[0:4]
         else:
-            indexyear = indexyear[0:7]
+            indexyear = indexyear[0:10]
 
         for row_index, row in input.iteritems():
             temp[row] = temp[row] + 1
