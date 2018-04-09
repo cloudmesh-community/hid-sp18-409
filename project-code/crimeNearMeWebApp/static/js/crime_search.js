@@ -14,6 +14,8 @@ var radiusPara;
 var crimeGraphsToggle = true;
 var crimeByMonth = "";
 var crimeByYear = "";
+var totalData = true;
+var count = 0;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -163,6 +165,15 @@ function getNearCrimes(latitude, longitude, radius) {
             var legend = document.getElementById('legend');
             legend.innerHTML = "";
             var legendText = "<h3>Legend</h3>";
+
+            legendText = legendText + "<div class='button-center'><input class='button-style' onclick='clearMarkers();' type=button value='Hide Markers'>"
+                + "&nbsp<input class='button-style' onclick='showMarkers();' type=button value='Show Markers'></div>";
+            //+ "<input onclick='deleteMarkers();' type=button value='Delete Markers'>";
+
+            legendText = legendText + "<div class='button-center'><input class='button-style' onclick='clearMarkerCluster();' type=button value='Hide Clusters'>"
+                + "&nbsp<input class='button-style' onclick='showMarkerCluster();' type=button value='Show Clusters'></div><br>";
+            //+ "<input onclick='deleteMarkerCluster();' type=button value='Delete Clusters'>";
+
             for (var i = 0; i < crimeData.length; i++) {
 
                 var contentString = '<div id="content">' +
@@ -251,13 +262,6 @@ function getNearCrimes(latitude, longitude, radius) {
             setMapOnAllMarkers(map)
             map.fitBounds(bounds);
 
-            legendText = legendText + "<br><div class='button-center'><input onclick='clearMarkers();' type=button value='Hide Markers'>"
-                + "<input onclick='showMarkers();' type=button value='Show Markers'></div>";
-            //+ "<input onclick='deleteMarkers();' type=button value='Delete Markers'>";
-
-            legendText = legendText + "<div class='button-center'><input onclick='clearMarkerCluster();' type=button value='Hide Clusters'>"
-                + "<input onclick='showMarkerCluster();' type=button value='Show Clusters'></div><br>";
-            //+ "<input onclick='deleteMarkerCluster();' type=button value='Delete Clusters'>";
 
             legend.innerHTML = legendText;
             //map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
@@ -297,8 +301,8 @@ function toggleBounce(marker) {
 // Sets the map on all markers in the array.
 function setMapOnAllMarkers(map) {
     for (var i = 0; i < markerArray.length; i++) {
+        markerArray[i].setAnimation(null);
         if (parseFloat(radiusPara) <= 0.1) {
-            markerArray[i].setAnimation(null);
             markerArray[i].setAnimation(google.maps.Animation.DROP);
         }
         markerArray[i].setMap(map);
@@ -418,24 +422,52 @@ function CenterControl(controlDiv, map) {
         var crimePannel = document.getElementById("floating-panel");
         var controlText = document.getElementById('google-map-Buttons-text');
         if (crimeGraphsToggle) {
-            $("#floating-panel").show();
-            controlText.innerHTML = "Hide Graphs"
-            loadGraphs();
+
+            $("#floating-panel").show(500);
+            controlText.innerHTML = "Hide Graphs";
             crimeGraphsToggle = false;
+
         } else {
-            $("#floating-panel").hide();
+            $("#floating-panel").hide(500);
             controlText.innerHTML = 'Show Graphs';
             crimeGraphsToggle = true;
             document.getElementById("graphdiv2").innerHTML = "";
         }
+
+        if (count == 0) {
+            window.setTimeout(loadGraphsTotal, 550);
+            totalData = false;
+            document.getElementById("graphdiv2-btn").value = "Analyze search result";
+        } else {
+            if (crimeByMonth !== "") {
+                window.setTimeout(loadGraphs, 550);
+                totalData = true;
+                document.getElementById("graphdiv2-btn").value = "Analyze complete data set";
+            } else
+                alert("Please search crimes first!");
+
+        }
     });
 
 }
+
 var g1;
 var g2;
+var g3;
+var g4;
+var g5;
+var graph5Height;
+
 function loadGraphs() {
-    Crime_data_Split = crimeByMonth.split('\n').slice(0, 20).join('\n');
-    Crime_data_Split2 = crimeByYear.split('\n').slice(0, 20).join('\n');
+
+    document.getElementById("graphdiv3").innerHTML = "";
+    graph5Height = document.getElementById("graphdiv3").style.height;
+    $("#graphdiv3").animate({
+        height: 0
+    }, 600);
+
+    Crime_data_Split = crimeByMonth;//.split('\n').slice(0, 20).join('\n');
+    Crime_data_Split2 = crimeByYear;//.split('\n').slice(0, 20).join('\n');
     g1 = new Dygraph(
         document.getElementById("graphdiv1"),
         Crime_data_Split,  //"/static/data/bargraph.csv", // path to CSV file
@@ -454,7 +486,7 @@ function loadGraphs() {
         Crime_data_Split2,
         {
             includeZero: true,
-             rollPeriod: 7,
+            rollPeriod: 7,
             showRoller: true,
             title: 'Top 10 Crimes Near you by year',
             ylabel: 'No of Crimes',
@@ -464,20 +496,189 @@ function loadGraphs() {
             plotter: multiColumnBarPlotter
         });
 
+
+}
+
+function loadGraphsTotal() {
+
+    $("#graphdiv3").css({
+        height: graph5Height
+    });
+
+    g3 = new Dygraph(
+        document.getElementById("graphdiv1"),
+        "/static/data/crimeByMonthVsArrested.csv", // path to CSV file
+        {
+            includeZero: true,
+            rollPeriod: 7,
+            showRoller: true,
+            title: 'Total Crimes by time',
+            //ylabel: 'No of Crimes',
+            xlabel: 'Time',
+            legend: 'always',
+            animatedZooms: true
+        }          // options
+    );
+
+    g4 = new Dygraph(
+        document.getElementById("graphdiv2"),
+        "/static/data/crimeByType.csv",
+        {
+            //legend: 'always',
+            rollPeriod: 7,
+            showRoller: true,
+            title: 'Total Crimes by types',
+            //ylabel: 'No of Crimes',
+            xlabel: 'Crime Types',
+            includeZero: false,
+            animatedZooms: true,
+            plotter: multiColumnBarPlotter2,
+            axes: {
+                x: {
+                    drawGrid: false,
+                    drawAxis: false
+                }
+            }
+
+        }
+    );
+    g5 = new Dygraph(
+        document.getElementById("graphdiv3"),
+        "/static/data/crimeByLocation.csv",
+        {
+            //legend: 'always',
+            rollPeriod: 7,
+            showRoller: true,
+            title: 'Total Crimes by locations',
+            //ylabel: 'No of Crimes',
+            xlabel: 'Crime Locations',
+            includeZero: false,
+            animatedZooms: true,
+            plotter: multiColumnBarPlotter2,
+            axes: {
+                x: {
+                    drawGrid: false,
+                    drawAxis: false
+                }
+            }
+
+        }
+    );
+    /*
+      g3 = new Dygraph(
+          document.getElementById("graphdiv1"),
+          "/static/data/crimeByType.csv", // path to CSV file
+          {
+              includeZero: true,
+              rollPeriod: 7,
+              showRoller: true,
+              title: 'Total Crimes by types',
+              ylabel: 'No of Crimes',
+              xlabel: 'Crime Types',
+              legend: 'always',
+              animatedZooms: true,
+              plotter: multiColumnBarPlotter
+          }          // options
+      );
+      g4 = new Dygraph(
+          document.getElementById("graphdiv2"),
+          "/static/data/crimeByLocation.csv", // path to CSV file
+          {
+              includeZero: true,
+              rollPeriod: 7,
+              showRoller: true,
+              title: 'Total Crimes by location',
+              ylabel: 'No of Crimes',
+              xlabel: 'Location',
+              legend: 'always',
+              animatedZooms: true,
+              plotter: multiColumnBarPlotter
+          });
+  */
 }
 
 function unzoomGraphs() {
+    if (totalData) {
+        if (crimeByMonth !== "") {
+            g1.updateOptions({
+                dateWindow: null,
+                valueRange: null
+            });
+            g2.updateOptions({
+                dateWindow: null,
+                valueRange: null
+            });
+        }
+    } else {
+        g3.updateOptions({
+            dateWindow: null,
+            valueRange: null
+        });
+        g4.updateOptions({
+            dateWindow: null,
+            valueRange: null
+        });
+        g5.updateOptions({
+            dateWindow: null,
+            valueRange: null
+        });
+    }
+}
 
-    g1.updateOptions({
-          dateWindow: null,
-          valueRange: null
-        });
-    g2.updateOptions({
-          dateWindow: null,
-          valueRange: null
-        });
+function totalDataGraphs() {
+
+    if (totalData) {
+        loadGraphsTotal();
+        totalData = false;
+        count = 0;
+        document.getElementById("graphdiv2-btn").value = "Analyze search result";
+
+    } else {
+        if (crimeByMonth !== "") {
+            loadGraphs();
+            totalData = true;
+            count = 1;
+            document.getElementById("graphdiv2-btn").value = "Analyze complete data set";
+        } else
+            alert("Please search crimes first!");
+
+    }
+
 
 }
+
+// This function draws bars for a single series. See
+// multiColumnBarPlotter below for a plotter which can draw multi-series
+// bar charts.
+function barChartPlotter(e) {
+    var ctx = e.drawingContext;
+    var points = e.points;
+    var y_bottom = e.dygraph.toDomYCoord(0);
+
+    ctx.fillStyle = darkenColor(e.color);
+
+    // Find the minimum separation between x-values.
+    // This determines the bar width.
+    var min_sep = Infinity;
+    for (var i = 1; i < points.length; i++) {
+        var sep = points[i].canvasx - points[i - 1].canvasx;
+        if (sep < min_sep) min_sep = sep;
+    }
+    var bar_width = Math.floor(2.0 / 3 * min_sep);
+
+    // Do the actual plotting.
+    for (var i = 0; i < points.length; i++) {
+        var p = points[i];
+        var center_x = p.canvasx;
+
+        ctx.fillRect(center_x - bar_width / 2, p.canvasy,
+            bar_width, y_bottom - p.canvasy);
+
+        ctx.strokeRect(center_x - bar_width / 2, p.canvasy,
+            bar_width, y_bottom - p.canvasy);
+    }
+}
+
 
 // Multiple column bar chart
 function multiColumnBarPlotter(e) {
@@ -524,6 +725,57 @@ function multiColumnBarPlotter(e) {
     }
 }
 
+// Multiple column bar chart
+function multiColumnBarPlotter2(e) {
+    // We need to handle all the series simultaneously.
+    if (e.seriesIndex !== 0) return;
+
+    var g = e.dygraph;
+    var ctx = e.drawingContext;
+    var sets = e.allSeriesPoints;
+    var y_bottom = e.dygraph.toDomYCoord(0);
+
+    // Find the minimum separation between x-values.
+    // This determines the bar width.
+    var min_sep = Infinity;//516
+    for (var j = 0; j < sets.length; j++) {
+        var points = sets[j];
+        for (var i = 1; i < points.length; i++) {
+            var sep = points[i].canvasx - points[i - 1].canvasx;
+            if (sep < min_sep) min_sep = sep;
+        }
+    }
+    //alert(min_sep);
+
+    //adjust this to change the initial position
+    var bar_width = Math.floor(2.0 * 15 / 16 * min_sep);
+
+    var fillColors = [];
+    var strokeColors = g.getColors();
+    for (var i = 0; i < strokeColors.length; i++) {
+        fillColors.push(darkenColor(strokeColors[i]));
+    }
+
+    for (var j = 0; j < sets.length; j++) {
+        ctx.fillStyle = fillColors[j];
+        ctx.strokeStyle = strokeColors[j];
+        for (var i = 1; i < sets[j].length; i++) {
+            var p = sets[j][i];
+            var setsLen = sets.length;
+            var center_x = p.canvasx;
+            var x_left = center_x - (bar_width / 2) * (1 - j / (sets.length - 1));
+
+            ctx.fillRect(x_left, p.canvasy,
+                bar_width / sets.length, y_bottom - p.canvasy);
+
+            ctx.strokeRect(x_left, p.canvasy,
+                bar_width / sets.length, y_bottom - p.canvasy);
+
+
+        }
+    }
+}
+
 // Darken a color
 function darkenColor(colorStr) {
     // Defined in dygraph-utils.js
@@ -537,7 +789,7 @@ function darkenColor(colorStr) {
 function get_crimeByMonth() {
 
     var formURL = "/crimeByMonth";
-    crimeByDate="";
+    crimeByDate = "";
     $.ajax({
         url: formURL,
         type: "GET",
@@ -558,7 +810,7 @@ function get_crimeByMonth() {
 function get_crimeByYear() {
 
     var formURL = "/crimeByYear";
-    crimeByYear="";
+    crimeByYear = "";
     $.ajax({
         url: formURL,
         type: "GET",
@@ -581,5 +833,4 @@ $(document).ready(function () {
     $("#floating-panel").hide();
     //initMap();
     getCrimeList();
-
 });
