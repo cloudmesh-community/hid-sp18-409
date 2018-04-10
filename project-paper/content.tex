@@ -36,8 +36,8 @@ somewhat loosely, to the formatting guidelines for
 ACM SIG Proceedings.
 \end{abstract}
 
-\keywords{hid-sp18-409, Crime data analysis, Kmeans clustering, Google Maps, 
-spark Mllib}
+\keywords{hid-sp18-409, Crime data analysis, MapReduce, Google Maps, 
+spark UDFs}
 
 
 \maketitle
@@ -95,6 +95,10 @@ results and discussion. A summary about the project paper is provided
 in section V.
 
 \section{Literature Review}
+The recent research and development in crime data investigation area could
+be broadly categorized into two categories; statistical analysis of
+crime data~\cite{hid-sp18-409-agarwal2013crime, hid-sp18-409-bharathi2014survey, hid-sp18-409-kiani2015analysis, hid-sp18-409-nath2006crime, hid-sp18-409-gera2014city} and applicational development of crime search web interfaces \cite{hid-sp18-409-www-spotcrime, hid-sp18-409-www-crimereports, hid-sp18-409-www-mylocalcrime, hid-sp18-409-www-crimemapping}. There exists many research focused on analyzing crime data based on different methodologies such as kmeans cluster analysis~\cite{hid-sp18-409-gera2014city, hid-sp18-409-nath2006crime, hid-sp18-409-agarwal2013crime}, time series analysis~\cite{hid-sp18-409-wei2006time}, variational data mining techniques~\cite{hid-sp18-409-chen2004crime}, geographical analysis using 
+using statistical techniques~\cite{hid-sp18-409-santos2016crime} and etc. This study experiments combinations of these techniques to build a crime data investigation platform and hence, they are discussed in this section.
 
 \section{Methodology}
 
