@@ -9,6 +9,8 @@
 * 2018/03/11 Attended an Online Meeting Staffed by Tyler 
 * 2018/03/26 Attended an Online Meeting Staffed by Gregor 
 * 2018/04/01 Attended an Online Meeting Staffed by Gregor and Tyler
+* 2018/04/08 Attended an Online Meeting Staffed by Tyler
+* 2018/04/09 Attended an Online Meeting Staffed by Gregor
 
 #  Lectures and Logistics
 
