@@ -148,6 +148,7 @@ semi-supervised learning technique for knowledge discovery from the
 crime records and to help increase the predictive accuracy in the
 crime data classification task.
 
+Extensive time series analysis on Philadelphia crime data has been studied by Wei et al.~\cite{hid-sp18-409-wei2006time}. They have compared stationary and nonstationary models, nonseasonal and seasonal models, intervention and outlier models, transfer function models, regression time series models, vector time series models, and their applications. They have further elaborated the procedures of time series analysis including parameter estimation, diagnostic checks, forecasting, and inference using autoregressive conditional heteroscedasticity model and generalized autoregressive conditional heteroscedasticity model~\cite{hid-sp18-409-wei2006time}. 
 
 
 \section{Methodology}
@@ -161,9 +162,37 @@ As described in the literature review, most of the research on crime data invest
 
 \subsection{Data Acquisition}
 
+Attribute Information:describe data set and column names
+
 \subsection{preprocessing}
 
+Null Value Treatment
+
+Date time conversion
+
 \subsection{Technology Usage}
+Following programming environments and library packages were  used to implement the crime analyzing and visualization framework. 
+\begin{itemize}
+	Python 3.6 programming environment
+	Flask >= 0.12
+	connexion >= 1.1.15
+	decorator >= 4.2.1
+	python-dateutil >= 2.6.0
+	setuptools >= 21.0.0
+	numpy >= 1.14.0
+	scipy >= 0.18.1
+	pandas >= 0.20.3
+	scikit-learn >= 0.18
+	pyspark >= 2.1.1
+	java 8.0 run time environment
+	Apache Spark standalone version
+	Swagger codegen libraries
+	HTML 5
+	CSS
+	Java Script
+	JQuery
+	Google Maps Java script API
+\end{itemize}
 
 \subsection{Spark Map Reduce module for crime analysis time, type and location}
 
