@@ -95,16 +95,95 @@ results and discussion. A summary about the project paper is provided
 in section V.
 
 \section{Literature Review}
-The recent research and development in crime data investigation area could
-be broadly categorized into two categories; statistical analysis of
-crime data~\cite{hid-sp18-409-agarwal2013crime, hid-sp18-409-bharathi2014survey, hid-sp18-409-kiani2015analysis, hid-sp18-409-nath2006crime, hid-sp18-409-gera2014city} and applicational development of crime search web interfaces \cite{hid-sp18-409-www-spotcrime, hid-sp18-409-www-crimereports, hid-sp18-409-www-mylocalcrime, hid-sp18-409-www-crimemapping}. There exists many research focused on analyzing crime data based on different methodologies such as kmeans cluster analysis~\cite{hid-sp18-409-gera2014city, hid-sp18-409-nath2006crime, hid-sp18-409-agarwal2013crime}, time series analysis~\cite{hid-sp18-409-wei2006time}, variational data mining techniques~\cite{hid-sp18-409-chen2004crime}, geographical analysis using 
-using statistical techniques~\cite{hid-sp18-409-santos2016crime} and etc. This study experiments combinations of these techniques to build a crime data investigation platform and hence, they are discussed in this section.
+The recent research and development in crime data investigation area
+could be broadly categorized into two categories; analysis of
+criminology~\cite{hid-sp18-409-agarwal2013crime,
+hid-sp18-409-bharathi2014survey, hid-sp18-409-kiani2015analysis,
+hid-sp18-409-nath2006crime, hid-sp18-409-gera2014city} and
+applicational development of crime data visualization
+platforms~\cite{hid-sp18-409-www-spotcrime,
+hid-sp18-409-www-crimereports, hid-sp18-409-www-mylocalcrime,
+hid-sp18-409-www-crimemapping}. Analysis of criminology data could be
+further categorized into crime control and crime
+suppression~\cite{hid-sp18-409-agarwal2013crime}. There exists many
+research focused on analyzing crime data based on different
+methodologies such as kmeans cluster
+analysis~\cite{hid-sp18-409-gera2014city, hid-sp18-409-nath2006crime,
+hid-sp18-409-agarwal2013crime}, time series
+analysis~\cite{hid-sp18-409-wei2006time}, variational data mining
+techniques~\cite{hid-sp18-409-chen2004crime}, geographical analysis
+using using statistical techniques~\cite{hid-sp18-409-santos2016crime}
+and etc. This study experiments combinations of these techniques to
+build a crime data investigation platform and hence, they are
+discussed in this section.
+
+Agarwal et al.~\cite{hid-sp18-409-agarwal2013crime} have investigated
+a comprehensive crime data analysis to identify the crime patterns and
+predict crimes based on spatial data distribution of existing data
+using kmeans clustering based approach and rapid miner tool. They have
+only focused on homicide crime type and plotted the number of reported
+crimes with respect to year for different clusters. This analysis had
+helped them to conclude that homicide is decreasing from 1990 to 2011
+in in England and Wales~\cite{hid-sp18-409-agarwal2013crime}.
+Following Agarwal~\cite{hid-sp18-409-agarwal2013crime}, Kiani et
+al.~\cite{hid-sp18-409-kiani2015analysis} have also studied the same
+dataset to improve the clustering approach by assigning weights to the
+features in the dataset and using Genetic Algorithm (GA) to optimize
+the Outlier Detection using the same rapid miner tool. Gera et
+al.~\cite{hid-sp18-409-gera2014city} have studied the possibility of
+profiling the crimes using cluster analysis. Gera et
+al.~\cite{hid-sp18-409-gera2014city} have analyzed all type of crimes
+happened in Delhi police commission as well as through National Crime
+Records Bureau (NCRB), Delhi, India. They have created a crime
+database by interviewing concerned officers, through semi-structured
+interviews, group discussion, participant observation, documentation
+analysis and questionnaires in Delhi region to perform two types of
+crime profiling based on types of crimes and types of areas. Finally
+an association between two profiling methods were identified using
+weka data mining tool. Similarly, Nath et
+al.~\cite{hid-sp18-409-nath2006crime} also applied several clustering
+algorithms to identify the association in crime data taken from
+sheriff’s office in the city of New Orleans. They have also used a
+semi-supervised learning technique for knowledge discovery from the
+crime records and to help increase the predictive accuracy in the
+crime data classification task.
+
+
 
 \section{Methodology}
+As described in the literature review, most of the research on crime data investigation focused on analyzing crimes by type of the crimes, time series information and geographical location. These techniques could be extended to a great extent for our crime data framework. In this section, we describe the data acquisition, data preprocessing, technology usage and implementation details of individual modules based on python implementation. Figure \ref{fig:overview} shows the suggested framework for crime data analysis and visualization.
 
-\section{Results and Discussion}
+\begin{figure}[htb]
+	\centering\includegraphics[width=\columnwidth]{../images/overview.jpg}
+	\caption{Overview of suggested framework for crime data analysis}
+	\label{fig:overview}
+\end{figure}
 
-\section{summary} 
+\subsection{Data Acquisition}
+
+\subsection{preprocessing}
+
+\subsection{Technology Usage}
+
+\subsection{Spark Map Reduce module for crime analysis time, type and location}
+
+\subsection{Swagger web service for location based Crime analysis}
+
+\subsection{Flask web application for visualization}
+
+\section{Results and Benchmarking}
+
+\subsection{Infrastructure description}
+
+\subsection{Performance analysis}
+Training Time breakdown, 
+Data cleaning time breakdown, 
+system set up time, 
+time taken to system launch.
+
+\section{Discussion} 
+
+\section{Conclusion} 
 
 \begin{acks}
 	
