@@ -148,7 +148,7 @@ semi-supervised learning technique for knowledge discovery from the
 crime records and to help increase the predictive accuracy in the
 crime data classification task.
 
-Extensive time series analysis on Philadelphia crime data has been studied by Wei et al.~\cite{hid-sp18-409-wei2006time}. They have compared stationary and nonstationary models, nonseasonal and seasonal models, intervention and outlier models, transfer function models, regression time series models, vector time series models, and their applications. They have further elaborated the procedures of time series analysis including parameter estimation, diagnostic checks, forecasting, and inference using autoregressive conditional heteroscedasticity model and generalized autoregressive conditional heteroscedasticity model~\cite{hid-sp18-409-wei2006time}. 
+Extensive time series analysis on Philadelphia crime data has been studied by Wei et al.~\cite{hid-sp18-409-wei2006time}. They have compared stationary and non stationary models, nonseasonal and seasonal models, intervention and outlier models, transfer function models, regression time series models, vector time series models, and their applications using the crime data. They have further elaborated the procedures of time series analysis including parameter estimation, diagnostic checks, forecasting, and inference using autoregressive conditional heteroscedasticity model and generalized autoregressive conditional heteroscedasticity model~\cite{hid-sp18-409-wei2006time}. 
 
 
 \section{Methodology}
@@ -162,7 +162,33 @@ As described in the literature review, most of the research on crime data invest
 
 \subsection{Data Acquisition}
 
-Attribute Information:describe data set and column names
+
+
+Attribute Information about dataset are as follows:
+\begin{itemize}
+	\item ID : Unique identifier for the record.
+	\item Case Number : The Chicago Police Department RD Number.
+	\item Date : Date when the incident occurred.
+	\item Block : The partially redacted address where the incident occurred.
+	\item IUCR : The Illinois Unifrom Crime Reporting code. 
+	\item Primary Type : The primary description of the IUCR code.
+	\item Description : The secondary description of the IUCR code.
+	\item Location Description : Description of the location where the incident occurred.
+	\item Arrest : Indicates whether an arrest was made or not.
+	\item Domestic : Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act.
+	\item Beat : Indicates the beat where the incident occurred.
+	\item District : Indicates the police district where the incident occurred.
+	\item Ward : The ward where the incident occurred.
+	\item Community Area : Indicates the community area where the incident occurred.
+	\item FBI Code : Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).
+	\item X Coordinate : The x coordinate of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block.
+	\item Y Coordinate : The y coordinate of the location where the incident occurred. This location also is shifted from the actual location for partial redaction but falls on the same block.
+	\item Year : Year the incident occurred.
+	\item Updated On : Date and time the record was last updated.
+	\item Latitude : The latitude of the location where the incident occurred.
+	\item Longitude : The longitude of the location where the incident occurred. 
+	\item Location - The location where the incident occurred in maps format.
+\end{itemize}
 
 \subsection{preprocessing}
 
@@ -173,28 +199,28 @@ Date time conversion
 \subsection{Technology Usage}
 Following programming environments and library packages were  used to implement the crime analyzing and visualization framework. 
 \begin{itemize}
-	Python 3.6 programming environment
-	Flask >= 0.12
-	connexion >= 1.1.15
-	decorator >= 4.2.1
-	python-dateutil >= 2.6.0
-	setuptools >= 21.0.0
-	numpy >= 1.14.0
-	scipy >= 0.18.1
-	pandas >= 0.20.3
-	scikit-learn >= 0.18
-	pyspark >= 2.1.1
-	java 8.0 run time environment
-	Apache Spark standalone version
-	Swagger codegen libraries
-	HTML 5
-	CSS
-	Java Script
-	JQuery
-	Google Maps Java script API
+	\item Python 3.6 programming environment
+	\item Flask 0.12
+	\item connexion 1.1.15
+	\item decorator 4.2.1
+	\item python-dateutil 2.6.0
+	\item setuptools 21.0.0
+	\item numpy 1.14.0
+	\item scipy 0.18.1
+	\item pandas 0.20.3
+	\item scikit-learn 0.18
+	\item pyspark W2.1.1
+	\item java 8.0 run time environment
+	\item Apache Spark standalone version
+	\item Swagger codegen libraries
+	\item HTML 5
+	\item CSS
+	\item Java Script
+	\item JQuery
+	\item Google Maps Java script API
 \end{itemize}
 
-\subsection{Spark Map Reduce module for crime analysis time, type and location}
+\subsection{Spark Map Reduce module for crime analysis using time, type and location}
 
 \subsection{Swagger web service for location based Crime analysis}
 
