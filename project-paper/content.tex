@@ -77,15 +77,18 @@ that people could be aware the of crime prone areas.
 As inspired by the requirement to raise the awareness of crime prone
 areas, we implement a location based crime search website where people
 can find crimes happened near a particular geographical location (in a
-vicinity area) for a given GPS coordinates. For this project, we have
-selected a dataset which includes the crime information from 2001 to
-current date in Chicago city~\cite{hid-sp18-409-www-data.gov}. We
-further analyze this crime dataset using the crime type and timestamps to
-identify the trends of crime types for a particular
-geographical area. One applicational use of this project would be a
-user trying to buy a new house and he may like to do a background
+vicinity area with inserted radius) for a given address. For this
+project, we have selected a dataset which includes the crime
+information from 2001 to current date in Chicago
+city~\cite{hid-sp18-409-www-data.gov}. We further analyze this crime
+dataset using the crime type, incident location and timestamps to
+identify the trends of crime types for a particular geographical
+area. There are many applicational use for this kind of a project such
+as a user trying to buy a new house, may like to do a background
 search on criminal activities around the geographical area for safety
-concerns.
+concerns and a user who would like to visit some place would love to
+know the seasonal and time effect on the crime rate in that location
+before booking a hotel.
 
 The organization of this project report is as follows. In section II,
 a literature review on existing crime data analyses and crime
@@ -148,16 +151,71 @@ semi-supervised learning technique for knowledge discovery from the
 crime records and to help increase the predictive accuracy in the
 crime data classification task.
 
-Extensive time series analysis on Philadelphia crime data has been studied by Wei et al.~\cite{hid-sp18-409-wei2006time}. They have compared stationary and non stationary models, nonseasonal and seasonal models, intervention and outlier models, transfer function models, regression time series models, vector time series models, and their applications using the crime data. They have further elaborated the procedures of time series analysis including parameter estimation, diagnostic checks, forecasting, and inference using autoregressive conditional heteroscedasticity model and generalized autoregressive conditional heteroscedasticity model~\cite{hid-sp18-409-wei2006time}. 
+Extensive time series analysis on Philadelphia crime data has been
+studied by Wei et al.~\cite{hid-sp18-409-wei2006time}. They have
+compared stationary and non stationary models, nonseasonal and
+seasonal models, intervention and outlier models, transfer function
+models, regression time series models, vector time series models, and
+their applications using the crime data. They have further elaborated
+the procedures of time series analysis including parameter estimation,
+diagnostic checks, forecasting, and inference using autoregressive
+conditional heteroscedasticity model and generalized autoregressive
+conditional heteroscedasticity model~\cite{hid-sp18-409-wei2006time}.
 
+Recent research done by DnzzL et al.~\cite{hid-sp18-409-dnzzl},
+Abenassi et al.~\cite{hid-sp18-409-abenassi}, Agsarthak et
+al.~\cite{hid-sp18-409-agsarthak} and Opencity et
+al.~\cite{hid-sp18-409-open-city} have focused on investigation of
+Chicago city crime dataset~\cite{hid-sp18-409-www-data.gov}.  DnzzL et
+al.~\cite{hid-sp18-409-dnzzl} have compared the crime prediction
+accuracies for logistic regression, multilayer perception and random
+forest algorithms and reported the highest accuracy 86.5\% for
+multilayer perception based methodology. Similarly, Agsarthak et
+al.~\cite{hid-sp18-409-agsarthak} have also used the same dataset for
+crime forecasting in Chicago city using machine learning Rest API
+provided by Microsoft Azure. They had also performed a statistical
+analysis and time series analysis on the crime
+data~\cite{hid-sp18-409-agsarthak}. Abenassi et
+al.~\cite{hid-sp18-409-abenassi} have implemented a web based software
+to analyze the Chicago city crime data by primary type and the
+time. Similarly, Opencity et al.~\cite{hid-sp18-409-open-city} have
+also implemented a web interface to analyze the crimes with year,
+wards, type and district. All these research and development had only
+focused on analyzing the dataset but have not implemented a user
+friendly web interface where users could search crimes near a given
+address and analyze the geographical location that they are actually
+interested.
+
+There are few web based platforms which allow user to find the crime
+incidents near a particular address or GPS location such as
+Spotcrime~\cite{hid-sp18-409-www-spotcrime},
+Crimereports~\cite{hid-sp18-409-www-crimereports},
+Mylocalcrime~\cite{hid-sp18-409-www-mylocalcrime} and
+Crimemapping~\cite{hid-sp18-409-www-crimemapping}. All these web based
+platforms only show geographical locations of the crimes and lacks
+crime data analysis with time and other categories. Those also lacks
+many important features such as variable radius search, address auto
+complete, clustering and highlighting crime prone areas and
+etc. However, these approaches could be enhanced up a great extend.
+Due to these facts, this project tries to implement a location based
+crime data search website which allows users to search crimes near a
+given address and analyze the crime data in one single web interface.
 
 \section{Methodology}
-As described in the literature review, most of the research on crime data investigation focused on analyzing crimes by type of the crimes, time series information and geographical location. These techniques could be extended to a great extent for our crime data framework. In this section, we describe the data acquisition, data preprocessing, technology usage and implementation details of individual modules based on python implementation. Figure \ref{fig:overview} shows the suggested framework for crime data analysis and visualization.
+As described in the literature review, most of the research on crime
+data investigation focused on analyzing crimes by type of the crimes,
+time series information and geographical location. These techniques
+could be extended to a great extent for our crime data framework. In
+this section, we describe the data acquisition, data preprocessing,
+technology usage and implementation details of individual modules
+based on python implementation. Figure~\ref{fig:overview} shows the
+suggested framework for crime data analysis and visualization.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{../images/overview.jpg}
-	\caption{Overview of suggested framework for crime data analysis}
-	\label{fig:overview}
+	\caption{Overview
+        of suggested framework for crime data
+        analysis}\label{fig:overview}
 \end{figure}
 
 \subsection{Data Acquisition}
@@ -166,28 +224,28 @@ As described in the literature review, most of the research on crime data invest
 
 Attribute Information about dataset are as follows:
 \begin{itemize}
-	\item ID : Unique identifier for the record.
-	\item Case Number : The Chicago Police Department RD Number.
-	\item Date : Date when the incident occurred.
-	\item Block : The partially redacted address where the incident occurred.
-	\item IUCR : The Illinois Unifrom Crime Reporting code. 
-	\item Primary Type : The primary description of the IUCR code.
-	\item Description : The secondary description of the IUCR code.
-	\item Location Description : Description of the location where the incident occurred.
-	\item Arrest : Indicates whether an arrest was made or not.
-	\item Domestic : Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act.
-	\item Beat : Indicates the beat where the incident occurred.
-	\item District : Indicates the police district where the incident occurred.
-	\item Ward : The ward where the incident occurred.
-	\item Community Area : Indicates the community area where the incident occurred.
-	\item FBI Code : Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).
-	\item X Coordinate : The x coordinate of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block.
-	\item Y Coordinate : The y coordinate of the location where the incident occurred. This location also is shifted from the actual location for partial redaction but falls on the same block.
-	\item Year : Year the incident occurred.
-	\item Updated On : Date and time the record was last updated.
-	\item Latitude : The latitude of the location where the incident occurred.
-	\item Longitude : The longitude of the location where the incident occurred. 
-	\item Location - The location where the incident occurred in maps format.
+	\item ID: Unique identifier for the record.
+	\item Case Number: The Chicago Police Department RD Number.
+	\item Date: Date when the incident occurred.
+	\item Block: The partially redacted address where the incident occurred.
+	\item IUCR: The Illinois Unifrom Crime Reporting code. 
+	\item Primary Type: The primary description of the IUCR code.
+	\item Description: The secondary description of the IUCR code.
+	\item Location Description: Description of the location where the incident occurred.
+	\item Arrest: Indicates whether an arrest was made or not.
+	\item Domestic: Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act.
+	\item Beat: Indicates the beat where the incident occurred.
+	\item District: Indicates the police district where the incident occurred.
+	\item Ward: The ward where the incident occurred.
+	\item Community Area: Indicates the community area where the incident occurred.
+	\item FBI Code: Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).
+	\item X Coordinate: The x coordinate of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block.
+	\item Y Coordinate: The y coordinate of the location where the incident occurred. This location also is shifted from the actual location for partial redaction but falls on the same block.
+	\item Year: Year the incident occurred.
+	\item Updated On: Date and time the record was last updated.
+	\item Latitude: The latitude of the location where the incident occurred.
+	\item Longitude: The longitude of the location where the incident occurred. 
+	\item Location: The location where the incident occurred in maps format.
 \end{itemize}
 
 \subsection{preprocessing}
@@ -218,6 +276,7 @@ Following programming environments and library packages were  used to implement 
 	\item Java Script
 	\item JQuery
 	\item Google Maps Java script API
+	\item Docker
 \end{itemize}
 
 \subsection{Spark Map Reduce module for crime analysis using time, type and location}
