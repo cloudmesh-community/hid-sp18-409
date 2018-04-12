@@ -296,6 +296,7 @@ CSS                             & -       \\
 Java Script                     & -       \\
 JQuery                          & -       \\
 Google Maps Java script API     & -       \\
+Dygraphs                        & -       \\
 Docker                          & 1.13.1  \\
 \bottomrule
 \end{tabular}
@@ -313,7 +314,9 @@ services defined in the swagger service explained in the
 Section~\ref{swaggerService}. Admin user can trigger data source
 update and spark map reduce with basic authentication as elaborated in
 the Section~\ref{sparkModule}. Screen captures of the Flask web
-application are shown in Figure~\ref{fig:screencapture}.
+application are shown in Figure~\ref{fig:screencapture}. The complete
+framework is dockerized to run within a Docker container allowing easy
+installation.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{../images/overview.jpg}
@@ -390,10 +393,83 @@ Section~\ref{swaggerService}. We have used Google maps javascript API
 to showcase the crime data in correct geogrphical location. Following
 sub sections describes the features of the developed web interface.
 
-\subsubsection{Auto completed Addresses Search}
-\subsubsection{Show crime data in makers mode}
-\subsubsection{Show crime data in cluster mode}
-\subsubsection{Plots for crime analysis}
+\subsubsection{Auto completed Addresses Search}\label{addressSearch}
+We have used Google maps javascript address auto complete API to
+provide a type-ahead search box for user to enter a address of any
+location such as Establishment, Addresses and
+Geocodes. Figure~\ref{fig:gui-addressSeach} shows the GUI widget which
+we have created for this to achieve the address search. The radio
+buttons allow users to filter the types of places that the
+autocomplete returns. The Strict Bounds option restricts the search to
+the area within the current viewport. If this option is not checked,
+the API biases the search to the current viewport, but does not
+restrict it.  When a user search this address it automatically creates a
+marker on the Google map in the web interface. Inside this widget
+functionality, we obtain the GPS coordinate for that particular
+location and calls the ``getCrimes'' API described in
+Section~\ref{swaggerService} to get the crime data points relevant to
+the GPS coordinate and the radius entered inside the above mentioned
+widget.
+
+\begin{figure}[htb]
+	\centering\includegraphics[width=\columnwidth]{../images/addressSeach.jpg}
+	\caption{Auto complete address search widget}\label{fig:gui-addressSeach}
+\end{figure}
+
+\subsubsection{Show crimes data in markers mode}\label{markerMode}
+We have created a custom markers for each of the primary crime types
+and kept those as templates to be used for creating markers for the
+search results from the ``getCrimes'' API call described in
+Section~\ref{addressSearch}. Bottom image in
+Figure~\ref{fig:screencapture} shows how the markers are shown in
+map. A legend about each of the crime types are put on the right
+bottom pane as shown in Figure~\ref{fig:screencapture}. User can turn
+on or off each of the crime types individually or group wise. When a
+user click on a marker, a pop up window will appears as shown in top
+right area of the Figure~\ref{fig:screencapture} and it contain
+important information about that particular crime which was
+clicked. We have also implemented some nice animation effects such as
+markers bouncing, dropping and toggling to enhance the user experience
+with the web interface. If needed user also can turn on or off all
+markers using the functionality provided in the legend pane.
+
+\subsubsection{Show crimes data in cluster mode}\label{clusterMode}
+This cluster mode is created from the markers described in the
+Section~\ref{markerMode} and there is a button placed on the legend
+pane to activated the cluster mode and it automatically deactivate the
+marker mode. This clustering mode is sensitive to the google maps zoom
+level and it automatically reclusters based on the map zoom level. We
+have achieved this using Google Marker Clusterer library which uses
+the grid-based clustering technique that divides the map into squares
+of a certain size (the size sensitive to the zoom level), and groups
+the markers into each square grid. It creates a cluster at a
+particular marker, and adds markers that are in its bounds to the
+cluster. It repeats this process until all markers are allocated to
+the closest grid-based marker clusters based on the map's zoom
+level. The number on a cluster indicates how many markers it contains.
+
+\subsubsection{Plots for crime data analysis}\label{plottingData}
+There are two types of graphs created in the project such as graphs
+which contains the information about entire crime dataset and graphs
+which only contains the information about crime data a user searched
+using a radius and an address as explained in
+Section~\ref{addressSearch}. Both these types perform MapReduce
+operation on the data considering time, type and location
+information. The difference is that the graphs which requires
+information about entire dataset, are plotted using the reduced data
+from the Spark MapReduced module explained in the
+Section~\ref{sparkModule}. These modes are enabled when user clicks on
+button called ``Show Graphs'' in the bottom left of the web
+interface. This button automatically changes to ``Hide Graphs'' and
+shows the left pane (where graphs are plotted) shown in
+Figure~\ref{fig:screencapture} as soon as user click on it. Immediate
+plots demonstrate the plots for total crime by time, type and location
+as shown in top left of the Figure~\ref{fig:screencapture}. User can
+click on the ``Analyze Search Result'' button to see the top ten crime
+trends near the location which was searched. These graphs were created
+using the Dygraphs javascript library and contains many responsive
+features such as drag on axis, zoom and unzoom, move along axis to
+increase ability of the data visualization.
 
 \section{Results and Benchmarking}
 
