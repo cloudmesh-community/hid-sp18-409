@@ -208,82 +208,163 @@ time series information and geographical location. These techniques
 could be extended to a great extent for our crime data framework. In
 this section, we describe the data acquisition, data preprocessing,
 technology usage and implementation details of individual modules
-based on python implementation. Figure~\ref{fig:overview} shows the
-suggested framework for crime data analysis and visualization.
+based on python implementation. 
+
+\subsection{Data Acquisition}\label{dataset}
+We have selected a dataset which includes the crime information from
+2001 to current date in Chicago
+city~\cite{hid-sp18-409-www-data.gov}. Dataset is created with the
+reported incidents of crime (with the exception of murders where data
+exists for each victim) that occurred in the City of Chicago from 2001
+to present, without the most recent seven days. Data is extracted from
+the Chicago Police Department's Citizen Law Enforcement Analysis and
+Reporting system. In order to protect the privacy of crime victims,
+addresses are shown at the block level only and specific locations are
+not identified. Datasets size is 1.5 gigabytes with 22 columns and
+over 6 Million rows. Attribute information about the dataset are as
+follows:
+
+\begin{description}
+	\item[ID]: Unique identifier for the record.
+	\item[Case Number]: The Chicago Police Department record Number.
+	\item[Date]: Date when the incident occurred.
+	\item[Date]: The partially redacted address where the incident occurred.
+	\item[IUCR]: The Illinois Unifrom Crime Reporting code. 
+	\item[Primary Type]: The primary description of the IUCR code.
+	\item[Description]: The secondary description of the IUCR code.
+	\item[Location Description]: Description of the location where the incident occurred.
+	\item[Arrest]: Indicates whether an arrest was made or not.
+	\item[Domestic]: Indicates whether the incident was domestic-related.
+	\item[Beat]: Indicates the beat where the incident occurred.
+	\item[District]: Indicates the police district where the incident occurred.
+	\item[Ward]: The ward where the incident occurred.
+	\item[Community Area]: Indicates the community area where the incident occurred.
+	\item[FBI Code]: Indicates the crime classification as outlined in the FBI.
+	\item[X Coordinate]: The x coordinate of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block.
+	\item[Y Coordinate]: The y coordinate of the location where the incident occurred. This location also is shifted from the actual location for partial redaction but falls on the same block.
+	\item[Year]: Year the incident occurred.
+	\item[Updated On]: Date and time the record was last updated.
+	\item[Latitude]: The latitude of the location where the incident occurred.
+	\item[Longitude]: The longitude of the location where the incident occurred. 
+	\item[Location]: The location where the incident occurred in maps format.
+\end{description}
+
+\subsection{preprocessing}
+When sweep over the rows in the dataset, we noted that many missing
+values in some of the rows and columns. Hence before using the
+dataset, it is imperative to treat the missing values. Our analysis
+highly depends on the column such as ID, Case Number, Date, Primary
+Type, Location Description, Arrest, Latitude and Longitude. So we have
+neglected the data rows where we found null values in any of the
+important columns. We used python programming environment and Pandas
+data processing library to achieve this task. These functionalities
+are built in to the data handling APIs in our framework and
+automatically triggered when update the data files using provided data
+source update swagger services.
+
+\subsection{Technology Usage}
+We used Python as the main programming language in this project and few web technologies such as HTML, CSS, JQuery and Google maps java script API are used for the front end development of the project. Full description of  programming environments and library packages which used to implement the crime analyzing and visualization framework, are shown in Table~\ref{tab:technology}.
+\begin{table}[]
+\centering
+\caption{Technologies used in the project}\label{tab:technology}
+\begin{tabular}{*{2}{c}}
+\toprule
+Technology                      & Version \\
+\midrule
+Python programming environment  & 3.6     \\
+Flask                           & 0.12    \\
+connexion                       & 1.1.15  \\
+decorator                       & 4.2.1   \\
+python-dateutil                 & 2.6.0   \\
+setuptools                      & 21.0.0  \\
+numpy                           & 1.14.0  \\
+scipy                           & 0.18.1  \\
+pandas                          & 0.20.3  \\
+scikit-learn                    & 0.18    \\
+pyspark                         & 2.1.1   \\
+scikit-learn                    & 0.18    \\
+java run time environment       & 8.16.1  \\
+Apache Spark standalone version & 2.3.0   \\
+Swagger codegen                 & 2.1.2   \\
+HTML                            & 5       \\
+CSS                             & -       \\
+Java Script                     & -       \\
+JQuery                          & -       \\
+Google Maps Java script API     & -       \\
+Docker                          & 1.13.1  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Overview of crime search framework}
+Figure~\ref{fig:overview} shows the suggested framework for crime data
+analysis and visualization.  As shown in the Figure~\ref{fig:overview}
+there two main users in the system such as regular user and the admin
+user. Regular user is only accessing the Flask web application (see
+Section~\ref{flaskWebApp}) to see the crime data trends in entire
+chichago city or in a specific area selected by the user with a
+desired address and a radius. This is achieved through the micro
+services defined in the swagger service explained in the
+Section~\ref{swaggerService}. Admin user can trigger data source
+update and spark map reduce with basic authentication as elaborated in
+the Section~\ref{sparkModule}. Screen captures of the Flask web
+application are shown in Figure~\ref{fig:screencapture}.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{../images/overview.jpg}
 	\caption{Overview
-        of suggested framework for crime data
-        analysis}\label{fig:overview}
+		of suggested framework for crime data
+		analysis}\label{fig:overview}
 \end{figure}
 
-\subsection{Data Acquisition}
+\begin{figure}[htb]
+	\centering\includegraphics[width=\columnwidth]{../images/flask-web-app-1.jpg}
+	\caption{Screen captures of the Flask web application}\label{fig:screencapture}
+\end{figure}
 
+\subsection{Spark MapReduce module for crime analysis using time, type and location}\label{sparkModule}
+Since the dataset described in Section~\ref{dataset} is so large to handle in single core computer, we have implemented Spark MapReduce as user defined functions (UDFs) for analyzing the dataset using time series information, basic crime category and reported location of the incident. These functionalities are only executed when the data source is updated by the admin user. Following pseudocode explains how we have implemented Spark MapReduce for the crime dataset.
 
+\begin{verbatim}
+1. Create a SparkSQL session
+2. Load data with pandas
+3. Process the data to get desired data columns
+4. Create a Spark context with data
+5. Create a RDD of Row objects using groups
+6. Do the MapReduce based on the groups
+\end{verbatim}
 
-Attribute Information about dataset are as follows:
-\begin{itemize}
-	\item ID: Unique identifier for the record.
-	\item Case Number: The Chicago Police Department RD Number.
-	\item Date: Date when the incident occurred.
-	\item Block: The partially redacted address where the incident occurred.
-	\item IUCR: The Illinois Unifrom Crime Reporting code. 
-	\item Primary Type: The primary description of the IUCR code.
-	\item Description: The secondary description of the IUCR code.
-	\item Location Description: Description of the location where the incident occurred.
-	\item Arrest: Indicates whether an arrest was made or not.
-	\item Domestic: Indicates whether the incident was domestic-related as defined by the Illinois Domestic Violence Act.
-	\item Beat: Indicates the beat where the incident occurred.
-	\item District: Indicates the police district where the incident occurred.
-	\item Ward: The ward where the incident occurred.
-	\item Community Area: Indicates the community area where the incident occurred.
-	\item FBI Code: Indicates the crime classification as outlined in the FBI's National Incident-Based Reporting System (NIBRS).
-	\item X Coordinate: The x coordinate of the location where the incident occurred. This location is shifted from the actual location for partial redaction but falls on the same block.
-	\item Y Coordinate: The y coordinate of the location where the incident occurred. This location also is shifted from the actual location for partial redaction but falls on the same block.
-	\item Year: Year the incident occurred.
-	\item Updated On: Date and time the record was last updated.
-	\item Latitude: The latitude of the location where the incident occurred.
-	\item Longitude: The longitude of the location where the incident occurred. 
-	\item Location: The location where the incident occurred in maps format.
-\end{itemize}
+\subsection{Swagger web service for location based Crime analysis}\label{swaggerService}
+As shown in Figure~\ref{fig:overview}, this swagger service contains nine micro services to serve the Flask web application and admin user. It also connect the admin user with Spark Mapreduce module and stores the reduced data. As the dataset contained GPS coordinate for every reported crime, we used famous Haversine formula to calculated the distance between the users GPS location and the data points using Equation~\ref{eq:haversine} and~\ref{eq:haversine2}~\cite{hid-sp18-409-siahaan2017haversine}. 
 
-\subsection{preprocessing}
+\begin{equation}\label{eq:haversine}
+hav(\frac{d}{r}) = hav(\omega_2 - \omega_1) + \cos(\omega_1)\cos(\omega_2)hav(\lambda_2 - \lambda_1)
+\end{equation}
+\begin{equation}\label{eq:haversine2}
+hav(\theta) = \sin^2(\frac{\theta}{2}) = \frac{1-\cos(\theta)}{2}
+\end{equation}
+Where:
+\begin{description}
+\item[$d$] is the radius of the sphere,
+\item[$\omega_1$, $\omega_2$] are latitude of point 1 and latitude of point 2, in radians,
+\item[$\lambda_1$, $\lambda_1$] are longitude of point 1 and longitude of point 2, in radians.
+\end{description}
+Following list contains the micro services defined and implemented inside the swagger service.
 
-Null Value Treatment
+\begin{description}
+	\item[getCrime]: User can search for a particular crime with unique crime Id using this API.
+	\item[getCrimes]: The getCrimes API returns information about the crimes previously happened at a given location or nearby locations based on users GPS coordinates and radius. The response includes lists of crimes in the proper display order.
+	\item[getFilteredCrimes]: This API endpoint returns information about the crimes previously happened at a given location or nearby locations based on user’s GPS coordinates, radius and a primary type (Example- BATTERY).
+	\item[getPrimaryCrimeList]: User can get primary crime types as a list using this API.
+	\item[getCrimesByMonth]: User can get top x number of crimes by month using this API.
+	\item[getCrimesByYear]: User can get top x number of crimes by year using this API.
+	\item[downloadData]: This API downloads the data from the data source difined in the config.yml file.
+	\item[updateData]: This API updates the data from the data source difined in the config.yml file.
+	\item[triggerSparkFuctions]: This API calls the Spark UDFs to generate the reduced data files for total crime dataset analysis.
+\end{description}
 
-Date time conversion
+\subsection{Flask web application for visualization}\label{flaskWebApp}
 
-\subsection{Technology Usage}
-Following programming environments and library packages were  used to implement the crime analyzing and visualization framework. 
-\begin{itemize}
-	\item Python 3.6 programming environment
-	\item Flask 0.12
-	\item connexion 1.1.15
-	\item decorator 4.2.1
-	\item python-dateutil 2.6.0
-	\item setuptools 21.0.0
-	\item numpy 1.14.0
-	\item scipy 0.18.1
-	\item pandas 0.20.3
-	\item scikit-learn 0.18
-	\item pyspark W2.1.1
-	\item java 8.0 run time environment
-	\item Apache Spark standalone version
-	\item Swagger codegen libraries
-	\item HTML 5
-	\item CSS
-	\item Java Script
-	\item JQuery
-	\item Google Maps Java script API
-	\item Docker
-\end{itemize}
-
-\subsection{Spark Map Reduce module for crime analysis using time, type and location}
-
-\subsection{Swagger web service for location based Crime analysis}
-
-\subsection{Flask web application for visualization}
 
 \section{Results and Benchmarking}
 
