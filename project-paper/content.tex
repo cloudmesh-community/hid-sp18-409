@@ -263,7 +263,12 @@ automatically triggered when update the data files using provided data
 source update swagger services.
 
 \subsection{Technology Usage}
-We used Python as the main programming language in this project and few web technologies such as HTML, CSS, JQuery and Google maps java script API are used for the front end development of the project. Full description of  programming environments and library packages which used to implement the crime analyzing and visualization framework, are shown in Table~\ref{tab:technology}.
+We used Python as the main programming language in this project and
+few web technologies such as HTML, CSS, JQuery and Google maps java
+script API are used for the front end development of the project. Full
+description of programming environments and library packages which
+used to implement the crime analyzing and visualization framework, are
+shown in Table~\ref{tab:technology}.
 \begin{table}[]
 \centering
 \caption{Technologies used in the project}\label{tab:technology}
@@ -323,7 +328,13 @@ application are shown in Figure~\ref{fig:screencapture}.
 \end{figure}
 
 \subsection{Spark MapReduce module for crime analysis using time, type and location}\label{sparkModule}
-Since the dataset described in Section~\ref{dataset} is so large to handle in single core computer, we have implemented Spark MapReduce as user defined functions (UDFs) for analyzing the dataset using time series information, basic crime category and reported location of the incident. These functionalities are only executed when the data source is updated by the admin user. Following pseudocode explains how we have implemented Spark MapReduce for the crime dataset.
+Since the dataset described in Section~\ref{dataset} is so large to
+handle in single core computer, we have implemented Spark MapReduce as
+user defined functions (UDFs) for analyzing the dataset using time
+series information, basic crime category and reported location of the
+incident. These functionalities are only executed when the data source
+is updated by the admin user. Following pseudocode explains how we
+have implemented Spark MapReduce for the crime dataset.
 
 \begin{verbatim}
 1. Create a SparkSQL session
@@ -335,7 +346,14 @@ Since the dataset described in Section~\ref{dataset} is so large to handle in si
 \end{verbatim}
 
 \subsection{Swagger web service for location based Crime analysis}\label{swaggerService}
-As shown in Figure~\ref{fig:overview}, this swagger service contains nine micro services to serve the Flask web application and admin user. It also connect the admin user with Spark Mapreduce module and stores the reduced data. As the dataset contained GPS coordinate for every reported crime, we used famous Haversine formula to calculated the distance between the users GPS location and the data points using Equation~\ref{eq:haversine} and~\ref{eq:haversine2}~\cite{hid-sp18-409-siahaan2017haversine}. 
+As shown in Figure~\ref{fig:overview}, this swagger service contains
+nine micro services to serve the Flask web application and admin
+user. It also connect the admin user with Spark Mapreduce module and
+stores the reduced data. As the dataset contained GPS coordinate for
+every reported crime, we used famous Haversine formula to calculated
+the distance between the users GPS location and the data points using
+Equation~\ref{eq:haversine}
+and~\ref{eq:haversine2}~\cite{hid-sp18-409-siahaan2017haversine}.
 
 \begin{equation}\label{eq:haversine}
 hav(\frac{d}{r}) = hav(\omega_2 - \omega_1) + \cos(\omega_1)\cos(\omega_2)hav(\lambda_2 - \lambda_1)
@@ -364,7 +382,18 @@ Following list contains the micro services defined and implemented inside the sw
 \end{description}
 
 \subsection{Flask web application for visualization}\label{flaskWebApp}
+As illustrated in Figure~\ref{fig:overview}, Flask web application is
+made for users to perform the crime data search based on their
+geographical location and to visualize the crime data analysis by
+utilizing the implemented swagger services described in
+Section~\ref{swaggerService}. We have used Google maps javascript API
+to showcase the crime data in correct geogrphical location. Following
+sub sections describes the features of the developed web interface.
 
+\subsubsection{Auto completed Addresses Search}
+\subsubsection{Show crime data in makers mode}
+\subsubsection{Show crime data in cluster mode}
+\subsubsection{Plots for crime analysis}
 
 \section{Results and Benchmarking}
 
