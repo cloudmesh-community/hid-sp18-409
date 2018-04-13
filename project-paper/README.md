@@ -36,7 +36,7 @@ report.pdf:
     make
 
 Please remember that you MUST NOT commit the report.pdf file to the
-reporsitory. If we detect thsi we will remove it and do not review
+repository. If we detect this we will remove it and do not review
 your paper. This is to avoid that students submit papers that actually
 do not compile in LaTeX. Make sure you paper always compiles.
 
