@@ -535,13 +535,13 @@ on three different hardware infrastructures as listed follows:
 	8 GB DDR4 high-frequency 2666 MHz RAM, 1 TB SSHD hard drive
 	and GeForce GTX 1050 1GB VGA.
         \item[Dell Workstation]: 10
-	hardware cores, 2 threads per core, Intel® Xeon® Processor
+	hardware cores, 2 threads per core, Intel Xeon Processor
 	E5-2630 V4 Family (up to 3.1 GHz) with 32 GB DDR4
 	high-frequency 2133 MHz RAM, 500 GB SSD hard drive and NVIDIA
 	Quadro M2000 4GB VGA.
         \item[EC2 EMR (m4.xlarge instances)]: 5
 	nodes (1 master and 4 worker), 18 hardware cores per node, 2
-	threads per core, Intel® Xeon® Processor E5-2686 v4 Family (up
+	threads per core, Intel Xeon Processor E5-2686 v4 Family (up
 	to 3.0 GHz) with 32 GB DDR4 high-frequency DDR4-2400 MHz RAM,
 	with Spark 1.6 on Hadoop 2.6.0 YARN.
 \end{description}
@@ -581,11 +581,34 @@ complete dataset.
 \end{table}
 
 \subsection{Time Series Analysis}
+Our crime search and analyzing framework allows user to analyze crime
+data under two modes such as total crime data analysis in the Chicago
+city and investigate the crime data relevant to the crime search
+performed by the user. Under the total crime data investigation mode,
+user can see the total number of crimes reported against the time
+stamp as shown in the Figure~\ref{fig:time-totalCrime}. This graph is
+dynamic and user can zoom the x axis of the graph up to month level to
+see the total number of crimes. Figure~\ref{fig:time-totalCrime}
+allows us to infer a noticeable seasonal effect in the total crimes
+reported in Chicago city. It can be observed that there is a trend
+where the total number of crimes always low from January to July and
+always high from August to December. Even though the total reported
+crimes has increasing and decreasing trend and seasonality, We also
+notice that total crime reported, has a downward trend from 2001 to
+2018.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/time1.jpg}
 	\caption{Total crimes for each month in Chichago from 2001-01 to 2018-02}\label{fig:time-totalCrime}
 \end{figure}
+
+As our framework offers users to investigate the crime data based on
+the search, They can choose to observe 10 most frequently reported
+crimes near the searched location with respect month or year as shown
+in Figure~\ref{fig:time-top10crimes-local} and
+Figure~\ref{fig:year-top10crimes-local} respectively. User can learn a
+good insight about a particular location and see the most safest time
+periods to be in the searched place.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/time2.jpg}
@@ -597,42 +620,105 @@ complete dataset.
 	\caption{Most frequent crimes near (1.6 miles) Chichago Cook county for each year from 2001 to 2018}\label{fig:year-top10crimes-local}
 \end{figure}
 
-
 \subsection{Geospatial Analysis}
+As explained in the Section~\ref{markerMode} and~~\ref{clusterMode},
+user can search for a location with a radius and get to know about 34
+different types of crimes reported in that particular area using the
+implemented crime search framework. Results figures shown here are
+obtained by searching the address of Chichago Cook county with radius
+of 1.6 miles. Figure~\ref{fig:time-totalCrime-geo1} and
+Figure~\ref{fig:time-top10crimes-local-geo2} shows the search results
+in marker mode and cluster mode respectively. We can observe that the
+center of the Chichago downtown area has more reported crimes than
+rest of the area as shown by the cluster mode in
+Figure~\ref{fig:time-top10crimes-local-geo2}.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo1.jpg}
-	\caption{Different types of crimes distribution on Google maps near (1.6 miles) Chichago Cook county}\label{fig:time-totalCrime}
+	\caption{Different types of crimes distribution on Google maps near (1.6 miles) Chichago Cook county}\label{fig:time-totalCrime-geo1}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo2.jpg}
-	\caption{Cluster mode for total crimes distribution on Google maps near (1.6 miles) Chichago Cook county}\label{fig:time-top10crimes-local}
+	\caption{Cluster mode for total crimes distribution on Google maps near (1.6 miles) Chichago Cook county}\label{fig:time-top10crimes-local-geo2}
 \end{figure}
+
+Figure~\ref{fig:year-top10crimes-local-geo3} shows the bar-graph of
+total crimes grouped by the location in which the crime was
+committed. We can clearly see that the highest number of reported
+crimes were committed on a
+street. Figure~\ref{fig:crimes-with-radius-geo4} shows how total
+number of reported crimes varies when we move away from the center of
+the Chicago city and we can observe that the gradient of the graph is
+rapidly decreasing. So we can infer that the crime rate is high when
+you move towards the Chicago city area.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo3.jpg}
-	\caption{Total Crimes by different locations in Chichago city from 2001 to 2018}\label{fig:year-top10crimes-local}
+	\caption{Total Crimes by different locations in Chichago city from 2001 to 2018}\label{fig:year-top10crimes-local-geo3}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo4.jpg}
-	\caption{Total Crimes by with increasing radius from the center of the Chichago city}\label{fig:crimes-with-radius}
+	\caption{Total Crimes by with increasing radius from the center of the Chichago city}\label{fig:crimes-with-radius-geo4}
 \end{figure}
 
 \subsection{Statistical Analysis}
 
+Our framework generates a time series plot that displays the
+comparison between the number of crime cases registered and the number
+of arrests with respect to time stamp as shown in
+Figure~\ref{fig:time-top10crimes-local-stat1}. User can zoom in to
+this graph if need to see the comparison in month level. We can
+clearly observe that total number of arrest are always really low
+compared to the reported
+crimes. Figure~\ref{fig:year-top10crimes-local-stat2} shows a
+bar-graph of total crimes grouped by the crime type according to the
+Chicago police department. Theft is the highest number of committed
+crime in the Chicago city from 2001 to 2018.
+Figure~\ref{fig:time-top10crimes-local} also proves that theft is the
+highest reported crime for a localized search near Chicago city.
+
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/stat1.jpg}
-	\caption{Total crimes vss total arrests for each month in Chichago from 2001-01 to 2018-02}\label{fig:time-top10crimes-local}
+	\caption{Total crimes vss total arrests for each month in Chichago from 2001-01 to 2018-02}\label{fig:time-top10crimes-local-stat1}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/stat2.jpg}
-	\caption{Total Crimes by crime types in Chichago city from 2001 to 2018}\label{fig:year-top10crimes-local}
+	\caption{Total Crimes by crime types in Chichago city from 2001 to 2018}\label{fig:year-top10crimes-local-stat2}
 \end{figure}
 
-\section{Conclusion} 
+\section{Conclusion and Future works} 
+
+This paper presents a new framework for location based crime data
+search and analysis using Spark UDF. We have exposed the framework
+functionalities to users using a Flask web application where users can
+enter an address and a radius to see the spatial distribution of crime
+data by the crime type. It also enables time series analysis and
+statistical analysis for the searched crime data as well the full
+dataset. Currently, the framework is only powered by the Chicago city
+crime data set. As we have made the framework fairly generic, it
+should be easy to integrated other crime data sources. Using the
+implemented framework, we have reported the results under three
+sections such as time series, geospatial and statistical analyzes. We
+observed that there is a trend where the total number of crimes always
+low from January to July and always high from August to December. The
+total reported crimes has a downward trend from 2001 to 2018. We also
+observed that the highest number of reported crimes were committed on
+a street. By using a moving radius method, we were able to infer that
+the crime rate is high when you move towards the Chicago city area. We
+also saw that total number of arrest are always really low compared to
+the reported crimes.
+
+One of the most important issues that should be addressed in the model
+presented in this paper to improve the MapReduce operations as they
+are taking so much time with larger radius values. As this framework
+is currently only based on the crime data obtained from Chicago city,
+we could try to integrate with other available crime dataset for other
+cities to check the scalability of the framework and to enhance the
+experience of the users. Our Flask web application is not mobile
+friendly and we could make it more responsive to all sort of screens.
 
 \begin{acks}
 	
