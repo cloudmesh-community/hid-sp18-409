@@ -31,9 +31,26 @@
 
 
 \begin{abstract}
-This paper provides a sample of a \LaTeX\ document which conforms,
-somewhat loosely, to the formatting guidelines for
-ACM SIG Proceedings.
+Crimes are horrifying and cost the progress of mankind in many ways
+while influencing our society and day to day life. Because of that,
+higher priority is always given by the government and politicians to
+reduce the crime rate around the world. Crime solving and prevention
+get notoriously difficult due to complex causes such as poverty,
+parental neglect, low self-esteem, alcohol, drug abuse and etc. Crime
+data analysis could be helpful to understand the patterns hidden
+inside the crime data. One good way to prevent crimes is to raise the
+awareness of the crime prone areas and the patterns in which crime are
+committed.  In this paper, location based crime data search and
+analysis framework is introduced and developed using a judicious
+combination of Spark user defined functions and Haversine method. The
+implemented framework allows users to analyze and see the crime
+patterns exist near a specific location defined with an address and a
+radius. Framework provides crime data analysis in geospatial, time
+series and statistical forms. Using this framework, we were able to
+clearly see seasonal effect in crime data near Chicago city area and
+we also noticed that crime rate is monotonically decreasing when we
+move away from the Chicago city area.
+
 \end{abstract}
 
 \keywords{hid-sp18-409, Crime data analysis, MapReduce, Google Maps, 
@@ -346,18 +363,22 @@ framework is dockerized to run within a Docker container allowing easy
 installation.
 
 \begin{figure}[htb]
-	\centering\includegraphics[width=\columnwidth]{images/overview.jpg}
+	\centering\includegraphics[width=\columnwidth]
+        {images/overview.jpg}
 	\caption{Overview
 		of suggested framework for crime data
 		analysis}\label{fig:overview}
 \end{figure}
 
 \begin{figure}[htb]
-	\centering\includegraphics[width=\columnwidth]{images/flask-web-app-1.jpg}
-	\caption{Screen captures of the Flask web application}\label{fig:screencapture}
+	\centering\includegraphics[width=\columnwidth]
+        {images/flask-web-app-1.jpg}
+	\caption{Screen captures of the Flask web
+        application}\label{fig:screencapture}
 \end{figure}
 
-\subsection{Spark MapReduce module for crime analysis using time, type and location}\label{sparkModule}
+\subsection{Spark MapReduce module for crime analysis using time,
+type and location}\label{sparkModule}
 Since the dataset described in Section~\ref{dataset} is so large to
 handle in single core computer, we have implemented Spark MapReduce as
 user defined functions (UDFs) for analyzing the dataset using time
@@ -375,7 +396,8 @@ have implemented Spark MapReduce for the crime dataset.
 6. Do the MapReduce based on the groups
 \end{verbatim}
 
-\subsection{Swagger web service for location based Crime analysis}\label{swaggerService}
+\subsection{Swagger web service for location based Crime
+analysis}\label{swaggerService}
 As shown in Figure~\ref{fig:overview}, this swagger service contains
 nine micro services to serve the Flask web application and admin
 user. It also connect the admin user with Spark Mapreduce module and
@@ -386,7 +408,8 @@ Equation~\ref{eq:haversine}
 and~\ref{eq:haversine2}~\cite{hid-sp18-409-siahaan2017haversine}.
 
 \begin{equation}\label{eq:haversine}
-hav(\frac{d}{r}) = hav(\omega_2 - \omega_1) + \cos(\omega_1)\cos(\omega_2)hav(\lambda_2 - \lambda_1)
+hav(\frac{d}{r}) = hav(\omega_2 - \omega_1)
++ \cos(\omega_1)\cos(\omega_2)hav(\lambda_2 - \lambda_1)
 \end{equation}
 \begin{equation}\label{eq:haversine2}
 hav(\theta) = \sin^2(\frac{\theta}{2}) = \frac{1-\cos(\theta)}{2}
@@ -394,10 +417,13 @@ hav(\theta) = \sin^2(\frac{\theta}{2}) = \frac{1-\cos(\theta)}{2}
 Where:
 \begin{description}
 \item[$d$] is the radius of the sphere,
-\item[$\omega_1$, $\omega_2$] are latitude of point 1 and latitude of point 2, in radians,
-\item[$\lambda_1$, $\lambda_1$] are longitude of point 1 and longitude of point 2, in radians.
+\item[$\omega_1$, $\omega_2$] are latitude of point 1 and latitude
+of point 2, in radians,
+\item[$\lambda_1$, $\lambda_1$] are longitude of point 1 and longitude
+of point 2, in radians.
 \end{description}
-Following list contains the micro services defined and implemented inside the swagger service.
+Following list contains the micro services defined and implemented inside
+the swagger service.
 
 \begin{description}
 	\item[getCrime]: User can search for a particular crime with
@@ -460,8 +486,10 @@ the GPS coordinate and the radius entered inside the above mentioned
 widget.
 
 \begin{figure}[htb]
-	\centering\includegraphics[width=\columnwidth]{images/addressSeach.jpg}
-	\caption{Auto complete address search widget}\label{fig:gui-addressSeach}
+	\centering\includegraphics[width=\columnwidth]
+        {images/addressSeach.jpg}
+	\caption{Auto complete address search
+        widget}\label{fig:gui-addressSeach}
 \end{figure}
 
 \subsubsection{Show crimes data in markers mode}\label{markerMode}
@@ -561,7 +589,8 @@ complete dataset.
 
 \begin{table}[]
 	\centering
-	\caption{Total execution times in minutes for different data sizes in different computing platforms}\label{tab:performance}
+	\caption{Total execution times in minutes for different data
+        sizes in different computing platforms}\label{tab:performance}
 	\begin{tabular}{*{5}{c}}
 		\toprule
 		Radius & Data size &  laptop & workstation &  EC2 EMR \\
@@ -599,7 +628,8 @@ notice that total crime reported, has a downward trend from 2001 to
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/time1.jpg}
-	\caption{Total crimes for each month in Chichago from 2001-01 to 2018-02}\label{fig:time-totalCrime}
+	\caption{Total crimes for each month in Chichago from 2001-01
+        to 2018-02}\label{fig:time-totalCrime}
 \end{figure}
 
 As our framework offers users to investigate the crime data based on
@@ -612,12 +642,16 @@ periods to be in the searched place.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/time2.jpg}
-	\caption{Most frequent crimes near (1.6 miles) Chichago Cook county for each month from 2001-01 to 2018-02 }\label{fig:time-top10crimes-local}
+	\caption{Most frequent crimes near (1.6 miles) Chichago Cook
+        county for each month from 2001-01 to
+        2018-02 }\label{fig:time-top10crimes-local}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/time3.jpg}
-	\caption{Most frequent crimes near (1.6 miles) Chichago Cook county for each year from 2001 to 2018}\label{fig:year-top10crimes-local}
+	\caption{Most frequent crimes near (1.6 miles) Chichago
+        Cook county for each year from 2001 to
+        2018}\label{fig:year-top10crimes-local}
 \end{figure}
 
 \subsection{Geospatial Analysis}
@@ -635,12 +669,16 @@ Figure~\ref{fig:time-top10crimes-local-geo2}.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo1.jpg}
-	\caption{Different types of crimes distribution on Google maps near (1.6 miles) Chichago Cook county}\label{fig:time-totalCrime-geo1}
+	\caption{Different types of crimes distribution on Google
+        maps near (1.6 miles) Chichago Cook
+        county}\label{fig:time-totalCrime-geo1}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo2.jpg}
-	\caption{Cluster mode for total crimes distribution on Google maps near (1.6 miles) Chichago Cook county}\label{fig:time-top10crimes-local-geo2}
+	\caption{Cluster mode for total crimes distribution on Google
+        maps near (1.6 miles) Chichago Cook
+        county}\label{fig:time-top10crimes-local-geo2}
 \end{figure}
 
 Figure~\ref{fig:year-top10crimes-local-geo3} shows the bar-graph of
@@ -655,12 +693,14 @@ you move towards the Chicago city area.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo3.jpg}
-	\caption{Total Crimes by different locations in Chichago city from 2001 to 2018}\label{fig:year-top10crimes-local-geo3}
+	\caption{Total Crimes by different locations in Chichago city
+        from 2001 to 2018}\label{fig:year-top10crimes-local-geo3}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/geo4.jpg}
-	\caption{Total Crimes by with increasing radius from the center of the Chichago city}\label{fig:crimes-with-radius-geo4}
+	\caption{Total Crimes by with increasing radius from the center
+        of the Chichago city}\label{fig:crimes-with-radius-geo4}
 \end{figure}
 
 \subsection{Statistical Analysis}
@@ -681,12 +721,14 @@ highest reported crime for a localized search near Chicago city.
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/stat1.jpg}
-	\caption{Total crimes vss total arrests for each month in Chichago from 2001-01 to 2018-02}\label{fig:time-top10crimes-local-stat1}
+	\caption{Total crimes vss total arrests for each month in Chichago
+        from 2001-01 to 2018-02}\label{fig:time-top10crimes-local-stat1}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering\includegraphics[width=\columnwidth]{images/stat2.jpg}
-	\caption{Total Crimes by crime types in Chichago city from 2001 to 2018}\label{fig:year-top10crimes-local-stat2}
+	\caption{Total Crimes by crime types in Chichago city from 2001
+        to 2018}\label{fig:year-top10crimes-local-stat2}
 \end{figure}
 
 \section{Conclusion and Future works} 
