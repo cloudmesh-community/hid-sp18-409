@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crime Search</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="static/css/googleMap.css">
+    <link rel="stylesheet" href="static/css/dygraph.css">
+</head>
+<body>
+<div class="pac-card" id="pac-card">
+    <div>
+        <div id="title">
+            Crime search
+        </div>
+        <div id="distance">
+            <label id="label-radius">Enter a radius in Miles</label>
+            <input id="pac-input-radius" type="text" value="0.5"
+                   placeholder="Enter a radius in Miles">
+        </div>
+        <div id="type-selector" class="pac-controls">
+            <input type="radio" name="type" id="changetype-all" checked="checked">
+            <label for="changetype-all">All</label>
+
+            <input type="radio" name="type" id="changetype-establishment">
+            <label for="changetype-establishment">Establishments</label>
+
+            <input type="radio" name="type" id="changetype-address">
+            <label for="changetype-address">Addresses</label>
+
+            <input type="radio" name="type" id="changetype-geocode">
+            <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="strict-bounds-selector" class="pac-controls">
+            <input type="checkbox" id="use-strict-bounds" value="">
+            <label for="use-strict-bounds">Strict Bounds</label>
+        </div>
+    </div>
+    <div id="pac-container">
+        <input id="pac-input" type="text"
+               placeholder="Enter a location">
+    </div>
+</div>
+
+<div id="floating-panel">
+    <h2>Crime Analysis</h2>
+    <input type="button" class="button-style" id="graphdiv2-btn" value="Analyze complete data set"
+           onclick="totalDataGraphs()">&nbsp;
+    <input type="button" class="button-style" id="graphdiv1-btn" value="Unzoom Graphs" onclick="unzoomGraphs()">
+    <br><br>
+    <div id="graphdiv1" style="width:100%; height:42%;"></div>
+    <br>
+    <div id="graphdiv2" style="width:100%; height:41%;"></div>
+    <br>
+    <div id="graphdiv3" style="width:100%;"></div>
+    <br>
+</div>
+
+<div id="map"></div>
+<div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name" class="title"></span><br>
+    <span id="place-address"></span>
+</div>
+
+<div id="legend"></div>
+
+<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="static/js/markerclusterer.js"></script>
+<script type="text/javascript" src="static/js/crime_search.js"></script>
+<script type="text/javascript" src="static/js/dygraph.js"></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb3sLZnZP5nZ6Zr3ypvYL5jPPhi9YF6xI&libraries=places&callback=initMap"></script>
+
+</body>
+</html>
