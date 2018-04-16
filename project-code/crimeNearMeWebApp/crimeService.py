@@ -10,7 +10,7 @@ from flask import request,Response
 
 app = Flask(__name__)
 
-swaggerHostName = "http://sawgger_service:8080"
+swaggerHostName = "http://swagger_service:8080"
 
 class School:
     def __init__(self, key, name, lat, lng):
