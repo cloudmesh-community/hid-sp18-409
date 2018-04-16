@@ -1,0 +1,11 @@
+---
+'data':
+    'downlink': 'https://drive.google.com/uc?id=10KaRL-J3qqNZiyahhr-5BRdmI-EWNe60&export=download'
+    'downlink_crime_List': 'https://drive.google.com/uc?id=1pDGPmEWDSMyYy7HJLyNJ62pJPd0oEMSA&export=download'
+    'downlinkFull': 'https://data.cityofchicago.org/api/views/ijzp-q8t2/rows.csv?accessType=DOWNLOAD'
+    'basepath': 'data'
+    'basefileFull': 'crimedata.csv'
+    'basefile': 'crimedata_small.csv'
+    'basefile_crime_List': 'crime_list.csv'
+
+'switch': 'small'

@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  crime-network:
+    driver: bridge
+
+services:
+  sawgger_service:
+    build: ./crime_finder_swagger
+    ports:
+     - "8080:8080"
+    volumes:
+     - /usr/src/app
+    networks:
+     - crime-network    
+
+  web_app:
+    build: ./crimeNearMeWebApp
+    ports:
+     - "5050:5050"
+    volumes:
+     - /usr/src/app2
+    depends_on:
+      - sawgger_service  # website is not going to work
+    networks:
+     - crime-network 
+    links:
+     - sawgger_service
