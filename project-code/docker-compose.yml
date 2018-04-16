@@ -7,8 +7,6 @@ networks:
 services:
   swagger_service:
     build: ./crime_finder_swagger
-    ports:
-     - "8080:8080"
     volumes:
      - /usr/src/app
     networks:
