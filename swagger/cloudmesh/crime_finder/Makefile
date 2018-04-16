@@ -6,12 +6,6 @@ CONFIG=$(HOME)/config
 DATA=$(HOME)/data
 CONTR=$(HOME)/swagger_server/controllers
 
-
-# Gregor: split the next tag in two
-# doker-build
-# doker-start
-# change documentation
-
 docker-build:
 	docker build -t kadupitiya/swagger .
 	
