@@ -92,21 +92,25 @@ listed as follows.
 
 	```
 	{
-	  Creating projectcode_sawgger_service_1 ... done
-    Creating projectcode_web_app_1         ... done
-    Attaching to projectcode_sawgger_service_1, projectcode_web_app_1
-    sawgger_service_1  | #starts the services
-    sawgger_service_1  | #echo /usr/src/app
-    sawgger_service_1  | #@echo Dockerfile Makefile README.md crimes.yaml data lib requirements.txt server
-    sawgger_service_1  | cd server; python -m swagger_server; cd ..;
-    web_app_1          |  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
-    sawgger_service_1  | /usr/local/lib/python3.6/site-packages/connexion/resolver.py:62: DtypeWarning: Co
-    19,20) have mixed types. Specify dtype option on import or set low_memory=False.
-    sawgger_service_1  |   return self.function_resolver(operation_id)
-    sawgger_service_1  |  * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+	    Creating projectcode_sawgger_service_1 ... done
+	    Creating projectcode_web_app_1         ... done
+	    Attaching to projectcode_sawgger_service_1, projectcode_web_app_1
+	    sawgger_service_1  | #starts the services
+	    sawgger_service_1  | #echo /usr/src/app
+	    sawgger_service_1  | #@echo Dockerfile Makefile README.md crimes.yaml data lib requirements.txt server
+	    sawgger_service_1  | cd server; python -m swagger_server; cd ..;
+	    web_app_1          |  * Running on http://0.0.0.0:5050/ (Press CTRL+C to quit)
+	    sawgger_service_1  | /usr/local/lib/python3.6/site-packages/connexion/resolver.py:62: DtypeWarning: Co
+	    19,20) have mixed types. Specify dtype option on import or set low_memory=False.
+	    sawgger_service_1  |   return self.function_resolver(operation_id)
+	    sawgger_service_1  |  * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
 	}
 
 	```
+* Then you can open the following URL in any of the web browser to see the web application:
+
+  * ```http://localhost:5050/```
+
 * Get the container ID using following command
   
   * ```docker ps```
