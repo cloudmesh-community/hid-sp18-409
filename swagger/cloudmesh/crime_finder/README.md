@@ -55,6 +55,10 @@
 * Start the service using following make command
   
   * ```make docker-start```
+  
+* If you need to start the container in detach mode, you can use following make command.
+  
+  * ```make docker-start-detach-mode```
 
 * Test the service using following curl commands
   
