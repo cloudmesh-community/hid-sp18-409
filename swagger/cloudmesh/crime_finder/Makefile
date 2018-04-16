@@ -10,6 +10,9 @@ docker-build:
 	docker build -t kadupitiya/swagger .
 	
 docker-start:
+	docker run -p 8080:8080 kadupitiya/swagger
+	
+docker-start-detach-mode:
 	docker run -d -p 8080:8080 kadupitiya/swagger
 
 docker-stop:
