@@ -21,6 +21,9 @@ clearly see seasonal effect in crime data near Chicago city area and
 we also noticed that crime rate is monotonically decreasing when we
 move away from the Chicago city area.
 
+## Video demonstration.
+Here is the link to the [video](https://www.youtube.com/watch?v=PU7PLzCxKds) demonstartion of the project.
+
 ## Technology Usage
 We used Python as the main programming language in this project and
 few web technologies such as HTML, CSS, JQuery and Google maps java
