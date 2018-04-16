@@ -109,7 +109,7 @@ listed as follows.
 	```
 * Then you can open the following URL in any of the web browser to see the web application:
 
-  * ```[http://localhost:5050/](http://localhost:5050/)```
+  * [http://localhost:5050/](http://localhost:5050/)
 
 * Get the container ID using following command
   
