@@ -5,7 +5,7 @@ networks:
     driver: bridge
 
 services:
-  sawgger_service:
+  swagger_service:
     build: ./crime_finder_swagger
     ports:
      - "8080:8080"
@@ -21,8 +21,8 @@ services:
     volumes:
      - /usr/src/app2
     depends_on:
-      - sawgger_service  # website is not going to work
+      - swagger_service  # website is not going to work
     networks:
      - crime-network 
     links:
-     - sawgger_service
+     - swagger_service
