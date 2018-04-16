@@ -27,15 +27,15 @@
 
 * Five API endpoints are provided.
 
-  * ```/v1/data```
+  * ```data```
   
-  * ```/v1/data/fetch```
+  * ```data/fetch```
   
-  * ```/v1/crimes```
+  * ```crimes```
   
-  * ```/v1/crimes/search```
+  * ```crimes/search```
   
-  * ```/v1/crimes/filter```
+  * ```crimes/filter```
 
 ## Instructions for docker installation
 
@@ -47,6 +47,10 @@
 * you should install docker.
 
 * change the directory to **swagger/cloudmesh/crime_finder** folder.
+
+* Build the docker image incuding the program using following make command
+  
+  * ```make docker-build```
 
 * Start the service using following make command
   
