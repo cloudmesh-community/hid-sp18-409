@@ -12,8 +12,10 @@ CONTR=$(HOME)/swagger_server/controllers
 # doker-start
 # change documentation
 
-docker-start:
+docker-build:
 	docker build -t kadupitiya/swagger .
+	
+docker-start:
 	docker run -p 8080:8080 kadupitiya/swagger
 
 docker-stop:
