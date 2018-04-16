@@ -1,3 +1,4 @@
+FLASKWEBHOME=crimeNearMeWebApp
 SWAGGER_CODEGEN=java -jar lib/swagger-codegen-cli.jar
 YML=crimes.yaml
 HOME=server
@@ -9,7 +10,7 @@ CONTR=$(HOME)/swagger_server/controllers
 docker-start:
 	docker build -t kadupitiya/swagger .
 	docker run -p 8080:8080 kadupitiya/swagger
-	
+
 docker-stop:
 	docker stop $$(docker ps -a -q -f status=running)
 
@@ -31,11 +32,14 @@ client:
 	$(SWAGGER_CODEGEN) generate -i crimes.yaml -l python -o $(CLIENT) -D supportPython3=true
 	cp testClient.py $(CLIENT)
 	cd $(CLIENT); pip install -r requirements.txt; python setup.py install; cd ..;
-	
+
+
 start:
 	#starts the services
+	#echo $(shell pwd)
+	#@echo $(shell ls)
 	cd $(HOME); python -m swagger_server; cd ..;
-
+		
 stop:
 	#stops the service
 	ps -ef | grep swagger | grep -v "grep"| awk '{print $$2}' | xargs kill -9

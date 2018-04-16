@@ -20,8 +20,18 @@ ENV SPARK_HOME /usr/local/spark-2.3.0-bin-hadoop2.7
 ENV PATH $PATH:${SPARK_HOME}/bin
 RUN curl -s ${SPARK_ARCHIVE} | tar -xz -C /usr/local/
 
+# Copy required files
+COPY ./ /usr/src/app
+RUN ls -la /usr/src/app/*
+
+WORKDIR /usr/src/app
+
 # install pyspark  
 RUN pip install -r requirements.txt
 
-# start the service
-CMD ["spark-submit", "main.py"]
+# tell the port number the container should expose
+EXPOSE 7085
+
+# start the crime WebAPP
+CMD python main.py
+

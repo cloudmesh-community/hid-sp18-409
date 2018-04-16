@@ -10,6 +10,8 @@ from flask import request,Response
 
 app = Flask(__name__)
 
+swaggerHostName = "http://sawgger_service:8080"
+
 class School:
     def __init__(self, key, name, lat, lng):
         self.key  = key
@@ -51,7 +53,7 @@ def crimeSearch():
     #print(userData['latitude'])
     #print(userData['longitude'])
     
-    url = 'http://localhost:8080/cloudmesh/crime_finder/crimes?latitude='+str(userData['latitude'])+'&longitude='+str(userData['longitude'])+'&radius='+str(userData['radius'])
+    url = swaggerHostName + '/cloudmesh/crime_finder/crimes?latitude='+str(userData['latitude'])+'&longitude='+str(userData['longitude'])+'&radius='+str(userData['radius'])
     responseR = requests.get(url,headers={"Content-Type": "application/json"})
     
      #Response object
@@ -75,7 +77,7 @@ def crimeSearch():
 def crimeList():
     crime_list = {}
 
-    url = 'http://localhost:8080/cloudmesh/crime_finder/crimes/list'
+    url = swaggerHostName + '/cloudmesh/crime_finder/crimes/list'
     responseR = requests.get(url, headers={"Content-Type": "application/json"})
     data = json.dumps(responseR.json())
     dataRead = json.loads(data)
@@ -95,7 +97,7 @@ def crimeList():
 @app.route('/crimeByMonth', methods=['GET'])
 def crimeByMonth():
 
-    url = 'http://localhost:8080/cloudmesh/crime_finder/crimes/byday?no_of_types=10'
+    url = swaggerHostName + '/cloudmesh/crime_finder/crimes/byday?no_of_types=10'
     responseR = requests.get(url, headers={"Content-Type": "application/json"})
     #data = json.dumps(responseR.json())
 
@@ -111,7 +113,7 @@ def crimeByMonth():
 @app.route('/crimeByYear', methods=['GET'])
 def crimeByYear():
 
-    url = 'http://localhost:8080/cloudmesh/crime_finder/crimes/byyear?no_of_types=10'
+    url = swaggerHostName + '/cloudmesh/crime_finder/crimes/byyear?no_of_types=10'
     responseR = requests.get(url, headers={"Content-Type": "application/json"})
     #data = json.dumps(responseR.json())
 
