@@ -82,14 +82,10 @@ listed as follows.
 
 * you should install docker.
 
-* change the directory to **project-code** folder.
+* Change the directory to **project-code** folder.
 
-* Before statring the docker-build and start please make sure that your computer is not using port 5050 for some 
-other task as you are going to see the web application on port 5050.
-  
-  * ```make docker-compose-start```
-
-* Start the service using following make command
+* Start the service using following make command (Before statring the docker-build and start please make sure that your 
+computer is not using port 5050 for some other task as you are going to see the web application on port 5050).
   
   * ```make docker-compose-start```
 
