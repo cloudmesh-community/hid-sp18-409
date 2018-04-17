@@ -46,6 +46,7 @@
 * 2018/02/28 Read about Firebase cloud services.
 * 2018/03/06 Read and experimented with docker and containers.
 * 2018/03/10 Read and experimented with Google Maps Java script API.
+* 2018/04/15 Read and experimented with Docker Compose.
 
 # Experiments and Activities
 
