@@ -12,6 +12,7 @@
 * 2018/04/08 Attended an Online Meeting Staffed by Tyler
 * 2018/04/09 Attended an Online Meeting Staffed by Gregor
 * 2018/04/16 Attended an Online Meeting Staffed by Gregor
+* 2018/04/22 Attended an Online Meeting Staffed by Tyler 
 
 #  Lectures and Logistics
 
@@ -80,6 +81,6 @@
 * Swagger V2: Makefile - started on 03/05 and completed on 03/05	
 * Swagger V3: Dcoker - started on 03/06 and completed on 03/07
 * Tutorial - started on 03/12 and completed on 03/17
-* Project - started on 03/15 and completed on 04/xx
+* Project - started on 03/15 and completed on 04/18
 * Project-report-proposal - started on 03/30 and completed on 04/01
-* Project-report - started on 04/02 and completed on 04/xx
+* Project-report - started on 04/02 and completed on 04/22
