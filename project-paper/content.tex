@@ -242,54 +242,54 @@ over 6 Million rows. Attribute information about the dataset are as
 follows:
 
 \begin{description}
-	\item[ID]: Unique identifier for the record.  \item[Case
-	Number]: The Chicago Police Department record
+	\item[ID:] Unique identifier for the record.  \item[Case
+	Number:] The Chicago Police Department record
 	Number.
-        \item[Date]: Date when the incident
+        \item[Date:] Date when the incident
 	occurred.
-        \item[Date]: The partially redacted address where
+        \item[Address:] The partially redacted address where
 	the incident occurred.
-        \item[IUCR]: The Illinois Unifrom
+        \item[IUCR:] The Illinois Unifrom
 	Crime Reporting code.
-        \item[Primary Type]: The primary
+        \item[Primary Type:] The primary
 	description of the IUCR code.
-        \item[Description]: The
+        \item[Description:] The
 	secondary description of the IUCR code.
         \item[Location
-	Description]: Description of the location where the incident
+	Description:] Description of the location where the incident
 	occurred.
-        \item[Arrest]: Indicates whether an arrest was made
+        \item[Arrest:] Indicates whether an arrest was made
 	or not.
-        \item[Domestic]: Indicates whether the incident was
+        \item[Domestic:] Indicates whether the incident was
 	domestic-related.
-        \item[Beat]: Indicates the beat where the
+        \item[Beat:] Indicates the beat where the
 	incident occurred.
-        \item[District]: Indicates the police
+        \item[District:] Indicates the police
 	district where the incident occurred.
-        \item[Ward]: The ward
+        \item[Ward:] The ward
 	where the incident occurred.
-        \item[Community Area]: Indicates
+        \item[Community Area:] Indicates
 	the community area where the incident occurred.
         \item[FBI
-	Code]: Indicates the crime classification as outlined in the
+	Code:] Indicates the crime classification as outlined in the
 	FBI.
-        \item[X Coordinate]: The x coordinate of the location
+        \item[X Coordinate:] The x coordinate of the location
 	where the incident occurred. This location is shifted from the
 	actual location for partial redaction but falls on the same
 	block.
-        \item[Y Coordinate]: The y coordinate of the location
+        \item[Y Coordinate:] The y coordinate of the location
 	where the incident occurred. This location also is shifted
 	from the actual location for partial redaction but falls on
 	the same block.
-        \item[Year]: Year the incident
+        \item[Year:] Year the incident
 	occurred.
-        \item[Updated On]: Date and time the record was
+        \item[Updated On:] Date and time the record was
 	last updated.
-        \item[Latitude]: The latitude of the location
+        \item[Latitude:] The latitude of the location
 	where the incident occurred.
-        \item[Longitude]: The longitude
+        \item[Longitude:] The longitude
 	of the location where the incident occurred.
-        \item[Location]:
+        \item[Location:]
 	The location where the incident occurred in maps format.
 \end{description}
 
@@ -313,7 +313,8 @@ script API are used for the front end development of the project. Full
 description of programming environments and library packages which
 used to implement the crime analyzing and visualization framework, are
 shown in Table~\ref{tab:technology}.
-\begin{table}[]
+
+\begin{table}[htb]
 \centering
 \caption{Technologies used in the project}\label{tab:technology}
 \begin{tabular}{*{2}{c}}
@@ -388,12 +389,12 @@ is updated by the admin user. Following pseudocode explains how we
 have implemented Spark MapReduce for the crime dataset.
 
 \begin{verbatim}
-1. Create a SparkSQL session
-2. Load data with pandas
-3. Process the data to get desired data columns
-4. Create a Spark context with data
-5. Create a RDD of Row objects using groups
-6. Do the MapReduce based on the groups
+Create_SparkSQL_session()
+Load_data_with_pandas()
+Process_data_to_get_desired_data_columns()
+Create_Spark_context_with_data()
+Create_RDD_of_Row_objects_using_groups()
+Do_MapReduce_based_on_groups()
 \end{verbatim}
 
 \subsection{Swagger web service for location based Crime
@@ -426,34 +427,34 @@ Following list contains the micro services defined and implemented inside
 the swagger service.
 
 \begin{description}
-	\item[getCrime]: User can search for a particular crime with
+	\item[getCrime:] User can search for a particular crime with
 	unique crime Id using this API.
-        \item[getCrimes]: The
+        \item[getCrimes:] The
 	getCrimes API returns information about the crimes previously
 	happened at a given location or nearby locations based on
 	users GPS coordinates and radius. The response includes lists
 	of crimes in the proper display
 	order.
-        \item[getFilteredCrimes]: This API endpoint returns
+        \item[getFilteredCrimes:] This API endpoint returns
 	information about the crimes previously happened at a given
 	location or nearby locations based on user’s GPS coordinates,
 	radius and a primary type (Example-
 	BATTERY).
-        \item[getPrimaryCrimeList]: User can get primary
+        \item[getPrimaryCrimeList:] User can get primary
 	crime types as a list using this
 	API.
-        \item[getCrimesByMonth]: User can get top x number of
+        \item[getCrimesByMonth:] User can get top x number of
 	crimes by month using this API.
-        \item[getCrimesByYear]: User
+        \item[getCrimesByYear:] User
 	can get top x number of crimes by year using this
 	API.
-        \item[downloadData]: This API downloads the data from
+        \item[downloadData:] This API downloads the data from
 	the data source difined in the config.yml
 	file.
-        \item[updateData]: This API updates the data from the
+        \item[updateData:] This API updates the data from the
 	data source difined in the config.yml
 	file.
-        \item[triggerSparkFuctions]: This API calls the Spark
+        \item[triggerSparkFuctions:] This API calls the Spark
 	UDFs to generate the reduced data files for total crime
 	dataset analysis.
 \end{description}
@@ -558,16 +559,16 @@ statistical analysis results.
 We measured and analyzed the performance of the crime search framework
 on three different hardware infrastructures as listed follows:
 \begin{description}
-	\item[Asuz Laptop]: 2 hardware cores, 2 threads per core, 8th
+	\item[Asuz Laptop:] 2 hardware cores, 2 threads per core, 8th
 	Generation Intel Core i5-8300H processor (up to 3.9 GHz) with
 	8 GB DDR4 high-frequency 2666 MHz RAM, 1 TB SSHD hard drive
 	and GeForce GTX 1050 1GB VGA.
-        \item[Dell Workstation]: 10
+        \item[Dell Workstation:] 10
 	hardware cores, 2 threads per core, Intel Xeon Processor
 	E5-2630 V4 Family (up to 3.1 GHz) with 32 GB DDR4
 	high-frequency 2133 MHz RAM, 500 GB SSD hard drive and NVIDIA
 	Quadro M2000 4GB VGA.
-        \item[EC2 EMR (m4.xlarge instances)]: 5
+        \item[EC2 EMR (m4.xlarge instances):] 5
 	nodes (1 master and 4 worker), 18 hardware cores per node, 2
 	threads per core, Intel Xeon Processor E5-2686 v4 Family (up
 	to 3.0 GHz) with 32 GB DDR4 high-frequency DDR4-2400 MHz RAM,
@@ -585,15 +586,21 @@ times (in minutes) for different data sizes (number of crimes) in
 three different computing platforms are shown in the
 Table~\ref{tab:performance}. We were able achieve a maximum speed up
 of 32.5 with total 144 threads in EC2 m4.xlarge instances for the
-complete dataset.
+complete dataset. Execution time breakdown in minutes for different
+components fo the system in different computing platforms for radius
+of 1.6 miles are shown in Table~\ref{tab:performance_component}. It
+can be observed that complete system starts well in both EC2 EMR and
+workstation computing resources.
 
-\begin{table}[]
+\begin{table}[htb]
 	\centering
 	\caption{Total execution times in minutes for different data
         sizes in different computing platforms}\label{tab:performance}
 	\begin{tabular}{*{5}{c}}
 		\toprule
 		Radius & Data size &  laptop & workstation &  EC2 EMR \\
+		\midrule
+		Time & in &  Mins (m) & (m) &  (m) \\
 		\midrule
 		0.1 & 52664  & 16  & 3 &  2 \\
 		0.2 & 195334 & 23  & 5 &  2 \\
@@ -605,6 +612,35 @@ complete dataset.
 		12.8 & 6516889 & 364  & 72 &  12 \\
 		25.6 & 6568036 & 391  & 75 &  12 \\
 
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+	\centering
+	\caption{Execution time breakdown in minutes for different
+        components in different computing platforms for radius of
+        1.6 miles }\label{tab:performance_component}
+	\begin{tabular}{*{4}{c}}
+		\toprule
+		Component & laptop & workstation &  EC2 EMR \\
+		\midrule
+		Time in & Seconds (s) & (s) &  (s) \\
+		\midrule
+		Data & 30.5  & 20.1 &  32.8 \\
+		preprocessing  &   &  &   \\
+		\midrule
+		Setup time of  & 15.8  & 15.6 &  15.9 \\
+		Swagger service  &   &  &   \\
+		\midrule
+		Setup time of  & 120.1  & 95.4 &  90.8 \\
+		Spark module  &   &  &   \\
+		\midrule
+		Setup time of  & 14.8  & 12.6 &  13.5 \\
+		Flask webApp  &   &  &   \\
+		\midrule
+		Time for full & 187.5  & 149.4 &  157.3 \\
+		system to launch  &   &  &   \\
 		\bottomrule
 	\end{tabular}
 \end{table}
