@@ -111,6 +111,7 @@ computer is not using port 5050 for some other task as you are going to see the 
 * Then you can open the following URL in any of the web browser to see the web application:
 
   * [http://localhost:5050/](http://localhost:5050/)
+  * Now, you may check any of the functionalities explained in the project demonstration [video](https://www.youtube.com/watch?v=PU7PLzCxKds).
 
 * Get the container ID using following command
   
