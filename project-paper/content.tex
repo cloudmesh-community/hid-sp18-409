@@ -32,6 +32,7 @@
 
 
 \begin{abstract}
+	
 Crimes are horrifying and cost the progress of mankind in many ways
 while influencing our society and day to day life. Because of that,
 higher priority is always given by the government and politicians to
@@ -116,6 +117,7 @@ results and discussion. A summary about the project paper is provided
 in section V.
 
 \section{Literature Review}
+
 The recent research and development in crime data investigation area
 could be broadly categorized into two categories; analysis of
 criminology~\cite{hid-sp18-409-agarwal2013crime,
@@ -220,6 +222,7 @@ crime data search website which allows users to search crimes near a
 given address and analyze the crime data in one single web interface.
 
 \section{Methodology}
+
 As described in the literature review, most of the research on crime
 data investigation focused on analyzing crimes by type of the crimes,
 time series information and geographical location. These techniques
@@ -229,6 +232,7 @@ technology usage and implementation details of individual modules
 based on python implementation. 
 
 \subsection{Data Acquisition}\label{dataset}
+
 We have selected a dataset which includes the crime information from
 2001 to current date in Chicago
 city~\cite{hid-sp18-409-www-data.gov}. Dataset is created with the
@@ -243,6 +247,7 @@ over 6 Million rows. Attribute information about the dataset are as
 follows:
 
 \begin{description}
+	
 	\item[ID:] Unique identifier for the record.  \item[Case
 	Number:] The Chicago Police Department record
 	Number.
@@ -295,6 +300,7 @@ follows:
 \end{description}
 
 \subsection{preprocessing}
+
 When sweep over the rows in the dataset, we noted that many missing
 values in some of the rows and columns. Hence before using the
 dataset, it is imperative to treat the missing values. Our analysis
@@ -308,6 +314,7 @@ automatically triggered when update the data files using provided data
 source update swagger services.
 
 \subsection{Technology Usage}
+
 We used Python as the main programming language in this project and
 few web technologies such as HTML, CSS, JQuery and Google maps java
 script API are used for the front end development of the project. Full
@@ -349,6 +356,7 @@ Docker                          & 1.13.1  \\
 \end{table}
 
 \subsection{Overview of crime search framework}
+
 Figure~\ref{fig:overview} shows the suggested framework for crime data
 analysis and visualization.  As shown in the Figure~\ref{fig:overview}
 there two main users in the system such as regular user and the admin
@@ -381,6 +389,7 @@ installation.
 
 \subsection{Spark MapReduce module for crime analysis using time,
 type and location}\label{sparkModule}
+
 Since the dataset described in Section~\ref{dataset} is so large to
 handle in single core computer, we have implemented Spark MapReduce as
 user defined functions (UDFs) for analyzing the dataset using time
@@ -400,6 +409,7 @@ Do_MapReduce_based_on_groups()
 
 \subsection{Swagger web service for location based Crime
 analysis}\label{swaggerService}
+
 As shown in Figure~\ref{fig:overview}, this swagger service contains
 nine micro services to serve the Flask web application and admin
 user. It also connect the admin user with Spark Mapreduce module and
@@ -428,6 +438,7 @@ Following list contains the micro services defined and implemented inside
 the swagger service.
 
 \begin{description}
+	
 	\item[getCrime:] User can search for a particular crime with
 	unique crime Id using this API.
         \item[getCrimes:] The
@@ -461,6 +472,7 @@ the swagger service.
 \end{description}
 
 \subsection{Flask web application for visualization}\label{flaskWebApp}
+
 As illustrated in Figure~\ref{fig:overview}, Flask web application is
 made for users to perform the crime data search based on their
 geographical location and to visualize the crime data analysis by
@@ -470,6 +482,7 @@ to showcase the crime data in correct geogrphical location. Following
 sub sections describes the features of the developed web interface.
 
 \subsubsection{Auto completed Addresses Search}\label{addressSearch}
+
 We have used Google maps javascript address auto complete API to
 provide a type-ahead search box for user to enter a address of any
 location such as Establishment, Addresses and
@@ -495,6 +508,7 @@ widget.
 \end{figure}
 
 \subsubsection{Show crimes data in markers mode}\label{markerMode}
+
 We have created a custom markers for each of the primary crime types
 and kept those as templates to be used for creating markers for the
 search results from the ``getCrimes'' API call described in
@@ -512,6 +526,7 @@ with the web interface. If needed user also can turn on or off all
 markers using the functionality provided in the legend pane.
 
 \subsubsection{Show crimes data in cluster mode}\label{clusterMode}
+
 This cluster mode is created from the markers described in the
 Section~\ref{markerMode} and there is a button placed on the legend
 pane to activated the cluster mode and it automatically deactivate the
@@ -527,6 +542,7 @@ the closest grid-based marker clusters based on the map's zoom
 level. The number on a cluster indicates how many markers it contains.
 
 \subsubsection{Plots for crime data analysis}\label{plottingData}
+
 There are two types of graphs created in the project such as graphs
 which contains the information about entire crime dataset and graphs
 which only contains the information about crime data a user searched
@@ -550,6 +566,7 @@ features such as drag on axis, zoom and unzoom, move along axis to
 increase ability of the data visualization.
 
 \section{Results and Discussion}
+
 This section provides the results we have achieved through the
 implemented crime data search and analyzing framework and provides a
 discussion about the results. It contains the benchmarking results,
@@ -647,6 +664,7 @@ workstation computing resources.
 \end{table}
 
 \subsection{Time Series Analysis}
+
 Our crime search and analyzing framework allows user to analyze crime
 data under two modes such as total crime data analysis in the Chicago
 city and investigate the crime data relevant to the crime search
@@ -692,6 +710,7 @@ periods to be in the searched place.
 \end{figure}
 
 \subsection{Geospatial Analysis}
+
 As explained in the Section~\ref{markerMode} and~~\ref{clusterMode},
 user can search for a location with a radius and get to know about 34
 different types of crimes reported in that particular area using the
