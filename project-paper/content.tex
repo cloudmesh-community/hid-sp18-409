@@ -604,7 +604,10 @@ times (in minutes) for different data sizes (number of crimes) in
 three different computing platforms are shown in the
 Table~\ref{tab:performance}. We were able achieve a maximum speed up
 of 32.5 with total 144 threads in EC2 m4.xlarge instances for the
-complete dataset. Execution time breakdown in minutes for different
+complete dataset. Figure~\ref{fig:results-weakscaling} also shows the
+Performance comparison of Crime Search Framework using execution times
+in minutes for different data sizes in different computing
+platforms. Execution time breakdown in minutes for different
 components fo the system in different computing platforms for radius
 of 1.6 miles are shown in Table~\ref{tab:performance_component}. It
 can be observed that complete system starts well in both EC2 EMR and
@@ -617,6 +620,8 @@ workstation computing resources.
 	\begin{tabular}{*{5}{c}}
 		\toprule
 		Radius & Data size &  laptop & workstation &  EC2 EMR \\
+		\midrule
+		Processes & / threads &  4  & 20 &  144 \\
 		\midrule
 		Time & in &  Mins (m) & (m) &  (m) \\
 		\midrule
@@ -634,6 +639,15 @@ workstation computing resources.
 	\end{tabular}
 \end{table}
 
+\begin{figure}[htb]
+	\centering\includegraphics[width=\columnwidth]
+	{images/crime.jpg}
+	\caption{Performance comparison of Crime
+        Search Framework using execution times in
+        minutes for different data sizes in different
+        computing platforms}\label{fig:results-weakscaling}
+\end{figure}
+
 \begin{table}[htb]
 	\centering
 	\caption{Execution time breakdown in minutes for different
@@ -642,6 +656,8 @@ workstation computing resources.
 	\begin{tabular}{*{4}{c}}
 		\toprule
 		Component & laptop & workstation &  EC2 EMR \\
+		\midrule
+		Processes &  4  & 20 &  144 \\
 		\midrule
 		Time in & Seconds (s) & (s) &  (s) \\
 		\midrule
